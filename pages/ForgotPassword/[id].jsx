@@ -2,7 +2,7 @@ import { CircularProgress, Paper } from "@material-ui/core";
 import { Button, TextField, Typography } from "@material-ui/core";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { reset } from "../apis/api";
+import { reset } from "../../apis/api";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
