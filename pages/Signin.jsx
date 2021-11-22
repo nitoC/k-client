@@ -1,8 +1,8 @@
 import { CircularProgress, Paper } from "@material-ui/core";
 import { Button, FormControl, TextField, Typography } from "@material-ui/core";
 import Link from "next/link";
-import { forgotPassword } from "./apis/api";
-import { userFetch, message, rel } from "./redux/actions";
+import { forgotPassword } from "../apis/api";
+import { userFetch, message, rel } from "../redux/actions";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";

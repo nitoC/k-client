@@ -16,10 +16,10 @@ import { Alert } from "@material-ui/lab";
 import tawk from "tawkto-react";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { Logout } from "./redux/actions";
-import { deposit } from "./apis/api";
-import { withdraw } from "./apis/api";
-import { addressfunc } from "./apis/api";
+import { Logout } from "../redux/actions";
+import { deposit } from "../apis/api";
+import { withdraw } from "../apis/api";
+import { addressfunc } from "../apis/api";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 //Top section with name and deposit button

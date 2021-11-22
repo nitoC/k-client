@@ -4,12 +4,12 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "https://keytrade.herokuapp.com",
-  "license": "UNLICENCED",
+  "license": "MIT",
   "scripts": {
-    "dev": "yarn dev",
-    "build": "yarn build",
-    "start": "yarn start",
-    "lint": "yarn lint"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
@@ -33,7 +33,7 @@
     "thunk": "^0.0.1"
   },
   "devDependencies": {
-    "eslint": "8.1.0",
+    "eslint": "^8.3.0",
     "eslint-config-next": "11.1.2"
   }
 }

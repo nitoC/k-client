@@ -6,7 +6,7 @@ import {
   ThemeProvider,
 } from "@material-ui/core/styles";
 import Link from "next/link";
-import { register } from "./apis/api";
+import { register } from "../apis/api";
 import { useState } from "react";
 import { useRouter } from "next/router";
 const Signup = () => {
