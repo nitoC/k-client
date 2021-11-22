@@ -7,9 +7,8 @@ import {
 } from "@material-ui/core/styles";
 import Link from "next/link";
 import { register } from "./apis/api";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import { SettingsBrightness } from "@material-ui/icons";
 const Signup = () => {
   const [Reg, setReg] = useState("");
   let theme = createTheme();

@@ -8,7 +8,7 @@ import '../styles/services.scss'
 import App from 'next/app'
 import {Provider} from 'react-redux'
 import React from 'react'
-import withRedux, { createWrapper } from 'next-redux-wrapper';
+import  { createWrapper } from 'next-redux-wrapper';
 import persist from './redux/Store';
 import { PersistGate } from 'redux-persist/integration/react'
 
