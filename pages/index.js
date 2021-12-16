@@ -1,6 +1,5 @@
 //import Head from 'next/head'
 //import Image from 'next/image'
-import "../styles/Home.module.scss";
 import tawk from "tawkto-react";
 import Link from "next/link";
 import {
