@@ -2,8 +2,8 @@
   width: 100vw;
   * {
     overflow: hidden;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
     box-sizing: border-box;
   }
   height: 100vh;
@@ -22,9 +22,11 @@
     }
   }
   .form-cover {
+   
     .for-o-i {
       display: flex;
       justify-content: space-between;
+     
       width: 100%;
       * {
         text-transform: none;
@@ -37,15 +39,28 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
+        padding-left: 1.2em;
+        padding-right: 1.2em;
+        padding-bottom: .3em;
       }
       .row-2 {
         width: 100%;
+        min-height:50px;
+        padding-left: 1.2em;
+        padding-right: 1.2em;
+        padding-bottom: .3em;
       }
       .row-3 {
         width: 100%;
+        padding-left: 1.2em;
+        padding-right: 1.2em;
+        padding-bottom: .3em;
       }
       .row-4 {
+        padding-bottom: .3em;
         width: 100%;
+        padding-left: 1.2em;
+        padding-right: 1.2em;
       }
     }
     width: 45%;
@@ -86,6 +101,8 @@
   .form-container {
     .form-cover {
       width: 75%;
+      padding-left: .5em;
+      padding-right: .5em;
     }
   }
 }
