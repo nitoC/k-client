@@ -212,7 +212,7 @@ const Signin = () => {
           <ThemeProvider theme={theme}>
             <Typography
               style={{ color: "orange", textAlign: "center" }}
-              variant="h3"
+              variant="h4"
             >
               Log in
             </Typography>

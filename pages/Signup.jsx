@@ -92,7 +92,7 @@ const Signup = () => {
           <ThemeProvider theme={theme}>
             <Typography
               style={{ color: "orange", textAlign: "center" }}
-              variant="h3"
+              variant="h4"
             >
               Create account
             </Typography>

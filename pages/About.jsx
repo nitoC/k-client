@@ -1,6 +1,28 @@
+import Head from "next/head"
+
+
 const About = () => {
   return (
     <div className="about">
+      <div className="diw1">
+     
+          <div
+            id="coinmarketcap-widget-coin-price-block"
+            coins="1,1027,825,74,1839,3388,6528"
+            currency="USD"
+            theme="light"
+            transparent="true"
+            show-symbol-logo="true"
+          ></div>
+          <div
+            id="coinmarketcap-widget-marquee"
+            coins="1,1027,825"
+            currency="USD"
+            theme="light"
+            transparent="false"
+            show-symbol-logo="true"
+          ></div>
+        </div>
       <div className="about-container">
         <h1 className="l-headers">
           About <span>Us</span>

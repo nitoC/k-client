@@ -1,7 +1,8 @@
-//import Head from 'next/head'
+import Head from "next/head";
 //import Image from 'next/image'
 import tawk from "tawkto-react";
 import Link from "next/link";
+import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 import {
   Avatar,
   Button,
@@ -10,6 +11,7 @@ import {
   Typography,
   IconButton,
   Box,
+  Container,
 } from "@material-ui/core";
 import { ButtonGroup } from "@material-ui/core";
 //import { AppBar } from '@material-ui/core'
@@ -48,51 +50,133 @@ const Home = () => {
 
   return (
     <div className="wrapper">
+      <Head>
+        <script src="https://widget.nomics.com/embed.js" />
+        <script
+          type="text/javascript"
+          src="https://files.coinmarketcap.com/static/widget/coinPriceBlock.js"
+        />
+        <script
+          defer
+          src="https://www.livecoinwatch.com/static/lcw-widget.js"
+        />
+      </Head>
       <div className="side-nav">
         <div onClick={handleRenav} className={modal}></div>
         <div className={nav}>
-          <div className="icon">
-            <IconButton onClick={handleRenav}>
-              <Close />
-            </IconButton>
-          </div>
-          <Link href="/About">
-            <a>About us</a>
-          </Link>
-          <Link href="/Services">
-            <a>Services</a>
-          </Link>
-          <Link href="#support">
-            <a>Support</a>
-          </Link>
-          <div className="buttons">
-            <div className="btn-1">
-              <Link href="/Signin" passHref>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  color="primary"
-                  style={{ width: "100px", borderRadius: "0px" }}
-                >
-                  login
-                </Button>
-              </Link>
+          <div className="ncov">
+            <div className="icon">
+              <IconButton onClick={handleRenav}>
+                <Close />
+              </IconButton>
             </div>
-            <div className="btn-2">
-              <Link href="/Signup" passHref>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  color="secondary"
-                  style={{ width: "100px", borderRadius: "0px" }}
-                >
-                  signup
-                </Button>
-              </Link>
+            <Link href="/About">
+              <a>About us</a>
+            </Link>
+            <Link href="/Services">
+              <a>Services</a>
+            </Link>
+            <Link href="#support">
+              <a>Support</a>
+            </Link>
+            <div className="buttons">
+              <div className="btn-1">
+                <Link href="/Signin" passHref>
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    color="primary"
+                    style={{ width: "100px", borderRadius: "0px" }}
+                  >
+                    login
+                  </Button>
+                </Link>
+              </div>
+              <div className="btn-2">
+                <Link href="/Signup" passHref>
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    color="secondary"
+                    style={{ width: "100px", borderRadius: "0px" }}
+                  >
+                    signup
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      {/*mobile*/}
+      <div className="m-cover">
+        <div className="mobile">
+        <header>
+          <div className="app-cov">
+            <div className="header appbar">
+              <div className="logo">
+                <h1>
+                  K<span>Inv</span>
+                </h1>
+              </div>
+              <Box className="menu-icon">
+                <IconButton
+                  onClick={handleNav}
+                  color="inherit"
+                  fontSize="15px"
+                  aria-label="menu"
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Box>
+            </div>
+          </div>
+        </header>
+          <div className="m-keyword">
+            <h1 style={{}}>
+              KeyTrade
+              <br />
+              <span>Invenstment</span>
+            </h1>
+          </div>
+          <Link href="https://tawk.to/chat/619a2ab96885f60a50bcca66/1fl13dpgg">
+              <Fab
+                variant="extended"
+                color="primary"
+                style={{ position: "fixed", bottom: 70, right: "20px", zIndex: 10 }}
+              >
+                chat
+                <Person />
+              </Fab>
+            </Link>
+        </div>
+        <div className="m-box">
+          <div className="m-desc-profit">
+            <h3>
+              20% to 40% <span>profit each day</span>
+            </h3>
+          </div>
+          <p>
+            We create the future. Cryptocurrency is the future of the global
+            financial market. And now we are engaged in the extraction of one of
+            the most valuable resources, which allows us to get maximum profits
+            today.
+          </p>
+          <div className="m-action-btn">
+            <Link href="/Signup" passHref>
+              <Button
+                variant="contained"
+                size="large"
+                color="secondary"
+                endIcon={<Forward />}
+              >
+                Get started
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+      {/*desktop */}
       <div className="contained">
         <header>
           <div className="app-cov">
@@ -200,6 +284,26 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className="widget">
+        <div className="diw1">
+          <div
+            class="livecoinwatch-widget-5"
+            lcw-base="USD"
+            lcw-color-tx="#999999"
+            lcw-marquee-1="coins"
+            lcw-marquee-2="movers"
+            lcw-marquee-items="10"
+          ></div>
+        </div>
+        <div className="diw">
+          <div
+            className="nomics-ticker-widget"
+            data-name="Bitcoin"
+            data-base="BTC"
+            data-quote="USD"
+          ></div>
+        </div>
+      </div>
       <div className="about">
         <div className="about-container">
           <h1 className="l-headers">
@@ -231,7 +335,7 @@ const Home = () => {
           <div className="steps">
             <div className="step-img1"></div>
             <div className="step-text">
-              <h2>Register and Sign in</h2>
+              <h2>Register/Login</h2>
             </div>
           </div>
           <div className="steps">
@@ -348,7 +452,7 @@ const Home = () => {
             <div className="us-desc">
               <div className="us-img">
                 <AlarmAddTwoTone
-                  style={{ fontSize: "65px", textAlign: "center" }}
+                  style={{ fontSize: "35px", textAlign: "center" }}
                   color="primary"
                 />
               </div>
@@ -363,7 +467,7 @@ const Home = () => {
             <div className="us-desc">
               <div className="us-img">
                 <CallMade
-                  style={{ fontSize: "65px", textAlign: "center" }}
+                  style={{ fontSize: "35px", textAlign: "center" }}
                   color="primary"
                 />
               </div>
@@ -379,7 +483,7 @@ const Home = () => {
             <div className="us-desc">
               <div className="us-img">
                 <PersonAddTwoTone
-                  style={{ fontSize: "65px", textAlign: "center" }}
+                  style={{ fontSize: "35px", textAlign: "center" }}
                   color="primary"
                 />
               </div>
@@ -395,7 +499,7 @@ const Home = () => {
             <div className="us-desc">
               <div className="us-img">
                 <Timer
-                  style={{ fontSize: "65px", textAlign: "center" }}
+                  style={{ fontSize: "35px", textAlign: "center" }}
                   color="primary"
                 />
               </div>
@@ -419,10 +523,10 @@ const Home = () => {
                 K<span>Inv</span>
               </h1>
             </div>
-            <Typography variant="h4" color="secondary">
+            <Typography variant="h5" color="secondary">
               Email:
             </Typography>
-            <Typography variant="h5" className="font">
+            <Typography variant="h6" className="font">
               supportkinvus@gmail.com
             </Typography>
             <div className="action-btn">
@@ -439,15 +543,48 @@ const Home = () => {
             </div>
           </div>
           <div className="p-system">
-            <Typography variant="h5" color="secondary">
+            <Typography variant="h6" color="secondary">
               Payment System
             </Typography>
-            <Typography variant="h5" className="font">
-              BITCOIN
+            <Typography variant="h6" className="font">
+              <ArrowForwardIos
+                style={{ fontSize: "15px", textAlign: "center" }}
+              />{" "}
+              USDT BITCOIN
             </Typography>
-            <Typography variant="h5" className="font">
+            <Typography variant="h6" className="font">
+              <ArrowForwardIos
+                style={{ fontSize: "15px", textAlign: "center" }}
+              />{" "}
               USDT
             </Typography>
+          </div>
+          <div className="links">
+            <Typography variant="h6" color="secondary">Useful links</Typography>
+            <Link href="/Services">
+              <a>
+                <ArrowForwardIos
+                  style={{ fontSize: "10px", textAlign: "center" }}
+                />
+                services
+              </a>
+            </Link>
+            <Link href="/About">
+              <a>
+                <ArrowForwardIos
+                  style={{ fontSize: "10px", textAlign: "center" }}
+                />
+                about
+              </a>
+            </Link>
+            <Link href="https://tawk.to/chat/619a2ab96885f60a50bcca66/1fl13dpgg">
+              <a>
+                <ArrowForwardIos
+                  style={{ fontSize: "10px", textAlign: "center" }}
+                />
+                support
+              </a>
+            </Link>
           </div>
           <div className="social">
             <Link href="www.facebook.com">

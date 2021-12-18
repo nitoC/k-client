@@ -1,7 +1,27 @@
+
+:root{
+  font-size: 16px;
+}
 .wrapper {
   width: 100vw;
   * {
     overflow: hidden;
+  }
+  .widget{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 65vh;
+    .diw{
+      width:850px;
+    }
+    .diw1{
+      padding:4px;
+      width:100vw;
+    }
+ 
+
   }
   .menu-icon {
     display: none;
@@ -28,6 +48,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    overflow-y: hidden;
   }
   .n-modal {
     padding: 10px;
@@ -39,6 +60,16 @@
     left: 0;
     right: 0;
     bottom: 0;
+    overflow-y: hidden;
+  }
+  .ncov{
+    height:90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    a{
+      display:block;
+    }
   }
   .n-nav {
     padding: 10px;
@@ -48,9 +79,6 @@
     height: 100vh;
     width: 250px;
     transition: 0.5s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     z-index: 11;
     background-color: white;
   }
@@ -128,9 +156,68 @@
     }
   }
 }
+.m-cover{
+  position: relative;
+  top:0;
+  left:0;
+  background:rgb(241, 238, 238);
+  height:80vh;
+  display: none;
+}
+.m-box{
+  padding: 7px;
+  width:90vw;
+  margin-left: 50%;
+  transform: translate(-50%,0%);
+  position:absolute;
+  top:50%;
+  background:white;
+  .m-action-btn{
+    padding: 7px;
+  }
+  p{
+    padding:5px;
+  }
+  *{
+   text-align: center;
+  }
+  h3{
+    color:orange;
+    span{
+      color: #1565c0 ;
+    }
+  }
 
+ }
+.mobile{
+  *{
+   
+  }
+  h1{
+    text-align: center;
+    padding: 0px;
+  }
+  
+  background: url("/woman1.gif");
+  background-color: rgba($color: #000000, $alpha: 0.1);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  background-blend-mode: overlay;
+  width: 100vw;
+  height: 50vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  h1 {
+    color: orange;
+    padding: 1em;
+    span {
+      color: #1565c0;
+    }
+  }
+}
 .contained {
-  background: url("/woman.jpg");
+  background: url("/woman1.gif");
   background-color: rgba($color: #000000, $alpha: 0.1);
   background-repeat: no-repeat;
   background-size: cover;
@@ -179,7 +266,7 @@
     align-items: center;
 
     h1 {
-      color: #1565c0;
+      color: wheat;
       font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
         sans-serif;
       font-style: italic;
@@ -189,6 +276,7 @@
 .about {
   padding: 1em;
   width: 100%;
+  
 }
 .direction {
   padding: 1em;
@@ -200,8 +288,11 @@
   background-color: mistyrose;
 }
 .about-container {
+
   * {
+   
   }
+  
   .l-headers {
     color: orange;
     span {
@@ -225,6 +316,12 @@
     align-items: center;
     width: 95%;
     min-height: 60vh;
+    background:url("/bt.jpg");
+  background-position:80% 100%;
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+  background-color: rgba(255,255,255,.9);
+  background-blend-mode: lighten;
     .img {
       width: 150px;
       height: 150px;
@@ -326,10 +423,26 @@
   }
 }
 footer {
+  *{
+  
+  }
   background: black;
   padding: 1em;
   min-height: 20vh;
   width: 100vw;
+  .links{
+    width:240px;
+  }
+  .links a{
+    display: block;
+    color:gray;
+    padding:2px;
+  }
+  .links a:hover{
+    display: block;
+    color:rgb(247, 238, 238);
+  }
+ 
   .font {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
       sans-serif;
@@ -337,24 +450,24 @@ footer {
   }
   .p-system {
     height: 150px;
-    width: 300px;
-    padding: 1em;
+    width: 240px;
+    padding: 5px;
   }
   .social {
-    padding: 1em;
-    height: 100px;
-    width: 300px;
+    padding: 2px;
+    height: 150px;
+    width: 240px;
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
   .contact {
-    padding: 1em;
+    padding: 2px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 200px;
-    width: 300px;
+    width: 240px;
   }
   .f-container {
     padding: 1em;
@@ -370,8 +483,17 @@ footer {
   }
 }
 @media (max-width: 1100px) {
+ 
+  
+
   .wrapper {
-    .contained {
+    .widget{
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .mobile,.contained {
       .description {
         min-height: 75%;
       }
@@ -416,6 +538,18 @@ footer {
     .wrapper {
       * {
       }
+      .widget{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        .diw{
+          width:500px;
+        }
+      }
+      .m-cover{
+        display: block;
+      }
       .fabs {
         position: fixed;
         bottom: 70;
@@ -424,7 +558,7 @@ footer {
       }
       width: 100vw;
       .contained {
-        display: flex;
+        display: none;
 
         flex-direction: column;
         align-items: center;
@@ -474,8 +608,32 @@ footer {
           }
         }
         width: 75vw;
-        height: 45vh;
+        height: 25vh;
         border-radius: 0px;
+        .step-img1 {
+          width: 50%;
+          height: 100%;
+          background: url("/invest.jpg");
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+        .step-img2 {
+          width: 50%;
+          height: 100%;
+          background: url("/hand1.jpg");
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+        .step-img3 {
+          width: 50%;
+          height: 100%;
+          background: url("/profit1.jpg");
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
       }
     }
     .plans {
@@ -508,7 +666,19 @@ footer {
     }
   }
 }
-@media (max-width: 420px) {
+@media (max-width: 490px) {
+ .wrapper{
+
+   .widget{
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   .diw{
+     width:300px;
+   }
+  }
+ }
   .l-headers {
     font-size: x-large;
     padding: 14px !important;
