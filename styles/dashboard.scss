@@ -142,6 +142,8 @@
       align-items: center;
       width: 350px;
       height: 250px;
+      margin-left: 50%;
+      transform: translateX(-50%)
     }
     .dep-btn {
       display: flex;
@@ -150,6 +152,11 @@
     }
     .dep-row {
       width: 100%;
+    }
+    .pb{
+     *{
+      padding-bottom: 0.7em;
+     } 
     }
     .body-cover {
       display: flex;
@@ -162,7 +169,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1.5em 0.5em 1.5em 0.5em;
+        padding: 1.5em 0.7em 1.5em 0.5em;
       }
       .plan-cover,
       .balance-cover,
@@ -203,8 +210,7 @@
           font-size: 0.65rem;
         }
       }
-      .btn-sec {
-      }
+      
     }
     .body {
       .wrapT {
@@ -288,10 +294,10 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 1.5em 0.5em 1.5em 0.5em;
+          padding: 1.5em 0.7em 1.5em 0.3em;
         }
         .btn-sec {
-          width: 100px;
+          width: 78px;
           .btn {
             * {
               font-size: 0.65rem;

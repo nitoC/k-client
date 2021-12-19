@@ -242,7 +242,7 @@ const Signin = () => {
               variant="filled"
             />
           </div>
-          <div className="row-2">
+          <div className="row-b">
             <div className="for-o-i">
               <Link href="/Signup">
                 <a style={{ padding: "4px" }}>no account?Register</a>

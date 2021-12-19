@@ -76,6 +76,7 @@ const Signup = () => {
       }
     }
   };
+
   return (
     <div className="form-container">
       <div className="logo">

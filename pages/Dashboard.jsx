@@ -272,7 +272,7 @@ const Withdrawal = ({ balance, modal, removeModal, email }) => {
           </Alert>
         </div>
         <div className="dep-card">
-          <div className="dep-row">
+          <div className="dep-row pb">
             <TextField
               type="text"
               margin="dense"
@@ -283,7 +283,7 @@ const Withdrawal = ({ balance, modal, removeModal, email }) => {
               variant="filled"
             />
           </div>
-          <div className="dep-row">
+          <div className="dep-row pb">
             <TextField
               type="number"
               margin="dense"
@@ -390,7 +390,7 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
           <button onClick={handleBtc}>copy</button>
         </div>
         <div className="dep-card">
-          <div className="dep-row">
+          <div className="dep-row pb">
             <FormControl style={{ width: "100%" }}>
               <InputLabel id="plan">plan</InputLabel>
               <Select id="plan" value={plan} fullWidth onChange={handleSelect}>
@@ -400,7 +400,7 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
               </Select>
             </FormControl>
           </div>
-          <div className="dep-row">
+          <div className="dep-row pb">
             <TextField
               type="number"
               margin="dense"

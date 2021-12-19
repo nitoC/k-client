@@ -51,11 +51,13 @@ const Home = () => {
   return (
     <div className="wrapper">
       <Head>
-        <script src="https://widget.nomics.com/embed.js" />
+      <script src="https://widget.nomics.com/embed.js" />
         <script
           type="text/javascript"
           src="https://files.coinmarketcap.com/static/widget/coinPriceBlock.js"
         />
+        <script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js"/>
+
         <script
           defer
           src="https://www.livecoinwatch.com/static/lcw-widget.js"
