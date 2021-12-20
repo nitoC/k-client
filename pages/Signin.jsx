@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core/styles";
 let reload = rel;
 
-const ForgotPassword = ({ modal, removeModal, sendEmail }) => {
+const ForgotPassword = ({ modal, removeModal, sendEmail,Logg }) => {
   const [mail, setmail] = useState("");
   const isModal = false;
 
@@ -32,6 +32,9 @@ const ForgotPassword = ({ modal, removeModal, sendEmail }) => {
         <Typography variant="h6" color="primary">
           please input registered Email
         </Typography>
+        <Typography variant="subtitle1" color={Logg.color}>
+            {Logg.message}
+          </Typography>
         <div className="dep-card">
           <div className="dep-row pb">
             <TextField
@@ -65,6 +68,7 @@ const Signin = () => {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const [Log, setLog] = useState({ message: "", color: "" });
+  const [Log1, setLog1] = useState({ message: "", color: "" });
   const users = useSelector((state) => state.Reducer);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -166,10 +170,17 @@ const Signin = () => {
   };
   const sendEmail = async (mail) => {
     console.log("hello");
+    let val;
     try {
-      await forgotPassword({ email: mail });
+       val=await forgotPassword({ email: mail });
     } catch (err) {
       if (err) console.log(err.message);
+    }
+    if(val.data.message=="check mail for next steps"){
+      setLog1({message:val.data.message,color:"primary"})
+    }else{
+      setLog1({message:val.data.message,color:"secondary"})
+
     }
   };
   useEffect(() => {
@@ -273,6 +284,7 @@ const Signin = () => {
         sendEmail={sendEmail}
         removeModal={removeModal}
         modal={{ modal, mailSt }}
+        Logg={Log1}
       />
     </div>
   );
