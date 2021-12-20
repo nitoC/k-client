@@ -97,6 +97,14 @@
     align-items: center;
     width: 260px;
     height: 150px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    .pb{
+      *{
+
+        padding-bottom: 0.7em;
+      }
+    }
   }
   .dep-btn {
     display: flex;
@@ -105,6 +113,7 @@
   }
   .dep-row {
     width: 100%;
+  
   }
 }
 @media (max-width: 1170px) {

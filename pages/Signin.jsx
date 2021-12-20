@@ -33,7 +33,7 @@ const ForgotPassword = ({ modal, removeModal, sendEmail }) => {
           please input registered Email
         </Typography>
         <div className="dep-card">
-          <div className="dep-row">
+          <div className="dep-row pb">
             <TextField
               type="text"
               margin="dense"
