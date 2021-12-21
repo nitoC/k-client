@@ -13,13 +13,15 @@ import {
 } from "@material-ui/core/styles";
 let reload = rel;
 
-const ForgotPassword = ({ modal, removeModal, sendEmail,Logg }) => {
+let val;
+const ForgotPassword = ({ modal, removeModal, sendEmail,Logg, Loader1, cancel }) => {
   const [mail, setmail] = useState("");
   const isModal = false;
 
   const handleMail = (event) => {
-    console.log(sendEmail);
     setmail(event.target.value);
+    console.log(Loader1)
+    cancel()
   };
   return (
     <>
@@ -55,7 +57,12 @@ const ForgotPassword = ({ modal, removeModal, sendEmail,Logg }) => {
               disabled={mail === null || mail === ""}
               size="large"
             >
-              Send
+              Send{" "}
+              {Loader1 && (
+                <CircularProgress
+                  style={{ color: "white", width: "15px", height: "15px" }}
+                />
+                )}
             </Button>
           </div>
         </div>
@@ -73,6 +80,7 @@ const Signin = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [loader, setLoader] = useState(false);
+  const [Loader1, setLoader1] = useState(false);
   const [userLogin, setUserLogin] = useState({
     email: "",
     password: "",
@@ -168,18 +176,24 @@ const Signin = () => {
       }
     }
   };
+  const cancelL=()=>{
+    setLoader1(false)
+  }
   const sendEmail = async (mail) => {
     console.log("hello");
-    let val;
+    setLoader1(true);
     try {
        val=await forgotPassword({ email: mail });
+       console.log(val.data)
     } catch (err) {
       if (err) console.log(err.message);
     }
     if(val.data.message=="check mail for next steps"){
       setLog1({message:val.data.message,color:"primary"})
+      console.log(Log1)
     }else{
-      setLog1({message:val.data.message,color:"secondary"})
+      setLog1({message:val.data,color:"secondary"})
+      console.log(Log1)
 
     }
   };
@@ -205,8 +219,12 @@ const Signin = () => {
       });
       router.push("/Dashboard");
     }
-    //console.log("helo")//router.push('/Dashboard')
   }, [handleSubmit, Log]);
+  useEffect(()=>{
+  val?setLoader1(false):setLoader1(true)
+  console.log(val)
+  console.log(Loader1+'resd')
+  },[val])
   return (
     <div className="form-container">
       <div className="logo">
@@ -285,6 +303,8 @@ const Signin = () => {
         removeModal={removeModal}
         modal={{ modal, mailSt }}
         Logg={Log1}
+        Loader1={Loader1}
+        cancel={cancelL}
       />
     </div>
   );
