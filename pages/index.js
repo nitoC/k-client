@@ -552,7 +552,7 @@ const Home = () => {
               <ArrowForwardIos
                 style={{ fontSize: "15px", textAlign: "center" }}
               />{" "}
-              USDT BITCOIN
+               BITCOIN
             </Typography>
             <Typography variant="h6" className="font">
               <ArrowForwardIos
