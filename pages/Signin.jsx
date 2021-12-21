@@ -183,13 +183,11 @@ const Signin = () => {
     setLoader1(true);
     try {
        val=await forgotPassword({ email: mail });
-       console.log(val.data)
     } catch (err) {
       if (err) console.log(err.message);
     }
     if(val.data.message=="check mail for next steps"){
       setLog1({message:val.data.message,color:"primary"})
-      console.log(Log1)
     }else{
       setLog1({message:val.data,color:"secondary"})
       console.log(Log1)
@@ -221,7 +219,6 @@ const Signin = () => {
   }, [handleSubmit, Log]);
   useEffect(()=>{
   val?setLoader1(false):setLoader1(true)
-  console.log(val)
   },[val])
   return (
     <div className="form-container">

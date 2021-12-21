@@ -5,8 +5,15 @@ import { useState, useEffect, useRef } from "react";
 import { reset } from "../../apis/api";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import {
+  createTheme,
+  responsiveFontSizes,
+  ThemeProvider,
+} from "@material-ui/core/styles";
 
 const ForgotPassword = () => {
+  let theme = createTheme();
+  theme = responsiveFontSizes(theme);
   const ref = useRef();
   const [resetMessage, setresetMessage] = useState("");
   const router = useRouter();
@@ -81,12 +88,14 @@ const ForgotPassword = () => {
       </div>
       <form onSubmit={handleSubmit} className="form-cover">
         <Paper className="form-space" elevation={2}>
+        <ThemeProvider theme={theme}>
           <Typography
             style={{ color: "orange", textAlign: "center" }}
             variant="h4"
           >
             Reset password
           </Typography>
+          </ThemeProvider>
           <Typography
             variant="p"
             color={
@@ -123,7 +132,7 @@ const ForgotPassword = () => {
               variant="filled"
             />
           </div>
-          <div className="row-2">
+          <div className="row-b">
             <Button
               variant="contained"
               type="submit"
