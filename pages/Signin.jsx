@@ -20,7 +20,6 @@ const ForgotPassword = ({ modal, removeModal, sendEmail,Logg, Loader1, cancel })
 
   const handleMail = (event) => {
     setmail(event.target.value);
-    console.log(Loader1)
     cancel()
   };
   return (
@@ -223,7 +222,6 @@ const Signin = () => {
   useEffect(()=>{
   val?setLoader1(false):setLoader1(true)
   console.log(val)
-  console.log(Loader1+'resd')
   },[val])
   return (
     <div className="form-container">
