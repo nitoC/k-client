@@ -141,7 +141,7 @@ const ForgotPassword = () => {
               style={{ display: "block", width: "100%" }}
               size="large"
             >
-              Sign in{" "}
+              reset{" "}
               {loader && (
                 <CircularProgress
                   style={{ color: "white", width: "15px", height: "15px" }}
