@@ -10,9 +10,10 @@ import {
   FormControl,
   TextField,
   Select,
+  Badge,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-//import {SendIcon} from '@material-ui/icons'
+import { Group } from "@material-ui/icons";
 import tawk from "tawkto-react";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
@@ -203,7 +204,51 @@ const Balance = ({ balance }) => {
           <Typography className="p-width-1" className="p-width" variant="h5">
             Bal:
           </Typography>
-          <Typography variant="h5">${balance}</Typography>
+          <Typography variant="h5" className='p-width-1'>{'  $'+balance}</Typography>
+        </div>
+      </Card>
+    </div>
+  );
+};
+// percentage profit section
+const Profit = ({ balance, capital }) => {
+  console.log(balance)
+  console.log(capital)
+  let nval=((balance - capital) / capital) * 100
+  
+  console.log(nval)
+  return (
+    <div className="balance-cover">
+      <Card className="wrap">
+        <div className="p-text-wrap">
+          <Typography className="p-width-1" className="p-width" variant="h5">
+            profit:
+          </Typography>
+          <Typography variant="h5" className='p-width-1'>%{ isNaN(nval)?0:nval}</Typography>
+        </div>
+      </Card>
+    </div>
+  );
+};
+// referral link
+const Refer = ({ email }) => {
+  return (
+    <div className="balance-cover">
+      <Card className="wrap">
+        <div className="p-text-wrap refer">
+          <Typography className="p-width-2 p-width-3" variant="h5">
+            Referral:
+          </Typography>
+          <div className='align'>
+            
+          <Typography className='refl' variant="subtitle1">
+          {window.location.protocol}//{window.location.host}/referral/{email}{"  "}
+          </Typography>
+            <div className="badge">
+            <Group />
+            <div className='spref'>0</div>
+          </div>
+          </div>
         </div>
       </Card>
     </div>
@@ -737,6 +782,8 @@ const Dashboard = () => {
             <Plan plan={user.plan} modal={handleModal} />
             <Capital capital={user.capital} />
             <Balance balance={user.balance} />
+            <Profit balance={user.balance} capital={user.capital} />
+            <Refer email={person.email} />
 
             <div className="sec-1"></div>
           </div>

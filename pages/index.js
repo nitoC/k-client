@@ -249,7 +249,7 @@ const Home = () => {
               <span style={{ display: "inline-block" }}>
                 Trade
                 <br />
-                Invenstment
+                Investment
               </span>
             </h1>
             <h3>
