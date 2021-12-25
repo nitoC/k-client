@@ -138,7 +138,7 @@ const Home = () => {
             <h1 style={{}}>
               KeyTrade
               <br />
-              <span>Invenstment</span>
+              <span>Investment</span>
             </h1>
           </div>
           <Link href="https://tawk.to/chat/619a2ab96885f60a50bcca66/1fl13dpgg">
