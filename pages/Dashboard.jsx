@@ -19,6 +19,7 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { Logout } from "../redux/actions";
 import { deposit } from "../apis/api";
+import { referfunc } from "../apis/api";
 import { withdraw } from "../apis/api";
 import { addressfunc } from "../apis/api";
 import { useSelector, useDispatch } from "react-redux";
@@ -232,6 +233,21 @@ const Profit = ({ balance, capital }) => {
 };
 // referral link
 const Refer = ({ email }) => {
+  const [referNo, setreferNo] = useState(0)
+
+  const fetchReferrals = async ()=>{
+    let data;
+    try{
+        data=await referfunc(email)
+        console.log(data.data)
+    }catch(error){
+      if(error) console.log(error)
+    }
+    if(data) return setreferNo(data.data)
+  }
+  useEffect(() => {
+       fetchReferrals()
+  })
   return (
     <div className="balance-cover">
       <Card className="wrap">
@@ -246,7 +262,7 @@ const Refer = ({ email }) => {
           </Typography>
             <div className="badge">
             <Group />
-            <div className='spref'>0</div>
+            <div className='spref'>{referNo}</div>
           </div>
           </div>
         </div>
