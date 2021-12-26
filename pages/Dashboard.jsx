@@ -258,7 +258,7 @@ const Refer = ({ email }) => {
           <div className='align'>
             
           <Typography className='refl' variant="subtitle1">
-          {window.location.protocol}//{window.location.host}/referral/{email}{"  "}
+          {window.location.protocol}//{window.location.host}/Referral/{email}{"  "}
           </Typography>
             <div className="badge">
             <Group />
