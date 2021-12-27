@@ -20,6 +20,8 @@ const Referral = () => {
   
   console.log("hey",referrer)
   const {referrer} =router.query
+  
+  const [referee, setreferee] = useState("");
   const [loader, setLoader] = useState(false);
   const [user, setUser] = useState({
     name: "",
@@ -69,7 +71,8 @@ const Referral = () => {
     try {
       const status = await register(user);
       console.log(status.data);
-      const refstat=await refer({rEmail:referrer,nUser:{name:user.name,username:user.username,email:user.email}})
+      console.log(referee,"in submit");
+      const refstat=await refer({rEmail:referee,nUser:{name:user.name,username:user.username,email:user.email}})
       console.log(refstat.data)
       if (status.data.registered === true&&refstat.data) {
         router.push("/Signin");
@@ -85,7 +88,8 @@ const Referral = () => {
   };
 useEffect(()=>{
   if(!router.isReady) return
-  console.log(router.query)
+  setreferee(router.query.referral)
+  console.log(router.query,referee)
 },[router.isReady])
   return (
     <div className="form-container">
