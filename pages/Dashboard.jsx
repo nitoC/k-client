@@ -30,7 +30,7 @@ const FirstSection = ({ user, modal }) => {
   return (
     <div className="row1">
       <div className="text-sec">
-        <Typography variant="h5">@{user.username}</Typography>
+        <Typography variant="h5" style={{color:"blue"}}><span style={{color:"orange"}}>@</span>{user.username}</Typography>
       </div>
 
       <div className="btn-sec">
@@ -107,7 +107,7 @@ const Plan = ({ plan, modal }) => {
             <Typography className="p-width" variant="h5">
               Plan:
             </Typography>
-            <Typography className="p-width-1" variant="h5">
+            <Typography className="p-width-1 c" variant="h5">
               No plan
             </Typography>
           </div>
@@ -118,7 +118,7 @@ const Plan = ({ plan, modal }) => {
               variant="contained"
               color="secondary"
             >
-              Choose plan
+              select
             </Button>
           </div>
         </Card>
@@ -133,7 +133,7 @@ const Plan = ({ plan, modal }) => {
             <Typography className="p-width" variant="h5">
               Plan:
             </Typography>
-            <Typography className="p-width-1" variant="h5">
+            <Typography className="p-width-1 c" variant="h5">
               {plan}
             </Typography>
           </div>
@@ -159,7 +159,7 @@ const Plan = ({ plan, modal }) => {
             <Typography className="p-width" variant="h5">
               Plan:
             </Typography>
-            <Typography className="p-width-1" variant="h5">
+            <Typography className="p-width-1 c" variant="h5">
               {plan}
             </Typography>
           </div>
@@ -185,9 +185,19 @@ const Plan = ({ plan, modal }) => {
             <Typography className="p-width" variant="h5">
               Plan:
             </Typography>
-            <Typography className="p-width-1" variant="h5">
+            <Typography className="p-width-1 c" variant="h5">
               {plan}
             </Typography>
+          </div>
+          <div className="btn-c">
+            <Button
+              className="btn"
+              onClick={modal}
+              variant="otlined"
+              color="primary"
+            >
+              deposit
+            </Button>
           </div>
         </Card>
       </div>
@@ -205,7 +215,7 @@ const Balance = ({ balance }) => {
           <Typography className="p-width-1" className="p-width" variant="h5">
             Bal:
           </Typography>
-          <Typography variant="h5" className='p-width-1'>{'  $'+balance}</Typography>
+          <Typography variant="h5" className='p-width-1 c'>{'  $'+balance}</Typography>
         </div>
       </Card>
     </div>
@@ -224,7 +234,7 @@ const Profit = ({ balance, capital }) => {
           <Typography className="p-width-1" className="p-width" variant="h5">
             profit:
           </Typography>
-          <Typography variant="h5" className='p-width-1'>%{ isNaN(nval)?0:nval}</Typography>
+          <Typography variant="h5" className='p-width-1 c'>%{ isNaN(nval)?0:nval}</Typography>
         </div>
       </Card>
     </div>
@@ -279,7 +289,7 @@ const Capital = ({ capital }) => {
           <Typography className="p-width" variant="h5">
             Capital:
           </Typography>
-          <Typography className="p-width-1" variant="h5">
+          <Typography className="p-width-1 c" variant="h5">
             ${capital}
           </Typography>
         </div>
