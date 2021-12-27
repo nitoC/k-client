@@ -17,6 +17,7 @@ const Referral = () => {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const router = useRouter();
+  console.log(router.query)
   const {referrer} =router.query
   const [loader, setLoader] = useState(false);
   const [user, setUser] = useState({
@@ -69,7 +70,7 @@ const Referral = () => {
       console.log(status.data);
       const refstat=await refer({rEmail:referrer,nUser:{name:user.name,username:user.username,email:user.email}})
       console.log(refstat.data)
-      if (status.data.registered === true) {
+      if (status.data.registered === true&&refstat.data) {
         router.push("/Signin");
       } else {
         setLoader(false);
