@@ -233,7 +233,7 @@ const Profit = ({ balance, capital }) => {
 // referral link
 const Refer = ({ email }) => {
   const [referNo, setreferNo] = useState(0)
-
+console.log(email)
   const fetchReferrals = async ()=>{
     let data;
     try{
