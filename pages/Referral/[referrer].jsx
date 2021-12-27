@@ -83,7 +83,10 @@ const Referral = () => {
       }
     }
   };
-
+useEffect(()=>{
+  if(!router.isReady) return
+  console.log(router.query)
+},[router.isReady])
   return (
     <div className="form-container">
       <div className="logo">
