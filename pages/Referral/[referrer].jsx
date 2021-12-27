@@ -88,7 +88,7 @@ const Referral = () => {
   };
 useEffect(()=>{
   if(!router.isReady) return
-  setreferee(router.query.referral)
+  setreferee(router.query.referrer)
   console.log(router.query,referee)
 },[router.isReady])
   return (
