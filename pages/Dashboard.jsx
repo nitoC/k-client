@@ -261,7 +261,7 @@ console.log(email)
           </Typography>
             <div className="badge">
             <Group />
-            <div className='spref'>{referNo}</div>
+            <div className='spref'>{Number(referNo)?referNo:0}</div>
           </div>
           </div>
         </div>
