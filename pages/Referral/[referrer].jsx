@@ -17,8 +17,8 @@ const Referral = () => {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const router = useRouter();
-  console.log(router.query)
-  console.log(router.query.referrer)
+  
+  console.log("hey",referrer)
   const {referrer} =router.query
   const [loader, setLoader] = useState(false);
   const [user, setUser] = useState({
