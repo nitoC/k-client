@@ -237,7 +237,7 @@ const Refer = ({ email }) => {
   const fetchReferrals = async ()=>{
     let data;
     try{
-        data=await referfunc(email)
+        data=await referfunc({email})
         console.log(data.data)
     }catch(error){
       if(error) console.log(error)
