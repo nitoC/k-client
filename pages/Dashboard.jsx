@@ -216,8 +216,7 @@ const Profit = ({ balance, capital }) => {
   console.log(balance)
   console.log(capital)
   let nval=((balance - capital) / capital) * 100
-  
-  console.log(nval)
+
   return (
     <div className="balance-cover">
       <Card className="wrap">
@@ -247,7 +246,7 @@ const Refer = ({ email }) => {
   }
   useEffect(() => {
        fetchReferrals()
-  })
+  },[])
   return (
     <div className="balance-cover">
       <Card className="wrap">
