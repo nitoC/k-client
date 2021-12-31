@@ -51,12 +51,12 @@ const Home = () => {
   return (
     <div className="wrapper">
       <Head>
-      <script src="https://widget.nomics.com/embed.js" />
+        <script src="https://widget.nomics.com/embed.js" />
         <script
           type="text/javascript"
           src="https://files.coinmarketcap.com/static/widget/coinPriceBlock.js"
         />
-        <script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js"/>
+        <script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js" />
 
         <script
           defer
@@ -113,27 +113,27 @@ const Home = () => {
       {/*mobile*/}
       <div className="m-cover">
         <div className="mobile">
-        <header>
-          <div className="app-cov">
-            <div className="header appbar">
-              <div className="logo">
-                <h1>
-                  K<span>Inv</span>
-                </h1>
+          <header>
+            <div className="app-cov">
+              <div className="header appbar">
+                <div className="logo">
+                  <h1>
+                    K<span>Inv</span>
+                  </h1>
+                </div>
+                <Box className="menu-icon">
+                  <IconButton
+                    onClick={handleNav}
+                    color="inherit"
+                    fontSize="15px"
+                    aria-label="menu"
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                </Box>
               </div>
-              <Box className="menu-icon">
-                <IconButton
-                  onClick={handleNav}
-                  color="inherit"
-                  fontSize="15px"
-                  aria-label="menu"
-                >
-                  <MenuIcon />
-                </IconButton>
-              </Box>
             </div>
-          </div>
-        </header>
+          </header>
           <div className="m-keyword">
             <h1 style={{}}>
               KeyTrade
@@ -142,15 +142,20 @@ const Home = () => {
             </h1>
           </div>
           <Link href="https://tawk.to/chat/619a2ab96885f60a50bcca66/1fl13dpgg">
-              <Fab
-                variant="extended"
-                color="primary"
-                style={{ position: "fixed", bottom: 70, right: "20px", zIndex: 10 }}
-              >
-                chat
-                <Person />
-              </Fab>
-            </Link>
+            <Fab
+              variant="extended"
+              color="primary"
+              style={{
+                position: "fixed",
+                bottom: 70,
+                right: "20px",
+                zIndex: 10,
+              }}
+            >
+              chat
+              <Person />
+            </Fab>
+          </Link>
         </div>
         <div className="m-box">
           <div className="m-desc-profit">
@@ -330,7 +335,7 @@ const Home = () => {
         </div>
       </div>
       <div className="direction">
-        <div className="about-container">
+        <div className="about-container st">
           <h1 className="l-headers">
             How to <span>get started</span>
           </h1>
@@ -350,6 +355,42 @@ const Home = () => {
             <div className="step-img3"></div>
             <div className="step-text">
               <h2>Make profit</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="team">
+        <div className="team-header">
+          <h1 className="l-headers">
+            Our <span>Team</span>
+          </h1>
+        </div>
+        <div className="flex-t">
+          <div className="each-d-l">
+            <div className="each">
+              <div className="each-image f"></div>
+              <div className="each-desc">
+                <h4>Siahan Fadhlan</h4>
+                <p> Company Ceo </p>
+              </div>
+            </div>
+          </div>
+          <div className="each-d-l">
+            <div className="each">
+              <div className="each-image s"></div>
+              <div className="each-desc">
+                <h4>Hara Arik</h4>
+                <p>Trade Specialist/Logistics Manager </p>
+              </div>
+            </div>
+          </div>
+          <div className="each-d-l">
+            <div className="each">
+              <div className="each-image t"></div>
+              <div className="each-desc">
+                <h4>Fujit Anzu</h4>
+                <p>Marketing Manager/Customer Support </p>
+              </div>
             </div>
           </div>
         </div>
@@ -384,6 +425,16 @@ const Home = () => {
                   <Typography variant="h4" color="textSecondary">
                     48hrs
                   </Typography>
+                  <Typography variant="h6" color="initial">
+                    Referral Bonus:{" "}
+                  </Typography>
+                  <Typography variant="h4" color="initial">
+                    %4
+                    <CallMade
+                      style={{ fontSize: "35px", textAlign: "center" }}
+                      color="secondary"
+                    />
+                  </Typography>
                 </div>
               </Card>
             </div>
@@ -411,6 +462,16 @@ const Home = () => {
                   <Typography variant="h4" color="textSecondary">
                     72hrs
                   </Typography>
+                  <Typography variant="h6" color="initial">
+                    Referral Bonus:{" "}
+                  </Typography>
+                  <Typography variant="h4" color="initial">
+                    %4
+                    <CallMade
+                      style={{ fontSize: "35px", textAlign: "center" }}
+                      color="secondary"
+                    />
+                  </Typography>
                 </div>
               </Card>
             </div>
@@ -437,6 +498,16 @@ const Home = () => {
                   </Typography>
                   <Typography variant="h4" color="textSecondary">
                     96hrs
+                  </Typography>
+                  <Typography variant="h6" color="initial">
+                    Referral Bonus:{" "}
+                  </Typography>
+                  <Typography variant="h4" color="initial">
+                    %4
+                    <CallMade
+                      style={{ fontSize: "35px", textAlign: "center" }}
+                      color="secondary"
+                    />
                   </Typography>
                 </div>
               </Card>
@@ -476,9 +547,9 @@ const Home = () => {
               <div className="us-letters">
                 <h3>Instant Payment</h3>
                 <h4>
-                  Getting your profit is very simple - you make out an
-                  application in your personal account and in a moment receive
-                  money for your wallet.
+                  Getting your profit is very simple - you make a withdrawal
+                  request in your personal account and in a moment receive money
+                  in your wallet.
                 </h4>
               </div>
             </div>
@@ -552,7 +623,7 @@ const Home = () => {
               <ArrowForwardIos
                 style={{ fontSize: "15px", textAlign: "center" }}
               />{" "}
-               BITCOIN
+              BITCOIN
             </Typography>
             <Typography variant="h6" className="font">
               <ArrowForwardIos
@@ -562,7 +633,9 @@ const Home = () => {
             </Typography>
           </div>
           <div className="links">
-            <Typography variant="h6" color="secondary">Useful links</Typography>
+            <Typography variant="h6" color="secondary">
+              Useful links
+            </Typography>
             <Link href="/Services">
               <a>
                 <ArrowForwardIos
@@ -587,6 +660,14 @@ const Home = () => {
                 support
               </a>
             </Link>
+            <Link href="/certificate.png">
+              <a>
+                <ArrowForwardIos
+                  style={{ fontSize: "10px", textAlign: "center" }}
+                />
+                certificate
+              </a>
+            </Link>
           </div>
           <div className="social">
             <Link href="www.facebook.com">
@@ -600,6 +681,7 @@ const Home = () => {
             </Link>
           </div>
         </div>
+        <p className="copy"> &copy; keytradeinverstment 2020</p>
       </footer>
     </div>
   );

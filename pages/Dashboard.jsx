@@ -26,11 +26,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 //Top section with name and deposit button
 let depaddress = {};
+
 const FirstSection = ({ user, modal }) => {
   return (
     <div className="row1">
       <div className="text-sec">
-        <Typography variant="h5" style={{color:"blue"}}><span style={{color:"orange"}}>@</span>{user.username}</Typography>
+        <Typography variant="h5" style={{color:""}}><span style={{color:""}}>@</span>{user.username}</Typography>
       </div>
 
       <div className="btn-sec">
@@ -507,6 +508,7 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
 };
 const Dashboard = () => {
   let interval;
+ const [confirmed,setconfirmed] =useState(false)
   const tawkPid = "619a2ab96885f60a50bcca66";
   const tawkKey = "1fl13dpgg";
 
@@ -686,24 +688,48 @@ const Dashboard = () => {
 
   //transactions modal
   const handleTransactions = () => {
-    setmodalT({
-      zIndex: 4,
-      position: "fixed",
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-      display: "block",
-    });
-    settransactions({
-      zIndex: 5,
-      position: "fixed",
-      top: "90px",
-      left: 0,
-      marginLeft: "50%",
-      transform: "translateX(" + "-50%" + ")",
-      display: "block",
-    });
+    if(confirmed==false){
+      setmodalT({
+        zIndex: 4,
+        position: "fixed",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        display: "block",
+      });
+      settransactions({
+        zIndex: 5,
+        position: "fixed",
+        top: "90px",
+        left: 0,
+        marginLeft: "50%",
+        transform: "translateX(" + "-50%" + ")",
+        display: "block",
+      });
+      setconfirmed(true)
+    }else{
+      setmodalT({
+        zIndex: -4,
+        position: "fixed",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        display: "none",
+      });
+      settransactions({
+        zIndex: -5,
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        marginLeft: "50%",
+        transform: "translate(" + "-50%" + "," + "-50" + ")",
+        display: "none",
+      });
+      setconfirmed(false)
+    }
+    
   };
   const removetransactions = () => {
     setmodalT({

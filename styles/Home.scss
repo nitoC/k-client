@@ -2,6 +2,67 @@
 :root{
   font-size: 16px;
 }
+*{
+  
+}
+.team{
+  padding:25px;
+  background-color:rgb(238, 238, 238);
+  
+  .team-header{
+    .l-headers{
+      text-align: center;
+      padding:15px;
+        color: orange;
+        span {
+          color: #1565c0;
+        }
+    }
+  }
+  .flex-t{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .each-d-l{
+    width:250px;
+    height: 350px;
+    padding:15px;
+    border-radius: 8px;
+    background-color: white;
+    .each{
+      width: 100%;
+      height: 100%;
+      .f{
+        background:url("/siahan\ fadhlan.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      .s{
+        background:url("/hara\ arik.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      .t{
+        background:url("/fujit\ anzu.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      .each-image{
+        height: 70%;
+        width: 100%;
+      }
+      .each-desc{
+        padding: 12px;
+        text-align: center;
+      }
+    }
+  }
+}
 .wrapper {
   width: 100vw;
   * {
@@ -427,6 +488,10 @@ footer {
   *{
   
   }
+  .copy{
+    text-align:center;
+    color: gray ;
+  }
   background: black;
   padding: 1em;
   min-height: 20vh;
@@ -536,6 +601,46 @@ footer {
     }
   }
   @media (max-width: 810px) {
+   
+  .team{
+    padding:25px;
+    background-color:rgb(238, 238, 238);
+    
+    .team-header{
+      .l-headers{
+        text-align: center;
+        padding:15px;
+      }
+    }
+    .flex-t{
+      display:flex;
+      flex-direction: column;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      min-height: 200vh;
+      align-items: center;
+    }
+    .each-d-l{
+      width:250px;
+      height: 350px;
+      padding:15px;
+      border-radius: 8px;
+      background-color: white;
+      .each{
+        width: 100%;
+        height: 100%;
+        .each-image{
+        
+          height: 70%;
+          width: 100%;
+        }
+        .each-desc{
+          padding: 12px;
+          text-align: center;
+        }
+      }
+    }
+  }
     .wrapper {
       * {
       }
@@ -568,6 +673,7 @@ footer {
           width: 100vw;
         }
         .description {
+          
           .keyword {
             padding: 1em;
             display: flex;
@@ -602,7 +708,11 @@ footer {
           }
         }
       }
+      .st{
+        padding:20px;
+      }
       .steps {
+       
         .step-text {
           h2 {
             font-size: 0.9em;
