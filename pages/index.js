@@ -335,10 +335,12 @@ const Home = () => {
         </div>
       </div>
       <div className="direction">
-        <div className="about-container st">
+        
+        <div className="about-container">
           <h1 className="l-headers">
             How to <span>get started</span>
           </h1>
+          <div className="st">
           <div className="steps">
             <div className="step-img1"></div>
             <div className="step-text">
@@ -356,8 +358,10 @@ const Home = () => {
             <div className="step-text">
               <h2>Make profit</h2>
             </div>
+            </div>
           </div>
         </div>
+       
       </div>
       <div className="team">
         <div className="team-header">
