@@ -54,7 +54,7 @@ const Home = () => {
   return (
     <div className="wrapper">
       <div className="loader" style={{zIndex:loaded}}>
-          <img src="/gif.gif">
+          <img src="/gif.gif" />
       </div>
       <Head>
         <script src="https://widget.nomics.com/embed.js" />
