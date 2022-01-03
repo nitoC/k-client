@@ -31,7 +31,10 @@ const FirstSection = ({ user, modal }) => {
   return (
     <div className="row1">
       <div className="text-sec">
-        <Typography variant="h5" style={{color:""}}><span style={{color:""}}>@</span>{user.username}</Typography>
+        <Typography variant="h5" style={{ color: "" }}>
+          <span style={{ color: "" }}>@</span>
+          {user.username}
+        </Typography>
       </div>
 
       <div className="btn-sec">
@@ -216,7 +219,9 @@ const Balance = ({ balance }) => {
           <Typography className="p-width-1" className="p-width" variant="h5">
             Bal:
           </Typography>
-          <Typography variant="h5" className='p-width-1 c'>{'  $'+balance}</Typography>
+          <Typography variant="h5" className="p-width-1 c">
+            {"  $" + balance}
+          </Typography>
         </div>
       </Card>
     </div>
@@ -224,18 +229,20 @@ const Balance = ({ balance }) => {
 };
 // percentage profit section
 const Profit = ({ balance, capital }) => {
-  console.log(balance)
-  console.log(capital)
-  let nval=((balance - capital) / capital) * 100
+  console.log(balance);
+  console.log(capital);
+  let nval = ((balance - capital) / capital) * 100;
 
   return (
     <div className="balance-cover">
       <Card className="wrap">
         <div className="p-text-wrap">
-          <Typography className="p-width-1" variant="h5">
+          <Typography className="p-width-1" className="p-width" variant="h5">
             profit:
           </Typography>
-          <Typography variant="h5" className='p-width-1 c'>%{ isNaN(nval)?0:Math.round(nval)}</Typography>
+          <Typography variant="h5" className="p-width-1 c">
+            %{isNaN(nval) ? 0 : Math.round(nval)}
+          </Typography>
         </div>
       </Card>
     </div>
@@ -243,21 +250,21 @@ const Profit = ({ balance, capital }) => {
 };
 // referral link
 const Refer = ({ email }) => {
-  const [referNo, setreferNo] = useState(0)
-console.log(email)
-  const fetchReferrals = async ()=>{
+  const [referNo, setreferNo] = useState(0);
+  console.log(email);
+  const fetchReferrals = async () => {
     let data;
-    try{
-        data=await referfunc({email:email})
-        console.log(data.data)
-    }catch(error){
-      if(error) console.log(error)
+    try {
+      data = await referfunc({ email: email });
+      console.log(data.data);
+    } catch (error) {
+      if (error) console.log(error);
     }
-    if(data) return setreferNo(data.data)
-  }
+    if (data) return setreferNo(data.data);
+  };
   useEffect(() => {
-       fetchReferrals()
-  },[])
+    fetchReferrals();
+  }, []);
   return (
     <div className="balance-cover">
       <Card className="wrap">
@@ -265,15 +272,16 @@ console.log(email)
           <Typography className="p-width-2 p-width-3" variant="h5">
             Referral:
           </Typography>
-          <div className='align'>
-            
-          <Typography className='refl' variant="subtitle1">
-          {window.location.protocol}//{window.location.host}/Referral/{email}{"  "}
-          </Typography>
+          <div className="align">
+            <Typography className="refl" variant="subtitle1">
+              {window.location.protocol}//{window.location.host}/Referral/
+              {email}
+              {"  "}
+            </Typography>
             <div className="badge">
-            <Group />
-            <div className='spref'>{Number(referNo)?referNo:0}</div>
-          </div>
+              <Group />
+              <div className="spref">{Number(referNo) ? referNo : 0}</div>
+            </div>
           </div>
         </div>
       </Card>
@@ -444,7 +452,16 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
   };
   return (
     <>
-      <div className="modal" onClick={()=>{removeModal();setstatmessage(`copy the USDT or alternatively the BTC address and make deposit before submiting your deposit request`)}} style={modal.modal}></div>
+      <div
+        className="modal"
+        onClick={() => {
+          removeModal();
+          setstatmessage(
+            `copy the USDT or alternatively the BTC address and make deposit before submiting your deposit request`
+          );
+        }}
+        style={modal.modal}
+      ></div>
       <div className="deposit-cover" style={modal.deposit}>
         <div className="disp">
           <Alert style={disp} severity="info">
@@ -484,7 +501,12 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
           </div>
           <div className="dep-row dep-btn">
             <Button
-              onClick={()=>{removeModal();setstatmessage(`copy the USDT or alternatively the BTC address and make deposit before submiting your deposit request`);}}
+              onClick={() => {
+                removeModal();
+                setstatmessage(
+                  `copy the USDT or alternatively the BTC address and make deposit before submiting your deposit request`
+                );
+              }}
               variant="outlined"
               color="primary"
               size="large"
@@ -508,7 +530,7 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
 };
 const Dashboard = () => {
   let interval;
- const [confirmed,setconfirmed] =useState(false)
+  const [confirmed, setconfirmed] = useState(false);
   const tawkPid = "619a2ab96885f60a50bcca66";
   const tawkKey = "1fl13dpgg";
 
@@ -688,7 +710,7 @@ const Dashboard = () => {
 
   //transactions modal
   const handleTransactions = () => {
-    if(confirmed==false){
+    if (confirmed == false) {
       setmodalT({
         zIndex: 4,
         position: "fixed",
@@ -707,8 +729,8 @@ const Dashboard = () => {
         transform: "translateX(" + "-50%" + ")",
         display: "block",
       });
-      setconfirmed(true)
-    }else{
+      setconfirmed(true);
+    } else {
       setmodalT({
         zIndex: -4,
         position: "fixed",
@@ -727,9 +749,8 @@ const Dashboard = () => {
         transform: "translate(" + "-50%" + "," + "-50" + ")",
         display: "none",
       });
-      setconfirmed(false)
+      setconfirmed(false);
     }
-    
   };
   const removetransactions = () => {
     setmodalT({
