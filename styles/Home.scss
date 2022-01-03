@@ -68,6 +68,19 @@
   * {
     overflow: hidden;
   }
+  .loader{
+    position:fixed;
+    width:100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    .loader-1{
+      width: 50%;
+      height: 50%;
+    }
+  }
   
   .widget{
     display: flex;
