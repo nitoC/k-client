@@ -232,10 +232,10 @@ const Profit = ({ balance, capital }) => {
     <div className="balance-cover">
       <Card className="wrap">
         <div className="p-text-wrap">
-          <Typography className="p-width-1" className="p-width" variant="h5">
+          <Typography className="p-width-1" variant="h5">
             profit:
           </Typography>
-          <Typography variant="h5" className='p-width-1 c'>%{ isNaN(nval)?0:nval}</Typography>
+          <Typography variant="h5" className='p-width-1 c'>%{ isNaN(nval)?0:Math.round(nval)}</Typography>
         </div>
       </Card>
     </div>
@@ -444,7 +444,7 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
   };
   return (
     <>
-      <div className="modal" onClick={removeModal} style={modal.modal}></div>
+      <div className="modal" onClick={()=>{removeModal();setstatmessage(`copy the USDT or alternatively the BTC address and make deposit before submiting your deposit request`)}} style={modal.modal}></div>
       <div className="deposit-cover" style={modal.deposit}>
         <div className="disp">
           <Alert style={disp} severity="info">
@@ -484,7 +484,7 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
           </div>
           <div className="dep-row dep-btn">
             <Button
-              onClick={removeModal}
+              onClick={()=>{removeModal();setstatmessage(`copy the USDT or alternatively the BTC address and make deposit before submiting your deposit request`);}}
               variant="outlined"
               color="primary"
               size="large"
