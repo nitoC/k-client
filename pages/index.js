@@ -48,14 +48,10 @@ const Home = () => {
     setmodal("modal");
     setnav("nav");
   };
-  useEffect(() => {
-    setloaded(-1000)
-  }, [])
+
   return (
     <div className="wrapper">
-      <div className="loader" style={{zIndex:loaded}}>
-          <img src="/gif.gif" />
-      </div>
+      
       <Head>
         <script src="https://widget.nomics.com/embed.js" />
         <script
