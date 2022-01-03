@@ -35,6 +35,7 @@ const Home = () => {
   const tawkToKey = "get_key_from_tawkto_dashboard";
   const [modal, setmodal] = useState("modal");
   const [nav, setnav] = useState("nav");
+  const [loaded, setloaded] = useState(100);
   const [renav, setrenav] = useState("re-nav");
   const tawkPid = "619a2ab96885f60a50bcca66";
   const tawkKey = "1fl13dpgg";
@@ -47,9 +48,16 @@ const Home = () => {
     setmodal("modal");
     setnav("nav");
   };
-
+  useEffect(() => {
+    setloaded(-1000)
+  }, [])
   return (
     <div className="wrapper">
+      <div className="loader">
+          <div className="loader-i" style={{zIndex:loaded}}>
+
+          </div>
+      </div>
       <Head>
         <script src="https://widget.nomics.com/embed.js" />
         <script
