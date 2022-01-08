@@ -190,17 +190,21 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1.5em 0.7em 1.5em 0.5em;
+        padding: 1.5em 1.7em 1.5em 1.5em;
       }
       .cont-flex{
-        display: grid;
-        flex-basis: 220px;
-        justify-content: space-around;
+        *{
+        
+        }
+        display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         color:white;
-        min-height: 100px;
+        height: 120px ;
         .padd-f{
           padding:7px;
+          height: 110px;
+          width:400px;
         }
       }
       .plan-cover{
