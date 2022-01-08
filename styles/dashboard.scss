@@ -445,7 +445,6 @@ background: linear-gradient(90deg, rgba(235,60,60,1) 22%, rgba(255,179,0,1) 100%
 }
 @media (max-width:600px) {
   *{
-
   }
 
   
@@ -471,6 +470,10 @@ background: linear-gradient(90deg, rgba(235,60,60,1) 22%, rgba(255,179,0,1) 100%
         .capital-cover {
           padding: none;
           justify-content: flex-start;
+        }
+        .p-width-3{
+          width:75px !important;
+          font-size: 0.65rem !important;
         }
     .cont-flex{
       *{
