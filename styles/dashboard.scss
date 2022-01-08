@@ -200,10 +200,10 @@
         justify-content: center;
         flex-wrap: wrap;
         color:white;
-        height: 120px ;
+        min-height: 120px ;
         .padd-f{
           padding:7px;
-          height: 110px;
+          min-height: 110px;
           width:400px;
         }
       }
@@ -325,7 +325,8 @@ background: linear-gradient(90deg, rgba(235,60,60,1) 22%, rgba(255,179,0,1) 100%
       
     }
     .body {
-      margin-top: 130px;
+      
+      margin-top: 60px;
       .wrapT {
         background-color: rgba($color: #000000, $alpha: 0.5);
       }
