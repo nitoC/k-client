@@ -11,9 +11,17 @@ import {
   TextField,
   Select,
   Badge,
+  ButtonGroup,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-import { Group,BubbleChart } from "@material-ui/icons";
+import {
+  Group,
+  ShowChart,
+  FlightTakeoff,
+  AccountBalanceWallet,
+  Money,
+  LocalAtm,
+} from "@material-ui/icons";
 import tawk from "tawkto-react";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
@@ -37,7 +45,7 @@ const FirstSection = ({ user, modal }) => {
         </Typography>
       </div>
 
-      <div className="btn-sec">
+      <div className="btn-p">
         <Button
           className="btn"
           onClick={modal.handleModal1}
@@ -47,9 +55,6 @@ const FirstSection = ({ user, modal }) => {
         >
           withdraw
         </Button>
-      </div>
-
-      <div className="btn-sec">
         <Button
           className="btn"
           onClick={modal.handleModal}
@@ -106,13 +111,16 @@ const Plan = ({ plan, modal }) => {
   if (plan === null || plan === "") {
     return (
       <div className="plan-cover">
-        <Card className="wrap">
+        <div className="wrap">
+          <div className="icon-d">
+            <FlightTakeoff />
+          </div>
           <div className="p-text-wrap">
             <Typography className="p-width" variant="h5">
-              Plan:
-            </Typography>
-            <Typography className="p-width-1 c" variant="h5">
               No plan
+            </Typography>
+            <Typography className="p-width" variant="body2">
+              Plan
             </Typography>
           </div>
           <div className="btn-c">
@@ -125,20 +133,23 @@ const Plan = ({ plan, modal }) => {
               select
             </Button>
           </div>
-        </Card>
+        </div>
       </div>
     );
   }
   if (plan == "Gold") {
     return (
       <div className="plan-cover">
-        <Card className="wrap">
+        <div className="wrap">
+          <div className="icon-d">
+            <FlightTakeoff />
+          </div>
           <div className="p-text-wrap">
             <Typography className="p-width" variant="h5">
-              Plan:
-            </Typography>
-            <Typography className="p-width-1 c" variant="h5">
               {plan}
+            </Typography>
+            <Typography className="p-width" variant="body2">
+              Plan
             </Typography>
           </div>
           <div className="btn-c">
@@ -151,20 +162,23 @@ const Plan = ({ plan, modal }) => {
               Upgrade
             </Button>
           </div>
-        </Card>
+        </div>
       </div>
     );
   }
   if (plan == "Diamond") {
     return (
       <div className="plan-cover">
-        <Card className="wrap">
+        <div className="wrap">
+          <div className="icon-d">
+            <FlightTakeoff />
+          </div>
           <div className="p-text-wrap">
             <Typography className="p-width" variant="h5">
-              Plan:
-            </Typography>
-            <Typography className="p-width-1 c" variant="h5">
               {plan}
+            </Typography>
+            <Typography className="p-width" variant="body2">
+              Plan
             </Typography>
           </div>
           <div className="btn-c">
@@ -177,33 +191,36 @@ const Plan = ({ plan, modal }) => {
               Upgrade
             </Button>
           </div>
-        </Card>
+        </div>
       </div>
     );
   }
   if (plan == "Platinum") {
     return (
       <div className="plan-cover">
-        <Card className="wrap">
+        <div className="wrap">
+          <div className="icon-d">
+            <FlightTakeoff />
+          </div>
           <div className="p-text-wrap">
             <Typography className="p-width" variant="h5">
-              Plan:
-            </Typography>
-            <Typography className="p-width-1 c" variant="h5">
               {plan}
+            </Typography>
+            <Typography className="p-width" variant="body2">
+              Plan
             </Typography>
           </div>
           <div className="btn-c">
             <Button
               className="btn"
               onClick={modal}
-              variant="otlined"
+              variant="contained"
               color="primary"
             >
               deposit
             </Button>
           </div>
-        </Card>
+        </div>
       </div>
     );
   }
@@ -213,17 +230,21 @@ const Plan = ({ plan, modal }) => {
 
 const Balance = ({ balance }) => {
   return (
-    <div className="balance-cover">
-      <Card className="wrap">
+    <div className="balance-cover-m">
+      <div className="wrap">
+        <div className="icon-d">
+          <AccountBalanceWallet />
+        </div>
         <div className="p-text-wrap">
-          <Typography className="p-width-1" className="p-width" variant="h5">
-            Bal:
-          </Typography>
-          <Typography variant="h5" className="p-width-1 c">
+          <Typography variant="h5" className="p-width">
             {"  $" + balance}
           </Typography>
+          <Typography className="p-width" variant="body2">
+            Balance
+          </Typography>
         </div>
-      </Card>
+        <div className="btn-c"></div>
+      </div>
     </div>
   );
 };
@@ -234,17 +255,21 @@ const Profit = ({ balance, capital }) => {
   let nval = ((balance - capital) / capital) * 100;
 
   return (
-    <div className="balance-cover">
-      <Card className="wrap">
+    <div className="balance-cover prof">
+      <div className="wrap">
+        <div className="icon-d">
+          <LocalAtm />
+        </div>
         <div className="p-text-wrap">
-          <Typography className="p-width-1" className="p-width" variant="h5">
-            profit:
-          </Typography>
-          <Typography variant="h5" className="p-width-1 c">
+          <Typography variant="h5" className="p-width">
             %{isNaN(nval) ? 0 : Math.round(nval)}
           </Typography>
+          <Typography className="p-width" variant="body2">
+            profit
+          </Typography>
         </div>
-      </Card>
+        <div className="btn-c"></div>
+      </div>
     </div>
   );
 };
@@ -292,21 +317,24 @@ const Refer = ({ email }) => {
 //capital section with deposit button
 const Capital = ({ capital }) => {
   return (
-    <div className="balance-cover">
-      <Card className="wrap">
+    <div className="balance-cover capital-cover">
+      <div className="wrap">
+        <div className="icon-d">
+          <Money />
+        </div>
         <div className="p-text-wrap">
           <Typography className="p-width" variant="h5">
-            Capital:
-          </Typography>
-          <Typography className="p-width-1 c" variant="h5">
             ${capital}
           </Typography>
+          <Typography className="p-width" variant="body2">
+            Capital
+          </Typography>
         </div>
-      </Card>
+        <div className="btn-c"></div>
+      </div>
     </div>
   );
 };
-
 //withdraw modal section with withdraw button
 const Withdrawal = ({ balance, modal, removeModal, email }) => {
   const bal = balance;
@@ -383,7 +411,7 @@ const Withdrawal = ({ balance, modal, removeModal, email }) => {
               Cancel
             </Button>
             <Button
-              variant="contained"
+              variant="outlined"
               color="primary"
               onClick={withdrawhandle}
               disabled={disable}
@@ -514,7 +542,7 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
               Cancel
             </Button>
             <Button
-              variant="contained"
+              variant="outlined"
               color="primary"
               onClick={deposithandle}
               disabled={disable}
@@ -818,7 +846,10 @@ const Dashboard = () => {
           <div className="dash-header">
             <div className="logo">
               <h1>
-                BR<span><BubbleChart style={{color:"orange"}}/></span>
+                BTT
+                <span>
+                  <ShowChart style={{ color: "pink" }} />
+                </span>
               </h1>
             </div>
             <nav className="dash-nav">
@@ -851,10 +882,22 @@ const Dashboard = () => {
         <Paper elevation={2}>
           <div className="body-cover">
             <FirstSection user={user} modal={{ handleModal, handleModal1 }} />
-            <Plan plan={user.plan} modal={handleModal} />
-            <Capital capital={user.capital} />
-            <Balance balance={user.balance} />
-            <Profit balance={user.balance} capital={user.capital} />
+            <div className="cont-flex">
+              <div className="padd-f">
+                <Plan plan={user.plan} modal={handleModal} />
+              </div>
+              <div className="padd-f">
+                <Capital capital={user.capital} />
+              </div>
+            </div>
+            <div className="cont-flex">
+              <div className="padd-f">
+                <Balance balance={user.balance} />
+              </div>
+              <div className="padd-f">
+                <Profit balance={user.balance} capital={user.capital} />
+              </div>
+            </div>
             <Refer email={person.email} />
 
             <div className="sec-1"></div>

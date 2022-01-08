@@ -2,7 +2,7 @@ import Head from "next/head";
 //import Image from 'next/image'
 import tawk from "tawkto-react";
 import Link from "next/link";
-import { ArrowBackIos, ArrowForwardIos, BubbleChart } from "@material-ui/icons";
+import { ArrowBackIos, ArrowForwardIos, ShowChart } from "@material-ui/icons";
 import {
   Avatar,
   Button,
@@ -120,7 +120,7 @@ const Home = () => {
               <div className="header appbar">
                 <div className="logo">
                   <h1>
-                    BR<span><BubbleChart style={{color:"orange"}}/></span>
+                    BTT<span><ShowChart style={{color:"pink"}}/></span>
                   </h1>
                 </div>
                 <Box className="menu-icon">
@@ -138,7 +138,7 @@ const Home = () => {
           </header>
           <div className="m-keyword">
             <h1 style={{}}>
-              BitReach
+              BitTrade
               <br />
               <span>investment</span>
             </h1>
@@ -192,7 +192,7 @@ const Home = () => {
             <div className="header appbar">
               <div className="logo">
                 <h1>
-                BR<span><BubbleChart style={{color:"orange"}}/></span>
+                BTT<span><ShowChart style={{color:"pink"}}/></span>
                 </h1>
               </div>
               <Box className="nav-1">
@@ -252,7 +252,7 @@ const Home = () => {
                 justifyContent: "top",
               }}
             >
-              BitReach
+              BitTrade
               <br />
               <span>investment</span>
             </h1>
@@ -596,14 +596,14 @@ const Home = () => {
           <div className="contact">
             <div className="logo">
               <h1>
-                K<span>Inv</span>
+                BTT
               </h1>
             </div>
             <Typography variant="h5" color="secondary">
               Email:
             </Typography>
             <Typography variant="h6" className="font">
-              supportBitreach@gmail.com
+              supportBitTrade@gmail.com
             </Typography>
             <div className="action-btn">
               <Link href="/Signup" passHref>
