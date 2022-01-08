@@ -2,7 +2,7 @@ import Head from "next/head";
 //import Image from 'next/image'
 import tawk from "tawkto-react";
 import Link from "next/link";
-import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
+import { ArrowBackIos, ArrowForwardIos, BubbleChart } from "@material-ui/icons";
 import {
   Avatar,
   Button,
@@ -120,7 +120,7 @@ const Home = () => {
               <div className="header appbar">
                 <div className="logo">
                   <h1>
-                    K<span>Inv</span>
+                    BR<span><BubbleChart style={{color:"orange"}}/></span>
                   </h1>
                 </div>
                 <Box className="menu-icon">
@@ -138,9 +138,9 @@ const Home = () => {
           </header>
           <div className="m-keyword">
             <h1 style={{}}>
-              KeyTrade
+              BitReach
               <br />
-              <span>Investment</span>
+              <span>investment</span>
             </h1>
           </div>
           <Link href="https://tawk.to/chat/619a2ab96885f60a50bcca66/1fl13dpgg">
@@ -192,7 +192,7 @@ const Home = () => {
             <div className="header appbar">
               <div className="logo">
                 <h1>
-                  K<span>Inv</span>
+                BR<span><BubbleChart style={{color:"orange"}}/></span>
                 </h1>
               </div>
               <Box className="nav-1">
@@ -252,12 +252,9 @@ const Home = () => {
                 justifyContent: "top",
               }}
             >
-              Key
-              <span style={{ display: "inline-block" }}>
-                Trade
-                <br />
-                Investment
-              </span>
+              BitReach
+              <br />
+              <span>investment</span>
             </h1>
             <h3>
               We create the future. Cryptocurrency is the future of the global
@@ -606,7 +603,7 @@ const Home = () => {
               Email:
             </Typography>
             <Typography variant="h6" className="font">
-              supportkinvus@gmail.com
+              supportBitreach@gmail.com
             </Typography>
             <div className="action-btn">
               <Link href="/Signup" passHref>
@@ -687,7 +684,7 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        <p className="copy"> &copy; keytradeinverstment 2020</p>
+        <p className="copy"> &copy; BitReachIinvestment 2020</p>
       </footer>
     </div>
   );

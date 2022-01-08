@@ -1,4 +1,5 @@
 import { CircularProgress, Paper } from "@material-ui/core";
+import { BubbleChart } from "@material-ui/icons";
 import { Button, FormControl, TextField, Typography } from "@material-ui/core";
 import Link from "next/link";
 import { forgotPassword } from "../apis/api";
@@ -14,13 +15,20 @@ import {
 let reload = rel;
 
 let val;
-const ForgotPassword = ({ modal, removeModal, sendEmail,Logg, Loader1, cancel }) => {
+const ForgotPassword = ({
+  modal,
+  removeModal,
+  sendEmail,
+  Logg,
+  Loader1,
+  cancel,
+}) => {
   const [mail, setmail] = useState("");
   const isModal = false;
 
   const handleMail = (event) => {
     setmail(event.target.value);
-    cancel()
+    cancel();
   };
   return (
     <>
@@ -34,8 +42,8 @@ const ForgotPassword = ({ modal, removeModal, sendEmail,Logg, Loader1, cancel })
           please input registered Email
         </Typography>
         <Typography variant="subtitle1" color={Logg.color}>
-            {Logg.message}
-          </Typography>
+          {Logg.message}
+        </Typography>
         <div className="dep-card">
           <div className="dep-row pb">
             <TextField
@@ -61,7 +69,7 @@ const ForgotPassword = ({ modal, removeModal, sendEmail,Logg, Loader1, cancel })
                 <CircularProgress
                   style={{ color: "white", width: "15px", height: "15px" }}
                 />
-                )}
+              )}
             </Button>
           </div>
         </div>
@@ -175,23 +183,22 @@ const Signin = () => {
       }
     }
   };
-  const cancelL=()=>{
-    setLoader1(false)
-  }
+  const cancelL = () => {
+    setLoader1(false);
+  };
   const sendEmail = async (mail) => {
     console.log("hello");
     setLoader1(true);
     try {
-       val=await forgotPassword({ email: mail });
+      val = await forgotPassword({ email: mail });
     } catch (err) {
       if (err) console.log(err.message);
     }
-    if(val.data.message=="check mail for next steps"){
-      setLog1({message:val.data.message,color:"primary"})
-    }else{
-      setLog1({message:val.data,color:"secondary"})
-      console.log(Log1)
-
+    if (val.data.message == "check mail for next steps") {
+      setLog1({ message: val.data.message, color: "primary" });
+    } else {
+      setLog1({ message: val.data, color: "secondary" });
+      console.log(Log1);
     }
   };
   useEffect(() => {
@@ -217,16 +224,19 @@ const Signin = () => {
       router.push("/Dashboard");
     }
   }, [handleSubmit, Log]);
-  useEffect(()=>{
-  val?setLoader1(false):setLoader1(true)
-  },[val])
+  useEffect(() => {
+    val ? setLoader1(false) : setLoader1(true);
+  }, [val]);
   return (
     <div className="form-container">
       <div className="logo">
         <Link href="/">
           <a>
-            <h1>
-              K<span>Inv</span>
+            <h1 style={{color:"blue"}}>
+              BR
+              <span>
+                <BubbleChart style={{ color: "orange" }} />
+              </span>
             </h1>
           </a>
         </Link>

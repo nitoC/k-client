@@ -9,7 +9,7 @@ import Link from "next/link";
 import { register } from "../apis/api";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { SettingsBrightness } from "@material-ui/icons";
+import { SettingsBrightness, BubbleChart } from "@material-ui/icons";
 const Signup = () => {
   const [Reg, setReg] = useState("");
   let theme = createTheme();
@@ -82,8 +82,11 @@ const Signup = () => {
       <div className="logo">
         <Link href="/">
           <a>
-            <h1>
-              K<span>Inv</span>
+            <h1 style={{color:"blue"}}>
+              BR
+              <span>
+                <BubbleChart style={{ color: "orange" }} />
+              </span>
             </h1>
           </a>
         </Link>

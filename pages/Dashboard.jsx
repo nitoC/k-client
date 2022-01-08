@@ -13,7 +13,7 @@ import {
   Badge,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-import { Group } from "@material-ui/icons";
+import { Group,BubbleChart } from "@material-ui/icons";
 import tawk from "tawkto-react";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
@@ -818,7 +818,7 @@ const Dashboard = () => {
           <div className="dash-header">
             <div className="logo">
               <h1>
-                K<span>Inv</span>
+                BR<span><BubbleChart style={{color:"orange"}}/></span>
               </h1>
             </div>
             <nav className="dash-nav">
