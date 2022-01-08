@@ -233,9 +233,9 @@ const Signin = () => {
         <Link href="/">
           <a>
             <h1 style={{color:"blue"}}>
-              BR
+              BTT
               <span>
-                <BubbleChart style={{ color: "orange" }} />
+                <ShowChart style={{ color: "orange" }} />
               </span>
             </h1>
           </a>

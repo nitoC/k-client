@@ -10,7 +10,7 @@ import { register } from "../../apis/api";
 import { refer } from "../../apis/api";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { SettingsBrightness } from "@material-ui/icons";
+import { SettingsBrightness,ShowChart } from "@material-ui/icons";
 const Referral = () => {
 
   const [Reg, setReg] = useState("");
@@ -96,8 +96,11 @@ useEffect(()=>{
       <div className="logo">
         <Link href="/">
           <a>
-            <h1>
-              K<span>Inv</span>
+          <h1 style={{color:"blue"}}>
+              BTT
+              <span>
+                <ShowChart style={{ color: "orange" }} />
+              </span>
             </h1>
           </a>
         </Link>

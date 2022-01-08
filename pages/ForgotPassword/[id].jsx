@@ -1,4 +1,5 @@
 import { CircularProgress, Paper } from "@material-ui/core";
+import { ShowChart } from "@material-ui/icons";
 import { Button, TextField, Typography } from "@material-ui/core";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
@@ -80,8 +81,11 @@ const ForgotPassword = () => {
       <div className="logo">
         <Link href="/">
           <a>
-            <h1>
-              K<span>Inv</span>
+          <h1 style={{color:"blue"}}>
+              BTT
+              <span>
+                <ShowChart style={{ color: "orange" }} />
+              </span>
             </h1>
           </a>
         </Link>
