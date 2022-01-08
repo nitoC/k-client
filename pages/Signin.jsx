@@ -1,5 +1,5 @@
 import { CircularProgress, Paper } from "@material-ui/core";
-import { BubbleChart } from "@material-ui/icons";
+import { BubbleChart, ShowChart } from "@material-ui/icons";
 import { Button, FormControl, TextField, Typography } from "@material-ui/core";
 import Link from "next/link";
 import { forgotPassword } from "../apis/api";

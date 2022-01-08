@@ -804,7 +804,7 @@ const Dashboard = () => {
     console.log("intervalclear");
     dispatch(Logout({}));
     router.push("/Signin");
-    return clearInterval(interval);
+    return ()=>clearInterval(interval);
   };
   const addfunc = async () => {
     try {
