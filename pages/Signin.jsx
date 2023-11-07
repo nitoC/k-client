@@ -225,11 +225,9 @@ const Signin = () => {
   return (
     <div className="form-container">
       <div className="logo">
-        <Link href="/">  
             <h1>
-              K<span>Inv</span>
+            <Link href="/">K</Link><span><Link href="/">Inv</Link></span>
             </h1>
-        </Link>
       </div>
       <form onSubmit={handleSubmit} className="form-cover">
         <Paper className="form-space" elevation={2}>

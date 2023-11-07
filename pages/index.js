@@ -635,48 +635,52 @@ const Home = () => {
             <Typography variant="h6" color="secondary">
               Useful links
             </Typography>
+            <span style={{display:'flex', alignItems:'center'}}>
+                <ArrowForwardIos
+                  style={{ fontSize: "10px", textAlign: "center" }}
+                />
             <Link href="/Services">
-              
-                <ArrowForwardIos
-                  style={{ fontSize: "10px", textAlign: "center" }}
-                />
                 services
-              
             </Link>
-            <Link href="/About">
-              
+              </span>
+            <span style={{display:'flex', alignItems:'center'}}>
                 <ArrowForwardIos
                   style={{ fontSize: "10px", textAlign: "center" }}
                 />
+            <Link href="/About">
                 about
               
             </Link>
-            <Link href="https://tawk.to/chat/619a2ab96885f60a50bcca66/1fl13dpgg">
-              
+              </span>
+            <span style={{display:'flex', alignItems:'center'}}>
                 <ArrowForwardIos
                   style={{ fontSize: "10px", textAlign: "center" }}
                 />
+            <Link href="https://tawk.to/chat/619a2ab96885f60a50bcca66/1fl13dpgg">
                 support
              
             </Link>
-            <Link href="/certificate.png">
-              
+              </span>
+              <span style={{display:'flex', alignItems:'center'}}>
                 <ArrowForwardIos
                   style={{ fontSize: "10px", textAlign: "center" }}
                 />
+            <Link href="/certificate.png">
                 certificate
               
             </Link>
+
+              </span>
           </div>
           <div className="social">
-            <Link href="www.facebook.com">
-              <Facebook fontSize="large" />
+            <Link href="https://facebook.com">
+              <Facebook style={{cursor:"pointer"}} fontSize="large" />
             </Link>
-            <Link href="www.twitter.com">
-              <Twitter fontSize="large" />
+            <Link href="https://twitter.com">
+              <Twitter style={{cursor:"pointer"}} fontSize="large" />
             </Link>
-            <Link href="www.instagram.com">
-              <Instagram fontSize="large" />
+            <Link href="https://instagram.com">
+              <Instagram style={{cursor:"pointer"}} fontSize="large" />
             </Link>
           </div>
         </div>
