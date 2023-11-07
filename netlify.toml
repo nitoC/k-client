@@ -1,0 +1,3 @@
+[build]
+  command = "npm install --force" # Use --force flag to resolve dependency conflicts
+  publish = "path/to/your/public/directory" # Specify the output directory for your built files
