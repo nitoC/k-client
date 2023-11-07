@@ -2,7 +2,7 @@ import Head from "next/head";
 //import Image from 'next/image'
 import tawk from "tawkto-react";
 import Link from "next/link";
-import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
+import { ArrowForwardIos } from "@material-ui/icons";
 import {
   Avatar,
   Button,
@@ -16,6 +16,8 @@ import {
 import { ButtonGroup } from "@material-ui/core";
 //import { AppBar } from '@material-ui/core'
 import MenuIcon from "@material-ui/icons/Menu";
+
+
 import {
   CallMade,
   Forward,
@@ -29,6 +31,7 @@ import {
   Close,
 } from "@material-ui/icons";
 import { useState, useEffect } from "react";
+import TradingViewWidget from "../Components/Widget";
 
 const Home = () => {
   const tawkToPropertyId = "get_property_id_from_tawkto_dashboard";
@@ -64,6 +67,7 @@ const Home = () => {
           defer
           src="https://www.livecoinwatch.com/static/lcw-widget.js"
         />
+        <script src="https://widgets.coingecko.com/coingecko-coin-price-chart-widget.js"></script>
       </Head>
       <div className="side-nav">
         <div onClick={handleRenav} className={modal}></div>
@@ -75,13 +79,13 @@ const Home = () => {
               </IconButton>
             </div>
             <Link href="/About">
-              <a>About us</a>
+              About us
             </Link>
             <Link href="/Services">
-              <a>Services</a>
+              Services
             </Link>
             <Link href="#support">
-              <a>Support</a>
+              Support
             </Link>
             <div className="buttons">
               <div className="btn-1">
@@ -198,13 +202,13 @@ const Home = () => {
               <Box className="nav-1">
                 <div className="links">
                   <Link href="/About">
-                    <a>About us</a>
+                    About us
                   </Link>
                   <Link href="/Services">
-                    <a>Services</a>
+                    Services
                   </Link>
                   <Link href="#support">
-                    <a>Support</a>
+                    Support
                   </Link>
                 </div>
                 <ButtonGroup>
@@ -245,22 +249,16 @@ const Home = () => {
         </header>
         <div className="description">
           <div className="keyword">
-            <h1
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "top",
-              }}
-            >
+            <h1 className="banner_heading">
               Key
-              <span style={{ display: "inline-block" }}>
+              <span>
                 Trade
-                <br />
-                Investment
               </span>
+              <br/>
+                Investment
             </h1>
             <h3>
-              We create the future. Cryptocurrency is the future of the global
+               Cryptocurrency is the future of the global
               financial market. And now we are engaged in the extraction of one
               of the most valuable resources, which allows us to get maximum
               profits today.
@@ -305,13 +303,8 @@ const Home = () => {
           ></div>
         </div>
         <div className="diw">
-          <div
-            className="nomics-ticker-widget"
-            data-name="Bitcoin"
-            data-base="BTC"
-            data-quote="USD"
-          ></div>
-        </div>
+        <TradingViewWidget/>
+         </div>
       </div>
       <div className="about">
         <div className="about-container">
@@ -643,36 +636,36 @@ const Home = () => {
               Useful links
             </Typography>
             <Link href="/Services">
-              <a>
+              
                 <ArrowForwardIos
                   style={{ fontSize: "10px", textAlign: "center" }}
                 />
                 services
-              </a>
+              
             </Link>
             <Link href="/About">
-              <a>
+              
                 <ArrowForwardIos
                   style={{ fontSize: "10px", textAlign: "center" }}
                 />
                 about
-              </a>
+              
             </Link>
             <Link href="https://tawk.to/chat/619a2ab96885f60a50bcca66/1fl13dpgg">
-              <a>
+              
                 <ArrowForwardIos
                   style={{ fontSize: "10px", textAlign: "center" }}
                 />
                 support
-              </a>
+             
             </Link>
             <Link href="/certificate.png">
-              <a>
+              
                 <ArrowForwardIos
                   style={{ fontSize: "10px", textAlign: "center" }}
                 />
                 certificate
-              </a>
+              
             </Link>
           </div>
           <div className="social">

@@ -10,6 +10,10 @@
   justify-content: space-between;
   align-items: center;
   .dash-nav {
+    *{
+
+      font-family: 'Lato ', sans-serif;
+    }
     width: 240px;
     display: flex;
     justify-content: space-around;
@@ -30,6 +34,7 @@
     width: 100vw;
     min-height: 100vh;
     * {
+      font-family: 'Lato ', sans-serif;
     }
     .wrapT {
       background-color: rgba($color: #000000, $alpha: 0.5);

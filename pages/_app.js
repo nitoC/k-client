@@ -8,12 +8,10 @@ import '../styles/services.scss'
 import App from 'next/app'
 import {Provider} from 'react-redux'
 import React from 'react'
-import PropTypes from 'prop-types';
-import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../src/theme';
-import withRedux, { createWrapper } from 'next-redux-wrapper';
+import theme from '../theme/theme';
+import  { createWrapper } from 'next-redux-wrapper';
 import persist from '../redux/Store';
 import { PersistGate } from 'redux-persist/integration/react'
 
@@ -51,5 +49,5 @@ class MyApp extends App {
     }
   }
     const makeStore = () => persist.Store;
-const wrapper=createWrapper(makeStore)
-export default wrapper.withRedux(MyApp);
+const {withRedux}=createWrapper(makeStore)
+export default withRedux(MyApp);

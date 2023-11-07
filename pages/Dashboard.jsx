@@ -2,532 +2,40 @@ import {
   AppBar,
   Button,
   Toolbar,
-  Card,
   Paper,
-  Typography,
-  MenuItem,
-  InputLabel,
-  FormControl,
-  TextField,
-  Select,
-  Badge,
 } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import { Group } from "@material-ui/icons";
 import tawk from "tawkto-react";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { Logout } from "../redux/actions";
-import { deposit } from "../apis/api";
-import { referfunc } from "../apis/api";
-import { withdraw } from "../apis/api";
 import { addressfunc } from "../apis/api";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 //Top section with name and deposit button
-let depaddress = {};
-
-const FirstSection = ({ user, modal }) => {
-  return (
-    <div className="row1">
-      <div className="text-sec">
-        <Typography variant="h5" style={{ color: "" }}>
-          <span style={{ color: "" }}>@</span>
-          {user.username}
-        </Typography>
-      </div>
-
-      <div className="btn-sec">
-        <Button
-          className="btn"
-          onClick={modal.handleModal1}
-          variant="outlined"
-          color="primary"
-          size="small"
-        >
-          withdraw
-        </Button>
-      </div>
-
-      <div className="btn-sec">
-        <Button
-          className="btn"
-          onClick={modal.handleModal}
-          variant="contained"
-          color="primary"
-          size="small"
-        >
-          deposit
-        </Button>
-      </div>
-    </div>
-  );
-};
-
+import FirstSection from '../Components/FirstSection';
 //transaction section
-
-const Transactions = ({ click, modal, user }) => {
-  let trans;
-  if (user.length > 0) {
-    trans = user;
-  } else {
-    trans = [{ value: "", text: "" }];
-  }
-  return (
-    <>
-      <div
-        className="wrapT"
-        onClick={click.removetransactions}
-        style={modal.modalT}
-      ></div>
-      <div className="wrap-transaction" style={modal.transactions}>
-        <div className="trans">
-          <h2 className="type">type</h2>
-          <h2 className="amount-h">amount</h2>
-          <h2 className="status-h">status</h2>
-          <h2 className="time-h">time</h2>
-        </div>
-        {trans.map((a, b) => {
-          return (
-            <div className="trans" key={b}>
-              <h3>{a.typeO}</h3>
-              <p className="amount">{a.value}</p>
-              <p className={a.text}>{a.text}</p>
-              <p className="time">{a.time}</p>
-            </div>
-          );
-        })}
-      </div>
-    </>
-  );
-};
+import Transactions from "../Components/Transactions";
 //plan section with name and upgrade button
-const Plan = ({ plan, modal }) => {
-  if (plan === null || plan === "") {
-    return (
-      <div className="plan-cover">
-        <Card className="wrap">
-          <div className="p-text-wrap">
-            <Typography className="p-width" variant="h5">
-              Plan:
-            </Typography>
-            <Typography className="p-width-1 c" variant="h5">
-              No plan
-            </Typography>
-          </div>
-          <div className="btn-c">
-            <Button
-              className="btn"
-              onClick={modal}
-              variant="contained"
-              color="secondary"
-            >
-              select
-            </Button>
-          </div>
-        </Card>
-      </div>
-    );
-  }
-  if (plan == "Gold") {
-    return (
-      <div className="plan-cover">
-        <Card className="wrap">
-          <div className="p-text-wrap">
-            <Typography className="p-width" variant="h5">
-              Plan:
-            </Typography>
-            <Typography className="p-width-1 c" variant="h5">
-              {plan}
-            </Typography>
-          </div>
-          <div className="btn-c">
-            <Button
-              className="btn"
-              onClick={modal}
-              variant="contained"
-              color="secondary"
-            >
-              Upgrade
-            </Button>
-          </div>
-        </Card>
-      </div>
-    );
-  }
-  if (plan == "Diamond") {
-    return (
-      <div className="plan-cover">
-        <Card className="wrap">
-          <div className="p-text-wrap">
-            <Typography className="p-width" variant="h5">
-              Plan:
-            </Typography>
-            <Typography className="p-width-1 c" variant="h5">
-              {plan}
-            </Typography>
-          </div>
-          <div className="btn-c">
-            <Button
-              className="btn"
-              onClick={modal}
-              variant="contained"
-              color="secondary"
-            >
-              Upgrade
-            </Button>
-          </div>
-        </Card>
-      </div>
-    );
-  }
-  if (plan == "Platinum") {
-    return (
-      <div className="plan-cover">
-        <Card className="wrap">
-          <div className="p-text-wrap">
-            <Typography className="p-width" variant="h5">
-              Plan:
-            </Typography>
-            <Typography className="p-width-1 c" variant="h5">
-              {plan}
-            </Typography>
-          </div>
-          <div className="btn-c">
-            <Button
-              className="btn"
-              onClick={modal}
-              variant="otlined"
-              color="primary"
-            >
-              deposit
-            </Button>
-          </div>
-        </Card>
-      </div>
-    );
-  }
-  return null;
-};
+import Plan from '../Components/Plan';
 //balance section with deposit button
-
-const Balance = ({ balance }) => {
-  return (
-    <div className="balance-cover">
-      <Card className="wrap">
-        <div className="p-text-wrap">
-          <Typography className="p-width-1" className="p-width" variant="h5">
-            Bal:
-          </Typography>
-          <Typography variant="h5" className="p-width-1 c">
-            {"  $" + balance}
-          </Typography>
-        </div>
-      </Card>
-    </div>
-  );
-};
+import Balance from "../Components/Balance";
 // percentage profit section
-const Profit = ({ balance, capital }) => {
-  console.log(balance);
-  console.log(capital);
-  let nval = ((balance - capital) / capital) * 100;
-
-  return (
-    <div className="balance-cover">
-      <Card className="wrap">
-        <div className="p-text-wrap">
-          <Typography className="p-width-1" className="p-width" variant="h5">
-            profit:
-          </Typography>
-          <Typography variant="h5" className="p-width-1 c">
-            %{isNaN(nval) ? 0 : Math.round(nval)}
-          </Typography>
-        </div>
-      </Card>
-    </div>
-  );
-};
+import Profit from "../Components/PercentageProfit";
 // referral link
-const Refer = ({ email }) => {
-  const [referNo, setreferNo] = useState(0);
-  console.log(email);
-  const fetchReferrals = async () => {
-    let data;
-    try {
-      data = await referfunc({ email: email });
-      console.log(data.data);
-    } catch (error) {
-      if (error) console.log(error);
-    }
-    if (data) return setreferNo(data.data);
-  };
-  useEffect(() => {
-    fetchReferrals();
-  }, []);
-  return (
-    <div className="balance-cover">
-      <Card className="wrap">
-        <div className="p-text-wrap refer">
-          <Typography className="p-width-2 p-width-3" variant="h5">
-            Referral:
-          </Typography>
-          <div className="align">
-            <Typography className="refl" variant="subtitle1">
-              {window.location.protocol}//{window.location.host}/Referral/
-              {email}
-              {"  "}
-            </Typography>
-            <div className="badge">
-              <Group />
-              <div className="spref">{Number(referNo) ? referNo : 0}</div>
-            </div>
-          </div>
-        </div>
-      </Card>
-    </div>
-  );
-};
+import Refer from "../Components/Referal";
 
 //capital section with deposit button
-const Capital = ({ capital }) => {
-  return (
-    <div className="balance-cover">
-      <Card className="wrap">
-        <div className="p-text-wrap">
-          <Typography className="p-width" variant="h5">
-            Capital:
-          </Typography>
-          <Typography className="p-width-1 c" variant="h5">
-            ${capital}
-          </Typography>
-        </div>
-      </Card>
-    </div>
-  );
-};
-
+import Capital from "../Components/Capital";
 //withdraw modal section with withdraw button
-const Withdrawal = ({ balance, modal, removeModal, email }) => {
-  const bal = balance;
-  let depStatus;
-  const [disable, setdisable] = useState(true);
-  const [balText, setbalText] = useState(`maxmimum ${bal}`);
-  const [statmessage, setstatmessage] = useState(
-    `withdrawal requests are usually processed  within 24 hours`
-  );
-  const [disp, setdisp] = useState({ display: "block", width: "100%" });
-  const [amount, setamount] = useState("");
-  const [address, setaddress] = useState("");
-
-  const handleAddress = (event) => {
-    setaddress(event.target.value);
-  };
-  const handleAmount = (event) => {
-    let reText =
-      event.target.value > bal ? `More than wallet balance $${bal}` : "";
-    event.target.value > bal ? setdisable(true) : setdisable(false);
-    setbalText(reText);
-    setamount(event.target.value);
-  };
-
-  const withdrawhandle = async () => {
-    try {
-      depStatus = await withdraw({ email, amount, address });
-      setstatmessage(depStatus.data);
-    } catch (err) {
-      if (err) {
-        console.log(err.message);
-      }
-    }
-  };
-  return (
-    <>
-      <div className="modal" onClick={removeModal} style={modal.modal1}></div>
-      <div className="deposit-cover" style={modal.withdraw}>
-        <div className="disp">
-          <Alert style={disp} severity="info">
-            {statmessage}
-          </Alert>
-        </div>
-        <div className="dep-card">
-          <div className="dep-row pb">
-            <TextField
-              type="text"
-              margin="dense"
-              required
-              onChange={handleAddress}
-              label="Enter USDT address"
-              fullWidth
-              variant="filled"
-            />
-          </div>
-          <div className="dep-row pb">
-            <TextField
-              type="number"
-              margin="dense"
-              required
-              onChange={handleAmount}
-              label={balText}
-              fullWidth
-              variant="filled"
-            />
-          </div>
-          <div className="dep-row dep-btn">
-            <Button
-              onClick={removeModal}
-              variant="outlined"
-              color="primary"
-              size="large"
-            >
-              Cancel
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={withdrawhandle}
-              disabled={disable}
-              size="large"
-            >
-              withdraw
-            </Button>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+import Withdrawal from "../Components/WIthdrawal";
 //deposit modal section with deposit button
-const Deposit = ({ balance, modal, removeModal, email, address }) => {
-  const bal = balance;
-  let depStatus;
-  const [disable, setdisable] = useState(true);
-  const [Text, setText] = useState("100-5000");
-  const [statmessage, setstatmessage] = useState(
-    `copy the USDT or alternatively the BTC address and make deposit before submiting your deposit request`
-  );
-  const [plan, setplan] = useState("Gold");
-  const [disp, setdisp] = useState({ display: "block", width: "100%" });
-  const [capital, setcapital] = useState(0);
-  const handleSelect = (event) => {
-    setplan(event.target.value);
-  };
+import Deposit from "../Components/Deposit";
 
-  const handleDeposit = (event) => {
-    let min =
-      plan === "Gold"
-        ? 100
-        : plan === "Diamond"
-        ? 1000
-        : plan === "Platinum"
-        ? 5000
-        : 0;
-    let diff = min - bal;
-    let reText =
-      event.target.value < diff
-        ? `less than min deposit $${min}`
-        : event.target.value == null || event.target.value == ""
-        ? "100-5000"
-        : min + "-5000";
-    event.target.value < diff ? setdisable(true) : setdisable(false);
-    setcapital(event.target.value);
-    console.log(capital);
-    setText(reText);
-  };
-  const deposithandle = async () => {
-    try {
-      depStatus = await deposit({ email, plan, capital, address });
-      setstatmessage(depStatus.data);
-    } catch (err) {
-      if (err) {
-        console.log(err.message);
-      }
-    }
-  };
-  const handleUsdt = () => {
-    navigator.clipboard.writeText(address.usdt);
-  };
-  const handleBtc = () => {
-    navigator.clipboard.writeText(address.btc);
-  };
-  return (
-    <>
-      <div
-        className="modal"
-        onClick={() => {
-          removeModal();
-          setstatmessage(
-            `copy the USDT or alternatively the BTC address and make deposit before submiting your deposit request`
-          );
-        }}
-        style={modal.modal}
-      ></div>
-      <div className="deposit-cover" style={modal.deposit}>
-        <div className="disp">
-          <Alert style={disp} severity="info">
-            {statmessage}
-          </Alert>
-        </div>
-        <div className="address">
-          <h6>usdt address</h6>
-          <p>{address.usdt}</p>
-          <button onClick={handleUsdt}>copy</button>
-        </div>
-        <div className="address">
-          <h6> btc address</h6> <p>{address.btc}</p>
-          <button onClick={handleBtc}>copy</button>
-        </div>
-        <div className="dep-card">
-          <div className="dep-row pb">
-            <FormControl style={{ width: "100%" }}>
-              <InputLabel id="plan">plan</InputLabel>
-              <Select id="plan" value={plan} fullWidth onChange={handleSelect}>
-                <MenuItem value="Gold">Gold</MenuItem>
-                <MenuItem value="Diamond">Diamond</MenuItem>
-                <MenuItem value="Platinum">Platinum</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div className="dep-row pb">
-            <TextField
-              type="number"
-              margin="dense"
-              required
-              onChange={handleDeposit}
-              label={Text}
-              fullWidth
-              variant="filled"
-            />
-          </div>
-          <div className="dep-row dep-btn">
-            <Button
-              onClick={() => {
-                removeModal();
-                setstatmessage(
-                  `copy the USDT or alternatively the BTC address and make deposit before submiting your deposit request`
-                );
-              }}
-              variant="outlined"
-              color="primary"
-              size="large"
-            >
-              Cancel
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={deposithandle}
-              disabled={disable}
-              size="large"
-            >
-              Send
-            </Button>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+let depaddress = {};
+
+
+
+
 const Dashboard = () => {
   let interval;
   const [confirmed, setconfirmed] = useState(false);
@@ -808,7 +316,7 @@ const Dashboard = () => {
     }, 60000);
   }, []);
   useEffect(() => {
-    tawk(tawkPid, tawkKey);
+    new tawk(tawkPid, tawkKey);
     return () => clearInterval(interval);
   }, [handleLogout]);
   return (
@@ -876,7 +384,7 @@ const Dashboard = () => {
         <Transactions
           click={{ handleTransactions, removetransactions }}
           modal={{ modalT, transactions }}
-          user={users.user.transactions}
+          user={users?users.user?users.user.transactions:'':''}
         />
       </div>
     </div>

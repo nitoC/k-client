@@ -70,6 +70,7 @@ const ForgotPassword = ({ modal, removeModal, sendEmail,Logg, Loader1, cancel })
   );
 };
 
+
 const Signin = () => {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
@@ -215,6 +216,7 @@ const Signin = () => {
         color: "primary",
       });
       router.push("/Dashboard");
+      window.location = "/Dashboard";
     }
   }, [handleSubmit, Log]);
   useEffect(()=>{
@@ -223,12 +225,10 @@ const Signin = () => {
   return (
     <div className="form-container">
       <div className="logo">
-        <Link href="/">
-          <a>
+        <Link href="/">  
             <h1>
               K<span>Inv</span>
             </h1>
-          </a>
         </Link>
       </div>
       <form onSubmit={handleSubmit} className="form-cover">
@@ -268,8 +268,8 @@ const Signin = () => {
           </div>
           <div className="row-b">
             <div className="for-o-i">
-              <Link href="/Signup">
-                <a style={{ padding: "4px" }}>no account?Register</a>
+              <Link style={{ padding: "4px" }} href="/Signup">
+                no account?Register
               </Link>
               <Button onClick={handleModal} style={{ padding: "4px" }}>
                 forgot password?

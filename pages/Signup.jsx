@@ -81,11 +81,11 @@ const Signup = () => {
     <div className="form-container">
       <div className="logo">
         <Link href="/">
-          <a>
+        
             <h1>
               K<span>Inv</span>
             </h1>
-          </a>
+          
         </Link>
       </div>
       <form action="Signin" onSubmit={handleSubmit} className="form-cover">

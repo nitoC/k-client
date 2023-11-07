@@ -2,7 +2,7 @@
   "name": "btc-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://keytrade.herokuapp.com",
+  "proxy": "https://keytrade.onrender.com",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,29 +11,26 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
+    "@material-ui/icons": "^4.11.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
-    "axios": "^0.23.0",
-    "bootstrap": "^5.1.3",
-    "dotenv": "^10.0.0",
-    "next": "11.1.2",
-    "next-redux-wrapper": "^7.0.5",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "next": "^14.0.1",
+    "next-redux-wrapper": "^8.1.0",
     "next-wrapper": "^0.0.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-file-base64": "^1.0.3",
-    "react-redux": "^7.2.6",
-    "react-tradingview-widget": "^1.3.2",
-    "redux": "^4.1.2",
+    "react": "^18.2.0",
+    "react-dom": "18.2.0",
+    "react-redux": "^8.1.3",
+    "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.4.0",
-    "sass": "^1.43.4",
+    "redux-thunk": "^2.4.2",
+    "sass": "^1.69.5",
     "scss": "^0.2.4",
-    "tawkto-react": "^2.0.3",
+    "tawkto-react": "^3.0.1",
     "thunk": "^0.0.1"
   },
   "devDependencies": {
-    "eslint": "^8.4.1",
-    "eslint-config-next": "11.1.2"
+    "eslint": "^8.53.0",
+    "eslint-config-next": "14.0.1"
   }
 }
