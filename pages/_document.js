@@ -9,6 +9,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+        
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
           <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100&family=Inter:wght@100;200;300;400;500&family=Lato&family=Lobster&family=Manrope:wght@200;300;400;500;600;700&family=Noto+Sans+Linear+B&family=Noto+Sans+Pau+Cin+Hau&family=Noto+Serif+Telugu:wght@900&family=Open+Sans:wght@300&family=Orbitron:wght@500&family=Oswald:wght@200&family=Roboto:wght@100&family=Sora:wght@100;200;300;400;500;600;700;800&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100&display=swap" rel="stylesheet" />

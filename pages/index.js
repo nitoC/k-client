@@ -56,18 +56,20 @@ const Home = () => {
     <div className="wrapper">
       
       <Head>
-        <script src="https://widget.nomics.com/embed.js" />
+      <script src="https://widget.nomics.com/embed.js" async/>
         <script
           type="text/javascript"
           src="https://files.coinmarketcap.com/static/widget/coinPriceBlock.js"
+          async
         />
-        <script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js" />
+        <script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js" async/>
 
         <script
           defer
           src="https://www.livecoinwatch.com/static/lcw-widget.js"
+          async
         />
-        <script src="https://widgets.coingecko.com/coingecko-coin-price-chart-widget.js"></script>
+        <script src="https://widgets.coingecko.com/coingecko-coin-price-chart-widget.js" async></script>
       </Head>
       <div className="side-nav">
         <div onClick={handleRenav} className={modal}></div>
