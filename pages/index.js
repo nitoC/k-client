@@ -18,7 +18,7 @@ import { ButtonGroup } from "@material-ui/core";
 //import { AppBar } from '@material-ui/core'
 import MenuIcon from "@material-ui/icons/Menu";
 
-import PageLoader from "../Components/loaders/pageLoader";
+import PageLoader from "../Components/loaders/PageLoader";
 import PlanCard from "../Components/PlanCard";
 
 

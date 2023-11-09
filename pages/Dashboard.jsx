@@ -15,7 +15,7 @@ import { Logout } from "../redux/actions";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import PageLoader from "../Components/loaders/pageLoader";
+import PageLoader from "../Components/loaders/PageLoader";
 //Top section with name and deposit button
 import FirstSection from '../Components/FirstSection';
 //transaction section
@@ -32,7 +32,7 @@ import Refer from "../Components/Referal";
 //capital section with deposit button
 import Capital from "../Components/Capital";
 //withdraw modal section with withdraw button
-import Withdrawal from "../Components/modals/WIthdrawal";
+import Withdrawal from "../Components/modals/Withdrawal";
 //deposit modal section with deposit button
 import Deposit from "../Components/modals/Deposit";
 

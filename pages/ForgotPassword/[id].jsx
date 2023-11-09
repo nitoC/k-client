@@ -1,7 +1,7 @@
 import { CircularProgress, Paper } from "@material-ui/core";
 import { Button, TextField, Typography } from "@material-ui/core";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { reset } from "../../apis/api";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -41,7 +41,7 @@ const ForgotPassword = () => {
       password: event.target.value,
     });
   };
-  const handleSubmit = async (event) => {
+  const handleSubmit = useCallback(async (event) => {
     event.preventDefault();
     setLoader(true);
     try {
@@ -59,7 +59,7 @@ const ForgotPassword = () => {
         console.log(error);
       }
     }
-  };
+  }, [status]);
   useEffect(() => {
     if (pass.password == pass.reEnter && pass.reEnter != "") {
       setresetMessage("");
@@ -88,13 +88,13 @@ const ForgotPassword = () => {
       </div>
       <form onSubmit={handleSubmit} className="form-cover">
         <Paper className="form-space" elevation={2}>
-        <ThemeProvider theme={theme}>
-          <Typography
-            style={{ color: "orange", textAlign: "center" }}
-            variant="h4"
-          >
-            Reset password
-          </Typography>
+          <ThemeProvider theme={theme}>
+            <Typography
+              style={{ color: "orange", textAlign: "center" }}
+              variant="h4"
+            >
+              Reset password
+            </Typography>
           </ThemeProvider>
           <Typography
             variant="p"

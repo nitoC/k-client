@@ -17,10 +17,10 @@ const Referral = () => {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const router = useRouter();
-  
-  console.log("hey",referrer)
-  const {referrer} =router.query
-  
+
+  console.log("hey", referrer)
+  const { referrer } = router.query
+
   const [referee, setreferee] = useState("");
   const [loader, setLoader] = useState(false);
   const [user, setUser] = useState({
@@ -71,10 +71,10 @@ const Referral = () => {
     try {
       const status = await register(user);
       console.log(status.data);
-      console.log(referee,"in submit");
-      const refstat=await refer({rEmail:referee,nUser:{name:user.name,username:user.username,email:user.email}})
+      console.log(referee, "in submit");
+      const refstat = await refer({ rEmail: referee, nUser: { name: user.name, username: user.username, email: user.email } })
       console.log(refstat.data)
-      if (status.data.registered === true&&refstat.data) {
+      if (status.data.registered === true && refstat.data) {
         router.push("/Signin");
       } else {
         setLoader(false);
@@ -86,11 +86,16 @@ const Referral = () => {
       }
     }
   };
-useEffect(()=>{
-  if(!router.isReady) return
-  setreferee(router.query.referrer)
-  console.log(router.query,referee)
-},[router.isReady])
+
+  const handleReferer = useCallback(
+    () => {
+      if (!router.isReady) return
+      setreferee(router.query.referrer)
+    }
+    , [router.query.referrer, router.isReady])
+  useEffect(() => {
+    handleReferer()
+  }, [handleReferer])
   return (
     <div className="form-container">
       <div className="logo">
