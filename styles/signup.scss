@@ -1,8 +1,8 @@
 .form-container {
   width: 100vw;
   * {
-    font-family: 'Lato', sans-serif;
-    font-weight: bold;
+    font-family: "Manrope", sans-serif !important;
+    font-weight: 600 !important;
     overflow: hidden;
     padding: 0px;
     margin: 0px;
@@ -23,11 +23,10 @@
     }
   }
   .form-cover {
-   
     .for-o-i {
       display: flex;
       justify-content: space-between;
-     
+
       width: 100%;
       * {
         text-transform: none;
@@ -42,39 +41,39 @@
         width: 100%;
         padding-left: 1.2em;
         padding-right: 1.2em;
-        padding-bottom: .3em;
-        *{
-          padding-bottom: .7em !important;
+        padding-bottom: 0.3em;
+        * {
+          padding-bottom: 0.7em !important;
         }
       }
       .row-2 {
         width: 100%;
-        min-height:50px;
+        min-height: 50px;
         padding-left: 1.2em;
         padding-right: 1.2em;
-        *{
-          padding-bottom: .7em !important;
+        * {
+          padding-bottom: 0.7em !important;
         }
-        padding-bottom: .3em;
+        padding-bottom: 0.3em;
       }
-      .row-b{
+      .row-b {
         width: 100%;
-        min-height:50px;
+        min-height: 50px;
         padding-left: 1.2em;
         padding-right: 1.2em;
-        padding-bottom: .3em;
+        padding-bottom: 0.3em;
       }
       .row-3 {
         width: 100%;
-        *{
-          padding-bottom: .7em !important;
+        * {
+          padding-bottom: 0.7em !important;
         }
         padding-left: 1.2em;
         padding-right: 1.2em;
-        padding-bottom: .3em;
+        padding-bottom: 0.3em;
       }
       .row-4 {
-        padding-bottom: .3em;
+        padding-bottom: 0.3em;
         width: 100%;
         padding-left: 1.2em;
         padding-right: 1.2em;
@@ -101,9 +100,8 @@
     height: 150px;
     margin-left: 50%;
     transform: translateX(-50%);
-    .pb{
-      *{
-
+    .pb {
+      * {
         padding-bottom: 0.7em;
       }
     }
@@ -115,7 +113,6 @@
   }
   .dep-row {
     width: 100%;
-  
   }
 }
 @media (max-width: 1170px) {
@@ -127,8 +124,8 @@
   .form-container {
     .form-cover {
       width: 75%;
-      padding-left: .1em;
-      padding-right: .1em;
+      padding-left: 0.1em;
+      padding-right: 0.1em;
     }
   }
 }

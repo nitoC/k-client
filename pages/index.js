@@ -117,7 +117,7 @@ const Home = () => {
                     variant="outlined"
                     size="large"
                     color="primary"
-                    style={{ width: "100px", borderRadius: "0px" }}
+                    style={{ width: "100px", borderRadius: "0px", fontWeight: "900" }}
                   >
                     login
                   </Button>
@@ -129,7 +129,7 @@ const Home = () => {
                     variant="outlined"
                     size="large"
                     color="secondary"
-                    style={{ width: "100px", borderRadius: "0px" }}
+                    style={{ width: "100px", borderRadius: "0px", fontWeight: "900" }}
                   >
                     signup
                   </Button>
@@ -240,7 +240,7 @@ const Home = () => {
                       variant="contained"
                       size="medium"
                       color="secondary"
-                      style={{ borderRadius: "5px 0px 0px 5px" }}
+                      style={{ borderRadius: "5px 0px 0px 5px", fontWeight: "900" }}
                     >
                       login
                     </Button>
@@ -250,7 +250,7 @@ const Home = () => {
                       variant="outlined"
                       size="medium"
                       color="secondary"
-                      style={{ borderRadius: "0px 5px 5px 0px" }}
+                      style={{ borderRadius: "0px 5px 5px 0px", fontWeight: "900" }}
                     >
                       signup
                     </Button>
