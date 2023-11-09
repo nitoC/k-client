@@ -3,7 +3,7 @@ import { Button, FormControl, TextField, Typography } from "@material-ui/core";
 import Link from "next/link";
 import { forgotPassword } from "../apis/api";
 import { userFetch, message, rel } from "../redux/actions";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import {
@@ -11,10 +11,12 @@ import {
   responsiveFontSizes,
   ThemeProvider,
 } from "@material-ui/core/styles";
-let reload = rel;
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 let val;
-const ForgotPassword = ({ modal, removeModal, sendEmail,Logg, Loader1, cancel }) => {
+const ForgotPassword = ({ modal, removeModal, sendEmail, Loader1, cancel }) => {
   const [mail, setmail] = useState("");
   const isModal = false;
 
@@ -30,12 +32,9 @@ const ForgotPassword = ({ modal, removeModal, sendEmail,Logg, Loader1, cancel })
         style={modal.modal}
       ></div>
       <div className="forgot-cover" style={modal.mailSt}>
-        <Typography variant="h6" color="primary">
+        <Typography variant="h6" color="textPrimary">
           please input registered Email
         </Typography>
-        <Typography variant="subtitle1" color={Logg.color}>
-            {Logg.message}
-          </Typography>
         <div className="dep-card">
           <div className="dep-row pb">
             <TextField
@@ -61,7 +60,7 @@ const ForgotPassword = ({ modal, removeModal, sendEmail,Logg, Loader1, cancel })
                 <CircularProgress
                   style={{ color: "white", width: "15px", height: "15px" }}
                 />
-                )}
+              )}
             </Button>
           </div>
         </div>
@@ -74,8 +73,6 @@ const ForgotPassword = ({ modal, removeModal, sendEmail,Logg, Loader1, cancel })
 const Signin = () => {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
-  const [Log, setLog] = useState({ message: "", color: "" });
-  const [Log1, setLog1] = useState({ message: "", color: "" });
   const users = useSelector((state) => state.Reducer);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -144,90 +141,89 @@ const Signin = () => {
     });
   };
   const handleEmail = (event) => {
-    setLog({
-      message: "",
-      color: "",
-    });
     setUserLogin({
       email: event.target.value,
       password: userLogin.password,
     });
   };
   const handlePassword = (event) => {
-    setLog({
-      message: "",
-      color: "",
-    });
     setUserLogin({
       email: userLogin.email,
       password: event.target.value,
     });
   };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setLoader(true);
+  const handleSubmit = useCallback(
+    async (event) => {
+      event.preventDefault();
+      setLoader(true);
 
-    // console.log(userLogin)
-    try {
-      await dispatch(userFetch(userLogin));
-    } catch (error) {
-      if (error) {
-        console.log(error);
+      // console.log(userLogin)
+      try {
+        await dispatch(userFetch(userLogin));
+      } catch (error) {
+        if (error) {
+          toast.error('oops! something went wrong')
+          console.log(error);
+        }
       }
-    }
-  };
-  const cancelL=()=>{
+    },
+    [dispatch, userLogin],
+  )
+
+
+  //cancels loader for buttons
+  const cancelL = () => {
     setLoader1(false)
   }
+
+
   const sendEmail = async (mail) => {
     console.log("hello");
     setLoader1(true);
     try {
-       val=await forgotPassword({ email: mail });
+      val = await forgotPassword({ email: mail });
+      if (val.data.message == "check mail for next steps") {
+        toast.success('check your email for further instructions');
+      } else {
+        toast.warn('seems like this email does not exist')
+      }
     } catch (err) {
+      toast.error('oops! something went wrong')
       if (err) console.log(err.message);
     }
-    if(val.data.message=="check mail for next steps"){
-      setLog1({message:val.data.message,color:"primary"})
-    }else{
-      setLog1({message:val.data,color:"secondary"})
-      console.log(Log1)
-
-    }
   };
-  useEffect(() => {
+
+  const checkSubmit = useCallback(() => {
+    console.log(users)
     if (message == 1 && loader == true && rel) {
-      setLog({
-        message: "no such user login",
-        color: "secondary",
-      });
+      toast.warn(" no such user please login")
       setLoader(false);
     }
     if (message == 2 && loader == true && rel) {
+      toast.warn(" Password is incorrect")
       setLoader(false);
-      setLog({
-        message: "wrong password",
-        color: "secondary",
-      });
     }
     if (users.token) {
-      setLog({
-        message: "success",
-        color: "primary",
-      });
+      toast.success("user login was successful")
       router.push("/Dashboard");
       window.location = "/Dashboard";
     }
-  }, [handleSubmit, Log]);
-  useEffect(()=>{
-  val?setLoader1(false):setLoader1(true)
-  },[val])
+  }, [loader, router, users])
+
+  useEffect(() => {
+    checkSubmit()
+  }, [checkSubmit]);
+
+  useEffect(() => {
+    val ? setLoader1(false) : setLoader1(true)
+  }, [])
   return (
     <div className="form-container">
+      <ToastContainer />
       <div className="logo">
-            <h1>
-            <Link href="/">K</Link><span><Link href="/">Inv</Link></span>
-            </h1>
+        <h1>
+          <Link href="/">K</Link><span><Link href="/">Inv</Link></span>
+        </h1>
       </div>
       <form onSubmit={handleSubmit} className="form-cover">
         <Paper className="form-space" elevation={2}>
@@ -239,9 +235,6 @@ const Signin = () => {
               Log in
             </Typography>
           </ThemeProvider>
-          <Typography variant="subtitle1" color={Log.color}>
-            {Log.message}
-          </Typography>
           <div className="row-2">
             <TextField
               onChange={handleEmail}
@@ -295,7 +288,6 @@ const Signin = () => {
         sendEmail={sendEmail}
         removeModal={removeModal}
         modal={{ modal, mailSt }}
-        Logg={Log1}
         Loader1={Loader1}
         cancel={cancelL}
       />

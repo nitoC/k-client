@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo, useCallback } from "react";
 import { referfunc } from "../apis/api";
 import { Group } from "@material-ui/icons";
 import {
@@ -10,7 +10,7 @@ import {
 const Refer = ({ email }) => {
     const [referNo, setreferNo] = useState(0);
     console.log(email);
-    const fetchReferrals = async () => {
+    const fetchReferrals = useCallback(async () => {
       let data;
       try {
         data = await referfunc({ email: email });
@@ -19,10 +19,10 @@ const Refer = ({ email }) => {
         if (error) console.log(error);
       }
       if (data) return setreferNo(data.data);
-    };
+    },[email]);
     useEffect(() => {
       fetchReferrals();
-    }, []);
+    },[fetchReferrals]);
     return (
       <div className="balance-cover">
         <Card className="wrap">
@@ -46,4 +46,4 @@ const Refer = ({ email }) => {
     );
   };
 
-  export default Refer;
+  export default memo(Refer);

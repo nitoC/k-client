@@ -12,10 +12,14 @@ import {
   IconButton,
   Box,
   Container,
+  Grid
 } from "@material-ui/core";
 import { ButtonGroup } from "@material-ui/core";
 //import { AppBar } from '@material-ui/core'
 import MenuIcon from "@material-ui/icons/Menu";
+
+import PageLoader from "../Components/loaders/pageLoader";
+import PlanCard from "../Components/PlanCard";
 
 
 import {
@@ -38,6 +42,7 @@ const Home = () => {
   const tawkToKey = "get_key_from_tawkto_dashboard";
   const [modal, setmodal] = useState("modal");
   const [nav, setnav] = useState("nav");
+  const [loader, setloader] = useState("page_loader");
   const [loaded, setloaded] = useState(100);
   const [renav, setrenav] = useState("re-nav");
   const tawkPid = "619a2ab96885f60a50bcca66";
@@ -52,17 +57,33 @@ const Home = () => {
     setnav("nav");
   };
 
+  useEffect(() => {
+    if (document.readyState === "complete") {
+      setTimeout(() => setloader("no_page_loader"), 2000);
+    } else {
+      window.addEventListener("load", () => {
+        console.log("loaded");
+        setTimeout(() => setloader("no_page_loader"), 2000);
+      });
+
+      return () =>
+        window.addEventListener("load", () => {
+          console.log("loaded");
+          setTimeout(() => setloader("no_page_loader"), 2000);
+        });
+    }
+  }, []);
   return (
     <div className="wrapper">
-      
+      <PageLoader loader={loader} />
       <Head>
-      <script src="https://widget.nomics.com/embed.js" async/>
+        <script src="https://widget.nomics.com/embed.js" async />
         <script
           type="text/javascript"
           src="https://files.coinmarketcap.com/static/widget/coinPriceBlock.js"
           async
         />
-        <script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js" async/>
+        <script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js" async />
 
         <script
           defer
@@ -256,11 +277,11 @@ const Home = () => {
               <span>
                 Trade
               </span>
-              <br/>
-                Investment
+              <br />
+              Investment
             </h1>
             <h3>
-               Cryptocurrency is the future of the global
+              Cryptocurrency is the future of the global
               financial market. And now we are engaged in the extraction of one
               of the most valuable resources, which allows us to get maximum
               profits today.
@@ -305,8 +326,8 @@ const Home = () => {
           ></div>
         </div>
         <div className="diw">
-        <TradingViewWidget/>
-         </div>
+          <TradingViewWidget />
+        </div>
       </div>
       <div className="about">
         <div className="about-container">
@@ -332,33 +353,33 @@ const Home = () => {
         </div>
       </div>
       <div className="direction">
-        
+
         <div className="about-container">
           <h1 className="l-headers">
             How to <span>get started</span>
           </h1>
           <div className="st">
-          <div className="steps">
-            <div className="step-img1"></div>
-            <div className="step-text">
-              <h2>Register/Login</h2>
+            <div className="steps">
+              <div className="step-img1"></div>
+              <div className="step-text">
+                <h2>Register/Login</h2>
+              </div>
             </div>
-          </div>
-          <div className="steps">
-            <div className="step-text">
-              <h2>Choose a plan</h2>
+            <div className="steps">
+              <div className="step-text">
+                <h2>Choose a plan</h2>
+              </div>
+              <div className="step-img2"></div>
             </div>
-            <div className="step-img2"></div>
-          </div>
-          <div className="steps">
-            <div className="step-img3"></div>
-            <div className="step-text">
-              <h2>Make profit</h2>
-            </div>
+            <div className="steps">
+              <div className="step-img3"></div>
+              <div className="step-text">
+                <h2>Make profit</h2>
+              </div>
             </div>
           </div>
         </div>
-       
+
       </div>
       <div className="team">
         <div className="team-header">
@@ -402,117 +423,11 @@ const Home = () => {
             Service <span>Plans</span>
           </h1>
           <div className="plan-desc">
-            <div className="card">
-              <Card elevation={3}>
-                <div className="plan-letters">
-                  <Typography variant="h4" color="secondary">
-                    Gold
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Profit:{" "}
-                  </Typography>
-                  <Typography variant="h2" color="primary">
-                    20%
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Min Deposit:{" "}
-                  </Typography>
-                  <Typography variant="h4" color="initial">
-                    $100
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Duration of investment:{" "}
-                  </Typography>
-                  <Typography variant="h4" color="textSecondary">
-                    48hrs
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Referral Bonus:{" "}
-                  </Typography>
-                  <Typography variant="h4" color="initial">
-                    %4
-                    <CallMade
-                      style={{ fontSize: "35px", textAlign: "center" }}
-                      color="secondary"
-                    />
-                  </Typography>
-                </div>
-              </Card>
-            </div>
-            <div className="card">
-              <Card elevation={3}>
-                <div className="plan-letters">
-                  <Typography variant="h4" color="secondary">
-                    Diamond
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Profit:{" "}
-                  </Typography>
-                  <Typography variant="h2" color="primary">
-                    30%
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Min Deposit:{" "}
-                  </Typography>
-                  <Typography variant="h4" color="initial">
-                    $1000
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Duration of investment:{" "}
-                  </Typography>
-                  <Typography variant="h4" color="textSecondary">
-                    72hrs
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Referral Bonus:{" "}
-                  </Typography>
-                  <Typography variant="h4" color="initial">
-                    %4
-                    <CallMade
-                      style={{ fontSize: "35px", textAlign: "center" }}
-                      color="secondary"
-                    />
-                  </Typography>
-                </div>
-              </Card>
-            </div>
-            <div className="card">
-              <Card elevation={3}>
-                <div className="plan-letters">
-                  <Typography variant="h4" color="secondary">
-                    Platinum
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Profit:{" "}
-                  </Typography>
-                  <Typography variant="h2" color="primary">
-                    45%
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Min Deposit:{" "}
-                  </Typography>
-                  <Typography variant="h4" color="initial">
-                    $5000
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Duration of investment:{" "}
-                  </Typography>
-                  <Typography variant="h4" color="textSecondary">
-                    96hrs
-                  </Typography>
-                  <Typography variant="h6" color="initial">
-                    Referral Bonus:{" "}
-                  </Typography>
-                  <Typography variant="h4" color="initial">
-                    %4
-                    <CallMade
-                      style={{ fontSize: "35px", textAlign: "center" }}
-                      color="secondary"
-                    />
-                  </Typography>
-                </div>
-              </Card>
-            </div>
+            <Grid container spacing={3}>
+              <PlanCard plan="GOLD" profit="20" minDeposit="$100" duration="48hrs" />
+              <PlanCard plan="DIAMOND" profit="30%" minDeposit="$1000" duration="72hrs" />
+              <PlanCard plan="PLATINUM" profit="45" minDeposit="$5000" duration="96hrs" />
+            </Grid>
           </div>
         </div>
       </div>
@@ -637,52 +552,52 @@ const Home = () => {
             <Typography variant="h6" color="secondary">
               Useful links
             </Typography>
-            <span style={{display:'flex', alignItems:'center'}}>
-                <ArrowForwardIos
-                  style={{ fontSize: "10px", textAlign: "center" }}
-                />
-            <Link href="/Services">
+            <span style={{ display: 'flex', alignItems: 'center' }}>
+              <ArrowForwardIos
+                style={{ fontSize: "10px", textAlign: "center" }}
+              />
+              <Link href="/Services">
                 services
-            </Link>
-              </span>
-            <span style={{display:'flex', alignItems:'center'}}>
-                <ArrowForwardIos
-                  style={{ fontSize: "10px", textAlign: "center" }}
-                />
-            <Link href="/About">
+              </Link>
+            </span>
+            <span style={{ display: 'flex', alignItems: 'center' }}>
+              <ArrowForwardIos
+                style={{ fontSize: "10px", textAlign: "center" }}
+              />
+              <Link href="/About">
                 about
-              
-            </Link>
-              </span>
-            <span style={{display:'flex', alignItems:'center'}}>
-                <ArrowForwardIos
-                  style={{ fontSize: "10px", textAlign: "center" }}
-                />
-            <Link href="https://tawk.to/chat/619a2ab96885f60a50bcca66/1fl13dpgg">
-                support
-             
-            </Link>
-              </span>
-              <span style={{display:'flex', alignItems:'center'}}>
-                <ArrowForwardIos
-                  style={{ fontSize: "10px", textAlign: "center" }}
-                />
-            <Link href="/certificate.png">
-                certificate
-              
-            </Link>
 
-              </span>
+              </Link>
+            </span>
+            <span style={{ display: 'flex', alignItems: 'center' }}>
+              <ArrowForwardIos
+                style={{ fontSize: "10px", textAlign: "center" }}
+              />
+              <Link href="https://tawk.to/chat/619a2ab96885f60a50bcca66/1fl13dpgg">
+                support
+
+              </Link>
+            </span>
+            <span style={{ display: 'flex', alignItems: 'center' }}>
+              <ArrowForwardIos
+                style={{ fontSize: "10px", textAlign: "center" }}
+              />
+              <Link href="/certificate.png">
+                certificate
+
+              </Link>
+
+            </span>
           </div>
           <div className="social">
             <Link href="https://facebook.com">
-              <Facebook style={{cursor:"pointer"}} fontSize="large" />
+              <Facebook style={{ cursor: "pointer" }} fontSize="large" />
             </Link>
             <Link href="https://twitter.com">
-              <Twitter style={{cursor:"pointer"}} fontSize="large" />
+              <Twitter style={{ cursor: "pointer" }} fontSize="large" />
             </Link>
             <Link href="https://instagram.com">
-              <Instagram style={{cursor:"pointer"}} fontSize="large" />
+              <Instagram style={{ cursor: "pointer" }} fontSize="large" />
             </Link>
           </div>
         </div>

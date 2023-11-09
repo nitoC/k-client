@@ -2,6 +2,7 @@ import {
     Card,
     Typography,
   } from "@material-ui/core";
+  import {memo} from 'react';
 
 const Profit = ({ balance, capital }) => {
   console.log(balance);
@@ -24,4 +25,4 @@ const Profit = ({ balance, capital }) => {
   );
 };
 
-export default Profit;
+export default memo(Profit);

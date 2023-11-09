@@ -9,9 +9,11 @@ import Link from "next/link";
 import { register } from "../apis/api";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { SettingsBrightness } from "@material-ui/icons";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Signup = () => {
-  const [Reg, setReg] = useState("");
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const router = useRouter();
@@ -23,7 +25,6 @@ const Signup = () => {
     password: "",
   });
   const handleName = (event) => {
-    setReg("");
     setUser({
       name: event.target.value,
       username: user.username,
@@ -32,7 +33,6 @@ const Signup = () => {
     });
   };
   const handleUsername = (event) => {
-    setReg("");
     setUser({
       name: user.name,
       username: event.target.value,
@@ -41,7 +41,6 @@ const Signup = () => {
     });
   };
   const handleEmail = (event) => {
-    setReg("");
     setUser({
       name: user.name,
       username: user.username,
@@ -50,7 +49,6 @@ const Signup = () => {
     });
   };
   const handlePassword = (event) => {
-    setReg("");
     setUser({
       name: user.name,
       username: user.username,
@@ -65,13 +63,15 @@ const Signup = () => {
       const status = await register(user);
       console.log(status.data);
       if (status.data.registered === true) {
+        toast.success('Signup successful')
         router.push("/Signin");
       } else {
+        toast.warn(status.data.message)
         setLoader(false);
-        setReg(status.data.message);
       }
     } catch (error) {
       if (error) {
+        toast.error('oops! something went wrong')
         console.log(error);
       }
     }
@@ -80,15 +80,14 @@ const Signup = () => {
   return (
     <div className="form-container">
       <div className="logo">
-        
-            <h1>
-        
-            <Link href="/">K</Link><span><Link href="/">Inv</Link></span>
-        
-            </h1>
-          
+
+        <h1>
+          <Link href="/">K</Link><span><Link href="/">Inv</Link></span>
+        </h1>
+
       </div>
       <form action="Signin" onSubmit={handleSubmit} className="form-cover">
+        <ToastContainer />
         <Paper className="form-space" elevation={2}>
           <ThemeProvider theme={theme}>
             <Typography
@@ -98,9 +97,6 @@ const Signup = () => {
               Create account
             </Typography>
           </ThemeProvider>
-          <Typography variant="p" color="secondary">
-            {Reg}
-          </Typography>
           <div className="row-1">
             <TextField
               type="text"

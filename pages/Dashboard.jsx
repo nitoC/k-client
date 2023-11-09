@@ -1,3 +1,9 @@
+import { useEffect, useState, useCallback } from "react";
+import Link from "next/link";
+import { addressfunc } from "../apis/api";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+
 import {
   AppBar,
   Button,
@@ -5,31 +11,30 @@ import {
   Paper,
 } from "@material-ui/core";
 import tawk from "tawkto-react";
-import { useEffect, useState, useRef } from "react";
-import Link from "next/link";
 import { Logout } from "../redux/actions";
-import { addressfunc } from "../apis/api";
-import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from "next/router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import PageLoader from "../Components/loaders/pageLoader";
 //Top section with name and deposit button
 import FirstSection from '../Components/FirstSection';
 //transaction section
-import Transactions from "../Components/Transactions";
+import Transactions from "../Components/modals/Transactions";
 //plan section with name and upgrade button
-import Plan from '../Components/Plan';
+import Plan from '../Components/modals/Plan';
 //balance section with deposit button
 import Balance from "../Components/Balance";
 // percentage profit section
-import Profit from "../Components/PercentageProfit";
+import Profit from "../Components/modals/PercentageProfit";
 // referral link
 import Refer from "../Components/Referal";
 
 //capital section with deposit button
 import Capital from "../Components/Capital";
 //withdraw modal section with withdraw button
-import Withdrawal from "../Components/WIthdrawal";
+import Withdrawal from "../Components/modals/WIthdrawal";
 //deposit modal section with deposit button
-import Deposit from "../Components/Deposit";
+import Deposit from "../Components/modals/Deposit";
 
 let depaddress = {};
 
@@ -38,11 +43,12 @@ let depaddress = {};
 
 const Dashboard = () => {
   let interval;
-  const [confirmed, setconfirmed] = useState(false);
   const tawkPid = "619a2ab96885f60a50bcca66";
   const tawkKey = "1fl13dpgg";
 
+  const [confirmed, setconfirmed] = useState(false);
   const dispatch = useDispatch();
+  const [loader, setloader] = useState("page_loader");
   const [address, setaddress] = useState({
     usdt: "",
     btc: "",
@@ -62,6 +68,7 @@ const Dashboard = () => {
       plan: person1.plan,
     };
   }
+  console.log(users)
   if (!person1)
     person = {
       name: "",
@@ -280,12 +287,12 @@ const Dashboard = () => {
       display: "none",
     });
   };
-  const handleLogout = (interval) => {
-    console.log("intervalclear");
+  const handleLogout = useCallback(() => {
     dispatch(Logout({}));
+    toast('Logout successful')
     router.push("/Signin");
-    return clearInterval(interval);
-  };
+    window.location = '/Signin';
+  }, [dispatch, router]);
   const addfunc = async () => {
     try {
       depaddress = await addressfunc();
@@ -297,31 +304,45 @@ const Dashboard = () => {
       if (err) console.log(err.message);
     }
   };
-  useEffect(() => {
-    if (users.token) {
-      setUser(person);
-    } else {
-      router.push("/Signin");
-    }
-  }, [users]);
+  // const confirmLogin  = useCallback(() => {
+  //   if (users.token) {
+  //     setUser(person);
+  //   } else {
+  //     router.push("/Signin");
+  //   }
+
+  // }, [router, person, users.token])
+
+  // useEffect(() => {
+  //   confirmLogin();
+  // });
+
 
   useEffect(() => {
     addfunc();
-    interval = setInterval(() => {
-      console.log(users.time);
-      if (users.time <= Date.now()) {
-        console.log("unmounting");
-      }
-      return () => clearInterval(interval);
-    }, 60000);
+    if (document.readyState === "complete") {
+      setTimeout(() => setloader("no_page_loader"), 2000);
+    } else {
+      window.addEventListener("load", () => {
+        console.log("loaded");
+        setTimeout(() => setloader("no_page_loader"), 2000);
+      });
+
+      return () =>
+        window.addEventListener("load", () => {
+          console.log("loaded");
+          setTimeout(() => setloader("no_page_loader"), 2000);
+        });
+    }
   }, []);
   useEffect(() => {
     new tawk(tawkPid, tawkKey);
-    return () => clearInterval(interval);
+    //tawkto.setBackgroundColor('blue')
   }, [handleLogout]);
   return (
     <div className="dashboard-cover">
-      <AppBar>
+      <PageLoader loader={loader} />
+      <div className='dashboard_header'>
         <Toolbar className="cov">
           <div className="dash-header">
             <div className="logo">
@@ -335,7 +356,6 @@ const Dashboard = () => {
                   className="btn"
                   variant="outlined"
                   onClick={handleTransactions}
-                  style={{ color: "white", border: "none" }}
                   size="small"
                 >
                   transactions
@@ -354,7 +374,8 @@ const Dashboard = () => {
             </nav>
           </div>
         </Toolbar>
-      </AppBar>
+      </div>
+      <ToastContainer />
       <div className="body">
         <Paper elevation={2}>
           <div className="body-cover">
@@ -384,7 +405,7 @@ const Dashboard = () => {
         <Transactions
           click={{ handleTransactions, removetransactions }}
           modal={{ modalT, transactions }}
-          user={users?users.user?users.user.transactions:'':''}
+          user={users ? users.user ? users.user.transactions : '' : ''}
         />
       </div>
     </div>
