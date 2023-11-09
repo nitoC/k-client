@@ -15,7 +15,7 @@ import { Logout } from "../redux/actions";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import PageLoader from "../Components/loaders/PageLoader";
+import PageLoader from "../Components/loaders/PageLoaders";
 //Top section with name and deposit button
 import FirstSection from '../Components/FirstSection';
 //transaction section
