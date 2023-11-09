@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 
 
-const Withdrawal = ({ balance, modal, removeModal, email }) => {
+const Withdraw = ({ balance, modal, removeModal, email }) => {
   const bal = balance;
   let depStatus;
   const [disable, setdisable] = useState(true);
@@ -97,4 +97,4 @@ const Withdrawal = ({ balance, modal, removeModal, email }) => {
   );
 };
 
-export default Withdrawal;
+export default Withdraw;

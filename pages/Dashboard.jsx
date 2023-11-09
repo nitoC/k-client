@@ -32,7 +32,7 @@ import Refer from "../Components/Referal";
 //capital section with deposit button
 import Capital from "../Components/Capital";
 //withdraw modal section with withdraw button
-import Withdrawal from "../Components/modals/Withdrawal";
+import Withdrawal from "../Components/modals/Withdraw";
 //deposit modal section with deposit button
 import Deposit from "../Components/modals/Deposit";
 
