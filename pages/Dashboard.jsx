@@ -12,29 +12,30 @@ import {
 } from "@material-ui/core";
 import tawk from "tawkto-react";
 import { Logout } from "../redux/actions";
+import { toggleDrawer } from "../utils/toggleDrawer";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import PageLoader from "../Components/loaders/PageLoaders";
 //Top section with name and deposit button
 import FirstSection from '../Components/FirstSection';
+//Top section with name and deposit button
+import DashboardHome from '../Components/DashboardHome';
 //transaction section
 import Transactions from "../Components/modals/Transactions";
 //plan section with name and upgrade button
-import Plan from '../Components/modals/Plan';
-//balance section with deposit button
-import Balance from "../Components/Balance";
-// percentage profit section
-import Profit from "../Components/modals/PercentageProfit";
+import Plan from '../Components/Plan';
 // referral link
 import Refer from "../Components/Referal";
-
-//capital section with deposit button
-import Capital from "../Components/Capital";
 //withdraw modal section with withdraw button
 import Withdrawal from "../Components/modals/Withdraw";
 //deposit modal section with deposit button
 import Deposit from "../Components/modals/Deposit";
+
+//Sidebar
+import Sidebar from "../Components/Sidebar";
+import Switcher from "../Components/utils/Switcher";
+
 
 let depaddress = {};
 
@@ -45,7 +46,18 @@ const Dashboard = () => {
   let interval;
   const tawkPid = "619a2ab96885f60a50bcca66";
   const tawkKey = "1fl13dpgg";
+  const DashboardPages = ["Home", "Settings", "Exchange", "Market", "Referral", "News", "Documents"];
 
+  const [page, setpage] = useState('Home')//page
+
+
+  //drawer
+  const [drawer, setDrawer] = useState({
+    top: false,
+    left: true,
+    bottom: false,
+    right: false,
+  });
   const [confirmed, setconfirmed] = useState(false);
   const dispatch = useDispatch();
   const [loader, setloader] = useState("page_loader");
@@ -58,8 +70,8 @@ const Dashboard = () => {
   let person1 = users.user;
   let person;
   if (person1) {
-    delete person1._id;
     person = {
+      id: person1._id,
       email: person1.email,
       name: person1.name,
       username: person1.username,
@@ -78,9 +90,7 @@ const Dashboard = () => {
       plan: null,
       email: "",
     };
-  const token = users.token;
-  const eachUser = users.users;
-  const isModal = false;
+
   const [user, setUser] = useState({
     name: person.name,
     username: person.username,
@@ -142,6 +152,8 @@ const Dashboard = () => {
     transform: "translate(" + "-50%" + "," + "-50" + ")",
     display: "none",
   });
+
+
   const handleModal = () => {
     setmodal({
       zIndex: 4,
@@ -304,25 +316,23 @@ const Dashboard = () => {
       if (err) console.log(err.message);
     }
   };
-  // const confirmLogin  = useCallback(() => {
-  //   if (users.token) {
-  //     setUser(person);
-  //   } else {
-  //     router.push("/Signin");
-  //   }
 
-  // }, [router, person, users.token])
+  //handle pages
+  const handleDashboardPage = useCallback((page) => {
+    setpage(page)
 
-  // useEffect(() => {
-  //   confirmLogin();
-  // });
+  }, [])
+
+
 
 
   useEffect(() => {
     addfunc();
     if (document.readyState === "complete") {
+
       setTimeout(() => setloader("no_page_loader"), 2000);
     } else {
+
       window.addEventListener("load", () => {
         console.log("loaded");
         setTimeout(() => setloader("no_page_loader"), 2000);
@@ -377,18 +387,21 @@ const Dashboard = () => {
       </div>
       <ToastContainer />
       <div className="body">
-        <Paper elevation={2}>
+        <Sidebar
+          page={handleDashboardPage}
+          toggleDrawer={toggleDrawer}
+          drawer={drawer}
+          drawerFunction={(
+            data
+          ) => setDrawer(data)}
+        />
+        <div className="dashboard_topnav">
+          <FirstSection user={user} handlers={{ handleModal, handleModal1, handleDashboardPage }} />
           <div className="body-cover">
-            <FirstSection user={user} modal={{ handleModal, handleModal1 }} />
-            <Plan plan={user.plan} modal={handleModal} />
-            <Capital capital={user.capital} />
-            <Balance balance={user.balance} />
-            <Profit balance={user.balance} capital={user.capital} />
-            <Refer email={person.email} />
-
+            <Switcher element={page} type={DashboardPages} users={users} handlers={{ handleModal1, handleModal }} />
             <div className="sec-1"></div>
           </div>
-        </Paper>
+        </div>
         <Deposit
           email={person.email}
           balance={user.balance}

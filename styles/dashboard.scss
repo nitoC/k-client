@@ -9,10 +9,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .logo {
+    margin-left: 70px;
+  }
   .dash-nav {
-    *{
-
-      font-family: 'Lato ', sans-serif;
+    * {
+      font-family: "Lato ", sans-serif;
     }
     width: 240px;
     display: flex;
@@ -27,14 +29,16 @@
 }
 .dashboard-cover {
   .body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 130px;
-    width: 100vw;
+    .row1 {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.5em 0.7em 1.5em 0.5em;
+    }
     min-height: 100vh;
     * {
-      font-family: 'Lato ', sans-serif;
+      font-family: "Lato ", sans-serif;
     }
     .wrapT {
       background-color: rgba($color: #000000, $alpha: 0.5);
@@ -88,8 +92,7 @@
         text-align: center;
       }
     }
-    * {
-    }
+
     .modal {
       background-color: rgba($color: #000000, $alpha: 0.5);
     }
@@ -149,7 +152,7 @@
       width: 350px;
       height: 250px;
       margin-left: 50%;
-      transform: translateX(-50%)
+      transform: translateX(-50%);
     }
     .dep-btn {
       display: flex;
@@ -159,18 +162,22 @@
     .dep-row {
       width: 100%;
     }
-    .pb{
-     *{
-      padding-bottom: 0.7em;
-     } 
+    .pb {
+      * {
+        padding-bottom: 0.7em;
+      }
     }
     .body-cover {
       display: flex;
       flex-direction: column;
+      gap: 2rem;
       justify-content: space-around;
-      width: 70vw;
+      margin-left: 50%;
+      transform: translate(-50%);
+      width: 100%;
+      min-width: 300px;
       min-height: 50vh;
-      padding: 1em;
+      padding: 3rem;
       .row1 {
         display: flex;
         justify-content: space-between;
@@ -180,48 +187,36 @@
       .plan-cover,
       .balance-cover,
       .capital-cover {
-        padding: 1.5em;
+        width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
-        .ref{
-          width:100%;
+        .ref {
+          width: 100%;
         }
-        .wrap {
-          width: 90%;
-          padding: 0.5em 2.5em 0.5em 2.5em;
+        .refer {
           display: flex;
-          align-items: center;
-          justify-content: space-between;
-          *{
-           
-          }
+          width: 100%;
 
-         
-          .refer{
-            display:flex;
-            width:100%;
-            
-            
+          align-items: center;
+          .align {
+            display: flex;
+            justify-content: space-around;
             align-items: center;
-            .align{
-              display:flex;
-              justify-content: space-around;
-              align-items: center;
-              padding-right: 5px;
-              width:80.5%;
-              padding-left: 5px;
-              .refl{
-                text-align: center;
-                width:500px;
-                background-color: wheat;
-              }
+            padding-right: 5px;
+            width: 80.5%;
+            padding-left: 5px;
+            .refl {
+              text-align: center;
+              width: 500px;
+              background-color: wheat;
             }
-            .badge{
-              display: inline-block;
-              width: 65px;
-              padding:1.6px;
-            .spref{
+          }
+          .badge {
+            display: inline-block;
+            width: 65px;
+            padding: 1.6px;
+            .spref {
               display: inline-block;
               background-color: crimson;
               border-radius: 50%;
@@ -230,205 +225,141 @@
               font-size: xx-small;
               padding: 2px 4px 2px 4px;
             }
-             
-            
-            }
-            
           }
-          .p-text-wrap {
-            .c{
-              color:gray;
-            }
-            .p-width {
-              width: 120px;
-              text-align: right;
-              padding-left: 15px !important;
-            }
-            .p-width-1 {
-              padding-left: 5px;
-              padding-left: 15px !important;
-            }
-            .p-width-3 {
-              padding-left: 15px !important;
-              width: 120px;
-              text-align: right;
-            }
-            display: flex;
-            padding: 0.5em;
+        }
+        .p-text-wrap {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 16px;
+          .p-width {
+            width: 120px;
+            text-align: right;
+            padding-left: 15px !important;
           }
+          .p-width-1 {
+            padding-left: 5px;
+            padding-left: 15px !important;
+          }
+          .p-width-3 {
+            padding-left: 15px !important;
+            width: 120px;
+            text-align: right;
+          }
+          display: flex;
+          padding: 0.5em;
         }
       }
     }
   }
   width: 100vw;
 }
-@media (max-width: 1000px) {
-  .dashboard-cover {
-    .dash-nav {
-      .btn {
-        * {
-          font-size: 0.65rem;
-        }
-      }
-      
-    }
-    .body {
-      margin-top: 0px;
-      .wrapT {
-        background-color: rgba($color: #000000, $alpha: 0.5);
-      }
-      .wrap-transaction {
-        width: 90vw;
-        background-color: white;
-        min-height: 80vh;
-        overflow: auto;
-      }
-      .trans {
-        width: 100%;
-        display: flex;
-        padding: 8px;
-        justify-content: space-around;
-        align-items: center;
-        * {
-          padding: 4px;
-          text-align: center;
-        }
-        .type,
-        h3 {
-          width: 17%;
-        }
-        h3 {
-          color: gray;
-        }
-        .amount,
-        .amount-h {
-          width: 17%;
-        }
-        .status-h {
-          width: 70px;
-          text-align: center;
-        }
-        .time,
-        .time-h {
-          width: 20%;
-        }
-        .pending {
-          color: brown;
-          border-radius: 4px;
-          background-color: antiquewhite;
-          width: 70px;
-          text-align: center;
-        }
-        .confirmed {
-          color: blue;
-          background-color: aliceblue;
-          width: 70px;
-          text-align: center;
-        }
-      }
-      .deposit-cover {
-        * {
-          overflow: hidden;
-        }
-        background-color: white;
-        width: 300px;
-        min-height: 400px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 1.2em;
-        .disp {
-          min-height: 100px;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-      .dep-card {
-        width: 250px;
-        height: 200px;
-      }
-      .body-cover {
-        width: 94vw;
-        .row1 {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 1.5em 0.7em 1.5em 0.3em;
-        }
-        .btn-sec {
-          width: 78px;
-          .btn {
-            * {
-              font-size: 0.65rem;
-            }
-          }
-        }
-        .plan-cover,
-        .balance-cover,
-        .capital-cover {
-          padding: 0.5em;
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          .wrap {
-            width: 90%;
-            padding: 0.5em 1em 0.5em 1em;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            .btn-sec,
-            .btn-c {
-              width: 120px;
-              .btn {
-                * {
-                  font-size: 0.65rem;
-                }
-              }
-            }
-            .p-text-wrap {
-              .refl{
-                text-align: center;
-                font-size: 0.56rem !important;
-              }
-              
-              .p-width {
-                width: 60px !important;
-                text-align: right;
-              }
-              .p-width-1 {
-                padding-left: 3px;
-                width: 60px;
-              }
-              .p-width-pl {
-                padding-left: 3px;
-                width: 70px;
-              }
-              .p-width-3 {
-                padding-left: 3px;
-                width: 66px;
-              }
-              display: flex;
-              padding: 0.2em;
-            }
-          }
-        }
-      }
-      * {
-        font-size: 0.8rem;
-      }
-    }
+
+.recent_transactions {
+  padding: 15px;
+  border: 2px solid #e9e5e5;
+  border-radius: 10px;
+}
+
+.recent_transaction {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(236, 193, 112, 0.788);
+}
+.loss {
+  color: #9c0817 !important;
+}
+.gain {
+  color: #058605 !important;
+}
+.recent_heading {
+  padding: 1rem;
+}
+.dashboard_home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
+  min-width: 300px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  height: auto;
+  background: white;
+}
+.dashboard_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/**
+***library overrides
+**/
+.tradingview-widget-copyright {
+  display: none;
+}
+
+/**
+***Settings
+**/
+
+/**
+***market
+**/
+.market_wrapper {
+  padding: 0 3rem;
+}
+
+/**
+***referrals
+**/
+.referral_icon {
+  transform: scale(5);
+  color: #333;
+}
+
+/**
+***documents
+**/
+
+/**
+***news
+**/
+
+.news_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.economic_calender_heading {
+  text-align: center;
+  color: #333;
+  padding: 1rem;
+  font-weight: 400;
+}
+/**
+***exchange
+**/
+.exchange_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5rem;
+}
+.market_info {
+  width: 100%;
+  * {
+    overflow: hidden;
   }
 }
-@media (max-width:600px) {
-  .refl{
-    text-align: center;
-    width:120px !important;
-    overflow-x: scroll;
-    font-size: 0.56rem !important;
-  }
-  .body-cover{
-    width: 97vw;
-  }
-}
+
+/**
+***
+**/
