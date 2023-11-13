@@ -157,17 +157,18 @@ const Signin = () => {
       event.preventDefault();
       setLoader(true);
 
-      // console.log(userLogin)
       try {
         await dispatch(userFetch(userLogin));
+        setLoader(false);
       } catch (error) {
         if (error) {
           toast.error('oops! something went wrong')
+          setLoader(false)
           console.log(error);
         }
       }
     },
-    [dispatch, userLogin],
+    [userLogin, dispatch],
   )
 
 
@@ -186,6 +187,7 @@ const Signin = () => {
         toast.success('check your email for further instructions');
       } else {
         toast.warn('seems like this email does not exist')
+        val.data.message = null
       }
     } catch (err) {
       toast.error('oops! something went wrong')
@@ -194,25 +196,28 @@ const Signin = () => {
   };
 
   const checkSubmit = useCallback(() => {
-    console.log(users)
-    if (message == 1 && loader == true && rel) {
+    if (users.message == 1 && rel) {
       toast.warn(" no such user please login")
-      setLoader(false);
+      users.message = null
     }
-    if (message == 2 && loader == true && rel) {
+    if (users.message == 2 && rel) {
       toast.warn(" Password is incorrect")
-      setLoader(false);
+      users.message = null
+
     }
     if (users.token) {
       toast.success("user login was successful")
       router.push("/Dashboard");
       window.location = "/Dashboard";
     }
-  }, [loader, router, users])
+  }, [router, users])
 
   useEffect(() => {
-    checkSubmit()
-  }, [checkSubmit]);
+    setTimeout(() => {
+      checkSubmit()
+    }, 500)
+
+  }, [users, checkSubmit])
 
   useEffect(() => {
     val ? setLoader1(false) : setLoader1(true)

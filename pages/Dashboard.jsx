@@ -298,7 +298,11 @@ const Dashboard = () => {
       transform: "translate(" + "-50%" + "," + "-50" + ")",
       display: "none",
     });
+    setconfirmed(false)
   };
+
+
+
   const handleLogout = useCallback(() => {
     dispatch(Logout({}));
     toast('Logout successful')
