@@ -13,16 +13,17 @@ import Profit from './PercentageProfit';
 
 const Capital = ({ user }) => {
   const [Visible, setVisible] = useState(false);
+  console.log(user.user.balance)
   return (
     <div className="balance-cover">
       <div className="p-text-wrap">
-        <Typography className="" variant="h5">
+        <h2 className="balance_text" >
           {
             Visible ?
-              user.balance :
+              user.user.balance.toFixed(2) :
               '*****'
           }
-        </Typography>
+        </h2>
         <div className="visibility_icon" onClick={() => setVisible(!Visible)}>
           {Visible ?
             <Visibility /> :
@@ -31,7 +32,7 @@ const Capital = ({ user }) => {
         </div>
       </div>
       <Profit balance={user.balance} capital={user.capital} />
-    </div>
+    </div >
   );
 };
 

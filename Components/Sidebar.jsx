@@ -17,6 +17,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { Group, GroupAdd, Home, NotificationImportant, Settings } from '@material-ui/icons';
 
 const drawerWidth = 240;
 
@@ -84,17 +85,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function MiniDrawer() {
+export default function MiniDrawer({ handler, leftBar }) {
+    const page = ["Home", "Notifications", "Orders", "Documents", "Settings", "Referral"]
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = useState(false);
 
     const handleDrawerOpen = () => {
-        setOpen(true);
+        handler.handleLeftbar(true)
+        console.log('wow left')
+        handler.handleRightbar(false)
     };
 
     const handleDrawerClose = () => {
-        setOpen(false);
+        handler.handleLeftbar(false);
     };
 
     return (
@@ -103,18 +106,18 @@ export default function MiniDrawer() {
             <Drawer
                 variant="permanent"
                 className={clsx(classes.drawer, {
-                    [classes.drawerOpen]: open,
-                    [classes.drawerClose]: !open,
+                    [classes.drawerOpen]: leftBar,
+                    [classes.drawerClose]: !leftBar,
                 })}
                 classes={{
                     paper: clsx({
-                        [classes.drawerOpen]: open,
-                        [classes.drawerClose]: !open,
+                        [classes.drawerOpen]: leftBar,
+                        [classes.drawerClose]: !leftBar,
                     }),
                 }}
             >
                 <div className={classes.toolbar}>
-                    {!open ? (<IconButton
+                    {!leftBar ? (<IconButton
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
@@ -127,9 +130,9 @@ export default function MiniDrawer() {
                 </div>
                 <Divider />
                 <List>
-                    {['Dashboard', 'Inbox', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    {['Dashboard', 'Notification', 'Orders'].map((text, index) => (
+                        <ListItem onClick={() => handler.handlePages(page[index])} button key={text}>
+                            <ListItemIcon>{index === 0 ? <Home /> : index === 1 ? <NotificationImportant /> : index === 2 ? <MailIcon /> : ''}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}
@@ -137,8 +140,8 @@ export default function MiniDrawer() {
                 <Divider />
                 <List>
                     {['Documents', 'Settings', 'Referral'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItem onClick={() => handler.handlePages(page[3 + index])} button key={text}>
+                            <ListItemIcon>{index === 0 ? <InboxIcon /> : index === 1 ? <Settings /> : <GroupAdd />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}

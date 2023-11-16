@@ -4,6 +4,11 @@ body {
   margin: 0;
   font-family: "Manrope", sans-serif !important;
 }
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 :root {
   --toastify-color-light: #fff;
   --toastify-color-dark: #121212;
@@ -65,7 +70,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 50;
+  z-index: 1250;
 }
 .no_page_loader {
   position: fixed;

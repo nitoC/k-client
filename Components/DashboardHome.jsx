@@ -7,7 +7,6 @@ const DashboardHome = ({ user, handleModal }) => {
     return (
         <div className="dashboard_home">
             <div className="dashboard_wrapper">
-
                 <Plan plan={user.plan} modal={handleModal} />
                 <Capital user={user} />
                 <div className="recent">

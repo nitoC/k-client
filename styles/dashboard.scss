@@ -2,6 +2,9 @@
   font-size: 16px;
 }
 .dash-header {
+  .menu_icon {
+    display: none;
+  }
   * {
     overflow: hidden;
   }
@@ -171,13 +174,12 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      justify-content: space-around;
-      margin-left: 50%;
-      transform: translate(-50%);
+      justify-content: center;
+      align-items: center;
       width: 100%;
       min-width: 300px;
       min-height: 50vh;
-      padding: 3rem;
+      padding: 3rem 1rem 3rem 88px;
       .row1 {
         display: flex;
         justify-content: space-between;
@@ -187,46 +189,16 @@
       .plan-cover,
       .balance-cover,
       .capital-cover {
+        .balance_text {
+          font-family: "Orbitron", sans-serif;
+          min-width: 100px;
+          text-align: center;
+        }
+
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .ref {
-          width: 100%;
-        }
-        .refer {
-          display: flex;
-          width: 100%;
-
-          align-items: center;
-          .align {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding-right: 5px;
-            width: 80.5%;
-            padding-left: 5px;
-            .refl {
-              text-align: center;
-              width: 500px;
-              background-color: wheat;
-            }
-          }
-          .badge {
-            display: inline-block;
-            width: 65px;
-            padding: 1.6px;
-            .spref {
-              display: inline-block;
-              background-color: crimson;
-              border-radius: 50%;
-              color: white;
-              font-family: roboto;
-              font-size: xx-small;
-              padding: 2px 4px 2px 4px;
-            }
-          }
-        }
         .p-text-wrap {
           display: flex;
           justify-content: flex-start;
@@ -256,16 +228,14 @@
 }
 
 .recent_transactions {
-  padding: 15px;
   border: 2px solid #e9e5e5;
-  border-radius: 10px;
 }
 
 .recent_transaction {
+  padding: 15px;
   display: flex;
-  padding: 10px;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(236, 193, 112, 0.788);
+  border-bottom: 1px solid rgba(177, 174, 169, 0.788);
 }
 .loss {
   color: #9c0817 !important;
@@ -275,15 +245,11 @@
 }
 .recent_heading {
   padding: 1rem;
+  font-family: "Poppina", sans-serif;
 }
 .dashboard_home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 700px;
-  min-width: 300px;
-  margin-left: 50%;
-  transform: translateX(-50%);
+  min-width: 200px;
   height: auto;
   background: white;
 }
@@ -304,26 +270,82 @@
 /**
 ***Settings
 **/
-
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.verify_email_wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+}
+.verify_email {
+  padding: 7px 20px;
+  font-size: 1.2rem;
+  color: #555;
+  background-color: rgba(204, 204, 204, 0.527);
+  border-radius: 10px;
+}
 /**
 ***market
 **/
 .market_wrapper {
   padding: 0 3rem;
 }
-
 /**
 ***referrals
 **/
+.referrals {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.badge_image_wrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+.badge_image {
+  object-fit: contain;
+}
 .referral_icon {
-  transform: scale(5);
   color: #333;
+}
+.refers {
+  font-family: "Poppins", sans-serif;
+  font-size: 3rem;
 }
 
 /**
 ***documents
 **/
-
+.document_form_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+.document_form_container label {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+#transfer_document {
+  display: none;
+}
 /**
 ***news
 **/
@@ -351,15 +373,167 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 0 5rem;
+  padding: 0 1rem 0 5rem;
 }
 .market_info {
   width: 100%;
   * {
     overflow: hidden;
   }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.market_widget {
+  width: 800px;
+  min-width: 300px;
+}
+.book {
+  padding: 0.5rem;
+  width: 300px;
+  min-width: 290px;
+  overflow: auto;
+  .book_container {
+    max-width: 300px;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  span {
+    padding: 0 0.2rem 0 0.2rem;
+  }
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.book_input_wrapper {
+  padding: 10px 0 10px 0;
+}
+.book_input {
+  padding: 3px;
+  outline: none;
+  border: none;
+  background-color: #cccccc9a;
+  border-radius: 5px;
+}
+.book_btn {
+  outline: none;
+  border: none;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+}
+.buy {
+  background: lime;
+}
+.sell {
+  background: red;
+}
+
+table {
+  border-collapse: collapse;
+  overflow: auto;
+  width: 300px;
+  th {
+    background-color: #ccc;
+  }
+  * {
+    padding: 1rem 1.1rem;
+    text-align: center;
+  }
+}
+tbody td:first-child {
+  color: red;
+}
+/**
+***notification
+**/
+.notification_body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+}
+.notification_icon_wrapper {
+  display: flex;
+  gap: 3rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+  min-height: 200px;
+}
+.notification_icon {
+  transform: scale(5);
 }
 
 /**
+***orders
+**/
+
+.orders_container {
+  padding: 5rem;
+}
+.orders_icon_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-direction: column;
+  min-width: 200px;
+  min-height: 200px;
+}
+.orders_icon {
+  transform: scale(5);
+}
+/**
 ***
 **/
+/**
+***
+**/
+
+@media (max-width: 850px) {
+  .body-cover {
+    width: 100% !important;
+  }
+  .dashboard_home {
+    width: 100%;
+  }
+}
+@media (max-width: 720px) {
+  .btn-sec {
+    display: none;
+  }
+
+  .dash-header {
+    .menu_icon {
+      display: block;
+    }
+    .dash-nav {
+      justify-content: flex-end;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    font-size: 12.3px;
+  }
+  .body-cover {
+    width: 100% !important;
+    padding: 3rem 1rem 3rem 75px !important;
+  }
+  .dashboard_home {
+    width: 100%;
+  }
+  .badge_image_wrapper {
+    width: 40%;
+    aspect-ratio: 1/1;
+  }
+  .refers {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+}

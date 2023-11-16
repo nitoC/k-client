@@ -25,7 +25,7 @@ const Withdraw = ({ balance, modal, removeModal, email }) => {
   const handleAmount = (event) => {
     let reText =
       event.target.value > bal ? `More than wallet balance $${bal}` : "";
-    event.target.value > bal ? setdisable(true) : setdisable(false);
+    event.target.value > bal || event.target.value === 0 || event.target.value === '' || event.target.value === null || typeof Number(event.target.value) === 'number' || event.target.value === undefined ? setdisable(true) : setdisable(false);
     setbalText(reText);
     setamount(event.target.value);
   };

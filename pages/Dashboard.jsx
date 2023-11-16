@@ -3,12 +3,14 @@ import Link from "next/link";
 import { addressfunc } from "../apis/api";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import SideNav from '../Components/sideNav'
 
 import {
   AppBar,
   Button,
   Toolbar,
   Paper,
+  IconButton,
 } from "@material-ui/core";
 import tawk from "tawkto-react";
 import { Logout } from "../redux/actions";
@@ -35,6 +37,7 @@ import Deposit from "../Components/modals/Deposit";
 //Sidebar
 import Sidebar from "../Components/Sidebar";
 import Switcher from "../Components/utils/Switcher";
+import { Menu } from "@material-ui/icons";
 
 
 let depaddress = {};
@@ -46,12 +49,14 @@ const Dashboard = () => {
   let interval;
   const tawkPid = "619a2ab96885f60a50bcca66";
   const tawkKey = "1fl13dpgg";
-  const DashboardPages = ["Home", "Settings", "Exchange", "Market", "Referral", "News", "Documents"];
+  const DashboardPages = ["Home", "Settings", "Exchange", "Market", "Withdraw", "Deposit"];
 
   const [page, setpage] = useState('Home')//page
 
 
   //drawer
+  const [leftBar, setleftBar] = useState(false);
+  const [rightBar, setrightBar] = useState(false);
   const [drawer, setDrawer] = useState({
     top: false,
     left: true,
@@ -154,9 +159,19 @@ const Dashboard = () => {
   });
 
 
+
+  const handleLeftbar = (value) => {
+    setleftBar(value)
+  }
+  const handleRightbar = (value) => {
+    setrightBar(value)
+  }
+
+
+
   const handleModal = () => {
     setmodal({
-      zIndex: 4,
+      zIndex: 1224,
       position: "fixed",
       top: 0,
       right: 0,
@@ -165,7 +180,7 @@ const Dashboard = () => {
       display: "block",
     });
     setdeposit({
-      zIndex: 5,
+      zIndex: 1225,
       position: "fixed",
       top: "50%",
       left: 0,
@@ -176,7 +191,7 @@ const Dashboard = () => {
   };
   const handleModal1 = () => {
     setmodal1({
-      zIndex: 4,
+      zIndex: 1224,
       position: "fixed",
       top: 0,
       right: 0,
@@ -185,7 +200,7 @@ const Dashboard = () => {
       display: "block",
     });
     setwithdraw({
-      zIndex: 5,
+      zIndex: 1225,
       position: "fixed",
       top: "50%",
       left: 0,
@@ -239,7 +254,7 @@ const Dashboard = () => {
   const handleTransactions = () => {
     if (confirmed == false) {
       setmodalT({
-        zIndex: 4,
+        zIndex: 1244,
         position: "fixed",
         top: 0,
         right: 0,
@@ -248,7 +263,7 @@ const Dashboard = () => {
         display: "block",
       });
       settransactions({
-        zIndex: 5,
+        zIndex: 1255,
         position: "fixed",
         top: "90px",
         left: 0,
@@ -304,10 +319,12 @@ const Dashboard = () => {
 
 
   const handleLogout = useCallback(() => {
-    dispatch(Logout({}));
     toast('Logout successful')
-    router.push("/Signin");
-    window.location = '/Signin';
+    setTimeout(() => {
+      router.push("/Signin");
+      window.location = '/Signin';
+      dispatch(Logout({}));
+    }, 5000);
   }, [dispatch, router]);
   const addfunc = async () => {
     try {
@@ -365,6 +382,9 @@ const Dashboard = () => {
               </h1>
             </div>
             <nav className="dash-nav">
+              <div className="menu_icon">
+                <SideNav topNav={DashboardPages} rightBar={rightBar} handler={{ handlePages: handleDashboardPage, handleLogout, handleTransactions, handleLeftbar, handleRightbar, handleModal, handleModal1 }} />
+              </div>
               <div className="btn-sec">
                 <Button
                   className="btn"
@@ -375,16 +395,18 @@ const Dashboard = () => {
                   transactions
                 </Button>
               </div>
-              <Button
-                variant="contained"
-                className="btn"
-                size="medium"
-                onClick={() => handleLogout(interval)}
-                color="secondary"
-                style={{ borderRadius: "5px 5px 5px 5px" }}
-              >
-                logout
-              </Button>
+              <div className="btn-sec">
+                <Button
+                  variant="contained"
+                  className="btn"
+                  size="medium"
+                  onClick={() => handleLogout(interval)}
+                  color="secondary"
+                  style={{ borderRadius: "5px 5px 5px 5px" }}
+                >
+                  logout
+                </Button>
+              </div>
             </nav>
           </div>
         </Toolbar>
@@ -392,7 +414,8 @@ const Dashboard = () => {
       <ToastContainer />
       <div className="body">
         <Sidebar
-          page={handleDashboardPage}
+          handler={{ handlePages: handleDashboardPage, handleLeftbar, handleRightbar }}
+          leftBar={leftBar}
           toggleDrawer={toggleDrawer}
           drawer={drawer}
           drawerFunction={(
@@ -403,7 +426,7 @@ const Dashboard = () => {
           <FirstSection user={user} handlers={{ handleModal, handleModal1, handleDashboardPage }} />
           <div className="body-cover">
             <Switcher element={page} type={DashboardPages} users={users} handlers={{ handleModal1, handleModal }} />
-            <div className="sec-1"></div>
+
           </div>
         </div>
         <Deposit
@@ -422,7 +445,7 @@ const Dashboard = () => {
         <Transactions
           click={{ handleTransactions, removetransactions }}
           modal={{ modalT, transactions }}
-          user={users ? users.user ? users.user.transactions : '' : ''}
+          user={users ? users.user ? users.user.transactions ? users.user.transactions : '' : '' : ''}
         />
       </div>
     </div>

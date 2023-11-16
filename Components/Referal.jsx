@@ -1,10 +1,10 @@
 import { useEffect, useState, memo, useCallback } from "react";
 import { referfunc } from "../apis/api";
-import { Group } from "@material-ui/icons";
 import {
   Card,
   Typography,
 } from "@material-ui/core";
+import Image from "next/image";
 
 
 const Refer = ({ id }) => {
@@ -26,7 +26,9 @@ const Refer = ({ id }) => {
   return (
     <div className="referrals">
       <div className="badge">
-        <Group className="referral_icon" />
+        <div className="badge_image_wrapper">
+          <Image layout="fill" objectFit="contain" className="badge_image" src='/Group.png' alt="group" />
+        </div>
         <sup className="refers">{Number(referNo) ? referNo : 0}</sup>
       </div>
       <div className="referral_link_wrapper">
