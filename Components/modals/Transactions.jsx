@@ -31,10 +31,12 @@ const Transactions = ({ click, modal }) => {
       ></div>
       <table className="wrap-transaction" style={modal.transactions}>
         <thead className="trans">
-          <th className="tans_table_header">Type</th>
-          <th className="tans_table_header">Amount</th>
-          <th className="tans_table_header">Status</th>
-          <th className="tans_table_header">Time</th>
+          <tr>
+            <th className="tans_table_header">Type</th>
+            <th className="tans_table_header">Amount</th>
+            <th className="tans_table_header">Status</th>
+            <th className="tans_table_header">Time</th>
+          </tr>
         </thead>
         <tbody>
           {trans ? trans.map((item, b) => {

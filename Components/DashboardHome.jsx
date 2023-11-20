@@ -18,11 +18,11 @@ const DashboardHome = ({ user, handleModal }) => {
     const fetchData = useCallback(async () => {
         console.log(user.user._id, 'transactions')
         const res = await getTransactions(user.user._id)
-        if (!res.error) {
+        if (res && !res.error && res.data) {
             let transactionsData = res.data.payload
             setRecent(handleRecent(transactionsData))
-            return;
             console.log(transactionsData, 'dashhome')
+            return;
         }
         setRecent()
         return;
@@ -54,6 +54,7 @@ const DashboardHome = ({ user, handleModal }) => {
                                             <div className="recent_transaction_type">{transaction.updatedAt}</div>
                                         </div>
                                     )
+
                                 }
                             ) : (<Skeleton variant="rect" width={290} height={118} />) : ''}
                     </div>

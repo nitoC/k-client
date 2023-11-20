@@ -436,22 +436,19 @@ const Dashboard = () => {
           </div>
         </div>
         <Deposit
-          email={person.email}
-          balance={user.balance}
+          balance={user.capital}
           removeModal={removeModal}
           modal={{ modal, deposit }}
           address={address}
         />
         <Withdrawal
-          email={person.email}
-          balance={user.balance}
+          balance={user.capital}
           removeModal={removeModal1}
           modal={{ modal1, withdraw }}
         />
         <Transactions
           click={{ handleTransactions, removetransactions }}
           modal={{ modalT, transactions }}
-          user={users ? users.user ? users.user.transactions ? users.user.transactions : '' : '' : ''}
         />
       </div>
     </div>

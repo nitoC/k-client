@@ -31,9 +31,9 @@ const Capital = ({ user }) => {
           }
         </div>
       </div>
-      <Profit balance={user.user.capital} capital={user.user.capital} />
     </div >
   );
 };
 
 export default Capital;
+//<Profit balance={user.user.capital} capital={user.user.capital} />
