@@ -72,6 +72,7 @@ const Signup = () => {
     } catch (error) {
       if (error) {
         toast.error('oops! something went wrong')
+        setLoader(false)
         console.log(error);
       }
     }

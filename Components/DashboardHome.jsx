@@ -1,9 +1,36 @@
 import Plan from "./Plan";
 import Capital from "./Capital";
+import { memo, useCallback, useEffect, useState } from "react";
+//import { getServerSideProps } from "./Exchange";
+import { getTransactions } from "../apis/api";
+import { Skeleton } from "@material-ui/lab";
 
 const DashboardHome = ({ user, handleModal }) => {
-    let recentTransactions = user.user.transactions.slice(-3);
-    console.log(recentTransactions)
+    const [recent, setRecent] = useState([])
+    let handleRecent = (transactions) => {
+        return transactions.length > 3 ? transactions.slice(-3) : transactions;
+
+    }
+
+
+    console.log(recent, recent)
+
+    const fetchData = useCallback(async () => {
+        console.log(user.user._id, 'transactions')
+        const res = await getTransactions(user.user._id)
+        if (!res.error) {
+            let transactionsData = res.data.payload
+            setRecent(handleRecent(transactionsData))
+            return;
+            console.log(transactionsData, 'dashhome')
+        }
+        setRecent()
+        return;
+    }, [user.user._id])
+
+    useEffect(() => {
+        fetchData()
+    }, [fetchData])
     return (
         <div className="dashboard_home">
             <div className="dashboard_wrapper">
@@ -17,23 +44,24 @@ const DashboardHome = ({ user, handleModal }) => {
                     </div>
                     <div className="recent_transactions">
 
-                        {(recentTransactions).map(
-                            (transaction, index) => {
-                                console.log(transaction)
-                                return (
-                                    <div className="recent_transaction" key={transaction.time + index + transaction.value}>
-                                        <div className={transaction.value < 0 ? 'loss' : transaction.vale > 0 ? 'gain' : 'profit-text'}>{transaction.value}</div>
-                                        <div>{transaction.text}</div>
-                                        <div>{transaction.time}</div>
-                                    </div>
-                                )
-                            }
-                        )}
+                        {recent ?
+                            recent.length > 0 ? (recent).map(
+                                (transaction, index) => {
+                                    return (
+                                        <div className="recent_transaction" key={index + transaction.value + (Math.random() * 100 + 100)}>
+                                            <div className={transaction.type === 'Debit' ? 'loss' : transaction.type === 'Credit' ? 'gain' : 'profit-text'}>{transaction.type === 'Debit' ? `-${transaction.value}` : `+${transaction.value}`}</div>
+                                            <div className={transaction.status}>{transaction.status}</div>
+                                            <div className="recent_transaction_type">{transaction.updatedAt}</div>
+                                        </div>
+                                    )
+                                }
+                            ) : (<Skeleton variant="rect" width={290} height={118} />) : ''}
                     </div>
+
                 </div>
             </div>
         </div>
     )
 }
 
-export default DashboardHome
+export default memo(DashboardHome)

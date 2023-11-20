@@ -1,5 +1,6 @@
 import { CircularProgress, Paper } from "@material-ui/core";
 import { Button, FormControl, TextField, Typography } from "@material-ui/core";
+import axios from "../interceptors/axios";
 import Link from "next/link";
 import { forgotPassword } from "../apis/api";
 import { userFetch, message, rel } from "../redux/actions";
@@ -207,6 +208,10 @@ const Signin = () => {
     }
     if (users.token) {
       toast.success("user login was successful")
+      localStorage.setItem('token', users.token)
+      localStorage.setItem('userId', JSON.stringify(users.user._id))
+      axios.defaults.headers.common['Authorization'] = `Bearer ${users.token}`
+
       router.push("/Dashboard");
       window.location = "/Dashboard";
     }

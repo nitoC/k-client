@@ -96,7 +96,6 @@ export default function PersistentDrawerRight({ topNav, handler, rightBar }) {
             <CssBaseline />
             <div style={{ position: 'absolute', right: '20px', top: '7px' }}>
                 <IconButton
-                    color="black"
                     aria-label="open drawer"
                     edge="end"
                     onClick={handleDrawerOpen}

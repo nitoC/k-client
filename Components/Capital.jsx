@@ -13,14 +13,14 @@ import Profit from './PercentageProfit';
 
 const Capital = ({ user }) => {
   const [Visible, setVisible] = useState(false);
-  console.log(user.user.balance)
+  console.log(user.user.capital)
   return (
     <div className="balance-cover">
       <div className="p-text-wrap">
         <h2 className="balance_text" >
           {
             Visible ?
-              user.user.balance.toFixed(2) :
+              user.user.capital.toFixed(2) :
               '*****'
           }
         </h2>
@@ -31,7 +31,7 @@ const Capital = ({ user }) => {
           }
         </div>
       </div>
-      <Profit balance={user.balance} capital={user.capital} />
+      <Profit balance={user.user.capital} capital={user.user.capital} />
     </div >
   );
 };

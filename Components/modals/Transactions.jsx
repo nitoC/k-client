@@ -1,39 +1,55 @@
+import { useEffect, useState, memo, useCallback } from "react";
+import { getTransactions } from "../../apis/api";
+
+
+const Transactions = ({ click, modal }) => {
+  const [trans, setTrans] = useState('')
+  let userId = localStorage.getItem('userId')
 
 
 
-const Transactions = ({ click, modal, user }) => {
-    let trans;
-    if (user.length > 0) {
-      trans = user;
-    } else {
-      trans = [{ value: "", text: "" }];
-    }
-    return (
-      <>
-        <div
-          className="wrapT"
-          onClick={click.removetransactions}
-          style={modal.modalT}
-        ></div>
-        <div className="wrap-transaction" style={modal.transactions}>
-          <div className="trans">
-            <h2 className="type">type</h2>
-            <h2 className="amount-h">amount</h2>
-            <h2 className="status-h">status</h2>
-            <h2 className="time-h">time</h2>
-          </div>
-          {trans.map((a, b) => {
+  const fetchTransaction = useCallback(async () => {
+    try {
+
+      const response = await getTransactions(JSON.parse(userId));
+      console.log(response)
+      setTrans(response.data.payload);
+    } catch (err) {
+      console.log("error", err);
+    };
+  }, [userId]);
+
+  useEffect(() => {
+    fetchTransaction()
+  }, [fetchTransaction])
+  return (
+    <>
+      <div
+        className="wrapT"
+        onClick={click.removetransactions}
+        style={modal.modalT}
+      ></div>
+      <table className="wrap-transaction" style={modal.transactions}>
+        <thead className="trans">
+          <th className="tans_table_header">Type</th>
+          <th className="tans_table_header">Amount</th>
+          <th className="tans_table_header">Status</th>
+          <th className="tans_table_header">Time</th>
+        </thead>
+        <tbody>
+          {trans ? trans.map((item, b) => {
             return (
-              <div className="trans" key={b}>
-                <h3>{a.typeO}</h3>
-                <p className="amount">{a.value}</p>
-                <p className={a.text}>{a.text}</p>
-                <p className="time">{a.time}</p>
-              </div>
+              <tr className="trans" key={b + item.value + Math.random()}>
+                <td className='transaction_type'>{item.type}</td>
+                <td className={item.type}>{item.type === 'Debit' ? `-${item.value}` : `+${item.value}`}</td>
+                <td className={item.status}>{item.status}</td>
+                <td className='transaction_time'>{item.updatedAt}</td>
+              </tr>
             );
-          })}
-        </div>
-      </>
-    );
-  };
-  export default Transactions;
+          }) : ''}
+        </tbody>
+      </table>
+    </>
+  );
+};
+export default memo(Transactions);

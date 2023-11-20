@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import { deposit } from "../../apis/api";
 import { Alert } from "@material-ui/lab";
 import {
@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 
 
-const Deposit = ({ balance, modal, removeModal, email, address }) => {
+const Deposit = ({ balance, modal, removeModal, userId }) => {
   const bal = balance;
   let depStatus;
   const [disable, setdisable] = useState(true);
@@ -49,7 +49,7 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
   };
   const deposithandle = async () => {
     try {
-      depStatus = await deposit({ email, plan, capital, address });
+      depStatus = await deposit({ userId, value: capital, type: 'Debit' });
       setstatmessage(depStatus.data);
     } catch (err) {
       if (err) {
@@ -58,10 +58,10 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
     }
   };
   const handleUsdt = () => {
-    navigator.clipboard.writeText(address.usdt);
+    navigator.clipboard.writeText('address.usdt');
   };
   const handleBtc = () => {
-    navigator.clipboard.writeText(address.btc);
+    navigator.clipboard.writeText('address.btc');
   };
   return (
     <>
@@ -83,11 +83,11 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
         </div>
         <div className="address">
           <h6>usdt address</h6>
-          <p>{address.usdt}</p>
+          <p>{'address.usdt'}</p>
           <button onClick={handleUsdt}>copy</button>
         </div>
         <div className="address">
-          <h6> btc address</h6> <p>{address.btc}</p>
+          <h6> btc address</h6> <p>{'address.btc'}</p>
           <button onClick={handleBtc}>copy</button>
         </div>
         <div className="dep-card">
@@ -142,4 +142,4 @@ const Deposit = ({ balance, modal, removeModal, email, address }) => {
   );
 };
 
-export default Deposit;
+export default memo(Deposit);

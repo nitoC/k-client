@@ -1,14 +1,20 @@
-import axios from 'axios'
+import axios from '../interceptors/axios'
+//import axios from 'axios'
+
+
 
 // post endpoints
-export const register= payload=> axios.post('https://keytrade.onrender.com/register',payload)
-export const refer= payload=> axios.post('https://keytrade.onrender.com/referral',payload)
-export const login= payload=> axios.post('https://keytrade.onrender.com/login ',payload)
-export const forgotPassword= payload=> axios.post('https://keytrade.onrender.com/forgotPassword ',payload)
-export const referfunc= payload=> axios.post('https://keytrade.onrender.com/get-referral',payload)
+export const register = payload => axios.post('register', payload)
+export const Postreferrals = payload => axios.post('referrals', payload)
+export const login = payload => axios.post('login ', payload)
+export const createOrders = payload => axios.post('orders ', payload)
+export const withdraw = payload => axios.post('withdraw', payload)
+export const deposit = payload => axios.post('deposit ', payload)
 //patch endpoints
-export const deposit= payload=> axios.patch('https://keytrade.onrender.com/deposit ',payload)
-export const reset= payload=> axios.patch('https://keytrade.onrender.com/reset',payload)
-export const withdraw= payload=> axios.patch('https://keytrade.onrender.com/withdraw',payload)
+export const reset = payload => axios.patch('reset', payload)
 //get endpoints
-export const addressfunc= ()=> axios.get('https://keytrade.onrender.com/address')
+export const addressfunc = () => axios.get('address')
+export const getTransactions = (userId) => axios.get(`transactions/${userId}`)
+export const getOrders = (userId) => axios.get(`orders/${userId}`)
+export const completedOrders = (userId) => axios.get(`orders/completed/${userId}`)
+export const getReferrals = (userId) => axios.get(`referrals/${userId}`)

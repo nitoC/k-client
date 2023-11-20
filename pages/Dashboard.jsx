@@ -73,6 +73,8 @@ const Dashboard = () => {
   const router = useRouter();
   const users = useSelector((state) => state.Reducer);
   let person1 = users.user;
+  console.log(localStorage.getItem('userId'), 'dashboard')
+  console.log(localStorage.getItem('token'), 'dashboard')
   let person;
   if (person1) {
     person = {
@@ -85,7 +87,9 @@ const Dashboard = () => {
       plan: person1.plan,
     };
   }
-  console.log(users)
+
+
+
   if (!person1)
     person = {
       name: "",
@@ -320,6 +324,8 @@ const Dashboard = () => {
 
   const handleLogout = useCallback(() => {
     toast('Logout successful')
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId')
     setTimeout(() => {
       router.push("/Signin");
       window.location = '/Signin';

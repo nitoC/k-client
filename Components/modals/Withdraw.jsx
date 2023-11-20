@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, memo } from "react";
 import { withdraw } from "../../apis/api";
 import { Alert } from "@material-ui/lab";
 import {
@@ -32,7 +32,7 @@ const Withdraw = ({ balance, modal, removeModal, email }) => {
 
   const withdrawhandle = async () => {
     try {
-      depStatus = await withdraw({ email, amount, address });
+      depStatus = await withdraw({ userId, value: amount, type: 'Debit' });
       setstatmessage(depStatus.data);
     } catch (err) {
       if (err) {
@@ -97,4 +97,4 @@ const Withdraw = ({ balance, modal, removeModal, email }) => {
   );
 };
 
-export default Withdraw;
+export default memo(Withdraw);

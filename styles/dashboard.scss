@@ -51,13 +51,20 @@
       background-color: white;
       min-height: 80vh;
       overflow-y: auto;
+      thead {
+        background-color: #cccccc9a;
+      }
     }
     .trans {
-      width: 90%;
+      width: 100%;
       display: flex;
       padding: 8px;
       justify-content: space-around;
       align-items: center;
+      td,
+      th {
+        width: 80px;
+      }
       * {
         padding: 4px;
         text-align: center;
@@ -69,30 +76,17 @@
       h3 {
         color: gray;
       }
-      .amount,
-      .amount-h {
-        width: 25%;
-      }
+
       .status-h {
         width: 100px;
         text-align: center;
       }
-      .time,
-      .time-h {
-        width: 15%;
+
+      .Credit {
+        color: green;
       }
-      .pending {
-        color: brown;
-        border-radius: 4px;
-        background-color: antiquewhite;
-        width: 100px;
-        text-align: center;
-      }
-      .confirmed {
-        color: blue;
-        background-color: aliceblue;
-        width: 100px;
-        text-align: center;
+      .Debit {
+        color: red;
       }
     }
 
@@ -174,12 +168,11 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      justify-content: center;
       align-items: center;
       width: 100%;
       min-width: 300px;
       min-height: 50vh;
-      padding: 3rem 1rem 3rem 88px;
+      padding: 3rem 2rem 3rem 88px;
       .row1 {
         display: flex;
         justify-content: space-between;
@@ -228,14 +221,16 @@
 }
 
 .recent_transactions {
-  border: 2px solid #e9e5e5;
 }
 
 .recent_transaction {
   padding: 15px;
   display: flex;
+  border: 2px solid #e9e5e5;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(177, 174, 169, 0.788);
+  * {
+    padding: 6px 12px;
+  }
 }
 .loss {
   color: #9c0817 !important;
@@ -259,7 +254,24 @@
   flex-direction: column;
   gap: 20px;
 }
-
+.pending {
+  color: brown;
+  border-radius: 24px;
+  background-color: antiquewhite;
+  text-align: center;
+}
+.complete {
+  color: green;
+  border-radius: 24px;
+  background-color: rgba(144, 238, 144, 0.116);
+  text-align: center;
+}
+.failed {
+  color: crimson;
+  border-radius: 24px;
+  background-color: rgba(240, 128, 128, 0.116);
+  text-align: center;
+}
 /**
 ***library overrides
 **/
@@ -294,6 +306,7 @@
 **/
 .market_wrapper {
   padding: 0 3rem;
+  width: 100%;
 }
 /**
 ***referrals
@@ -324,7 +337,88 @@
   font-family: "Poppins", sans-serif;
   font-size: 3rem;
 }
+.referral_link_wrapper {
+  width: 500px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  position: relative;
+  padding: 1rem;
+}
 
+.referral_text {
+  overflow-x: auto;
+  width: 100%;
+}
+.referral_link {
+  width: 600px;
+  text-wrap: nowrap;
+}
+/* Firefox */
+.referral_text {
+  scrollbar-width: thin;
+  scrollbar-color: #c3cfe3 #dfe9eb;
+}
+
+/* Chrome, Edge and Safari */
+.referral_text::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+.referral_text::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #dfe9eb;
+}
+
+.referral_text::-webkit-scrollbar-track:hover {
+  background-color: #b8c0c2;
+}
+
+.referral_text::-webkit-scrollbar-track:active {
+  background-color: #b8c0c2;
+}
+
+.referral_text::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #c3cfe3;
+}
+
+.referral_text::-webkit-scrollbar-thumb:hover {
+  background-color: #c3cfe3;
+}
+
+.referral_text::-webkit-scrollbar-thumb:active {
+  background-color: #a9b3c5;
+}
+
+.referral_btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px -3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 2px 5px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 2px 5px -3px rgba(0, 0, 0, 0.75);
+}
+.referral_alert {
+  background-color: lightblue;
+  padding: 6px 10px;
+  border-radius: 10px;
+  width: fit-content;
+  display: block;
+}
+.referral_alert_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  min-height: 28px;
+}
+.referral_no_alert {
+  display: none;
+}
 /**
 ***documents
 **/
@@ -373,10 +467,10 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 0 1rem 0 5rem;
+  padding: 0 1rem 0 0rem;
 }
 .market_info {
-  width: 100%;
+  max-width: 100%;
   * {
     overflow: hidden;
   }
@@ -387,6 +481,9 @@
 .market_widget {
   width: 800px;
   min-width: 300px;
+}
+.book_heading {
+  padding: 10px 0;
 }
 .book {
   padding: 0.5rem;
@@ -426,26 +523,29 @@
 }
 .buy {
   background: lime;
+  cursor: pointer;
 }
 .sell {
   background: red;
+  cursor: pointer;
 }
 
-table {
+.exchange_table {
   border-collapse: collapse;
   overflow: auto;
-  width: 300px;
-  th {
-    background-color: #ccc;
-  }
+  width: 100%;
   * {
-    padding: 1rem 1.1rem;
-    text-align: center;
+    text-align: left;
+    padding: 10px 14px;
+  }
+  tbody tr:nth-child(even) {
+    background-color: #e4e0e0;
+  }
+  thead {
+    background-color: #b4b2b2;
   }
 }
-tbody td:first-child {
-  color: red;
-}
+
 /**
 ***notification
 **/
@@ -472,17 +572,61 @@ tbody td:first-child {
 ***orders
 **/
 
+.orders {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .orders_container {
-  padding: 5rem;
+  width: 100%;
+}
+.order_skeleton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .orders_icon_wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 3rem;
   flex-direction: column;
   min-width: 200px;
   min-height: 200px;
+}
+.order_table tr:nth-child(even) {
+  background-color: #d3d0d0;
+}
+.order_table tr:nth-child(odd) {
+  background-color: #faf9f9;
+}
+.order_table {
+  width: 100%;
+  border-collapse: collapse;
+  .order_status {
+    color: green;
+    background-color: rgba(144, 238, 144, 0.116);
+  }
+  .buy {
+    background-color: inherit !important;
+    color: #058605;
+  }
+  .sell {
+    background-color: inherit !important;
+    color: crimson;
+  }
+  * {
+    text-align: center;
+  }
+
+  th {
+    background-color: white;
+  }
+
+  th,
+  td {
+    padding: 10px 14px;
+  }
 }
 .orders_icon {
   transform: scale(5);
@@ -494,12 +638,28 @@ tbody td:first-child {
 ***
 **/
 
-@media (max-width: 850px) {
+@media (max-width: 907px) {
   .body-cover {
     width: 100% !important;
   }
   .dashboard_home {
     width: 100%;
+  }
+
+  .market_info {
+    max-width: 100%;
+    * {
+      overflow: hidden;
+    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  .market_widget {
+    width: 500px;
+    min-width: 300px;
   }
 }
 @media (max-width: 720px) {
@@ -523,17 +683,49 @@ tbody td:first-child {
   }
   .body-cover {
     width: 100% !important;
-    padding: 3rem 1rem 3rem 75px !important;
+    padding: 3rem 2rem 3rem 65px !important;
   }
   .dashboard_home {
     width: 100%;
   }
   .badge_image_wrapper {
-    width: 40%;
-    aspect-ratio: 1/1;
+    position: relative;
+    width: 200px;
+    height: 200px;
   }
   .refers {
     font-size: 1.1rem;
     font-weight: bold;
+  }
+  .market_info {
+    max-width: 100%;
+    * {
+      overflow: hidden;
+    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .market_widget {
+    width: 300px;
+    min-width: 300px;
+  }
+
+  .referral_link_wrapper {
+    width: calc(250px + 1vw);
+    padding: 1rem;
+  }
+
+  .referral_text {
+    overflow-x: auto;
+    width: 100%;
+  }
+  .referral_link {
+    width: 420px;
+    text-wrap: nowrap;
+  }
+  .referral_btn {
+    padding: 5px 10px;
+    border-radius: 18px;
   }
 }

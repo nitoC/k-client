@@ -1,19 +1,20 @@
-import { CircularProgress, Paper } from "@material-ui/core";
-import { Button, FormControl, TextField, Typography } from "@material-ui/core";
+
+import { Button, TextField, Typography } from "@material-ui/core";
 import {
   createTheme,
   responsiveFontSizes,
   ThemeProvider,
 } from "@material-ui/core/styles";
 import Link from "next/link";
-import { register } from "../../apis/api";
-import { refer } from "../../apis/api";
-import { useState, useEffect } from "react";
+import { Postreferrals, register } from "../../apis/api";
 import { useRouter } from "next/router";
-import { SettingsBrightness } from "@material-ui/icons";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { CircularProgress, Paper } from "@material-ui/core";
+import { useState, useEffect, useCallback } from "react";
+
 const Referral = () => {
 
-  const [Reg, setReg] = useState("");
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const router = useRouter();
@@ -21,7 +22,7 @@ const Referral = () => {
   console.log("hey", referrer)
   const { referrer } = router.query
 
-  const [referee, setreferee] = useState("");
+  const [referrerId, setreferrerId] = useState("");
   const [loader, setLoader] = useState(false);
   const [user, setUser] = useState({
     name: "",
@@ -30,7 +31,6 @@ const Referral = () => {
     password: "",
   });
   const handleName = (event) => {
-    setReg("");
     setUser({
       name: event.target.value,
       username: user.username,
@@ -39,7 +39,6 @@ const Referral = () => {
     });
   };
   const handleUsername = (event) => {
-    setReg("");
     setUser({
       name: user.name,
       username: event.target.value,
@@ -48,7 +47,6 @@ const Referral = () => {
     });
   };
   const handleEmail = (event) => {
-    setReg("");
     setUser({
       name: user.name,
       username: user.username,
@@ -57,7 +55,6 @@ const Referral = () => {
     });
   };
   const handlePassword = (event) => {
-    setReg("");
     setUser({
       name: user.name,
       username: user.username,
@@ -65,23 +62,33 @@ const Referral = () => {
       password: event.target.value,
     });
   };
+
+
+
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoader(true);
     try {
       const status = await register(user);
       console.log(status.data);
-      console.log(referee, "in submit");
-      const refstat = await refer({ rEmail: referee, nUser: { name: user.name, username: user.username, email: user.email } })
+      console.log(referrerId, "in submit");
+      const refstat = await Postreferrals({ referringUserId: referrerId, referredUserId: status.data.payload._id })
       console.log(refstat.data)
-      if (status.data.registered === true && refstat.data) {
+      if (status.data.registered === true && refstat.data.payload) {
+        toast.success('Signup successful')
+        setLoader(false)
         router.push("/Signin");
+
       } else {
+        toast.warn(status.data.message)
         setLoader(false);
-        setReg(status.data.message);
       }
     } catch (error) {
       if (error) {
+        toast.error('oops! something went wrong')
+        setLoader(false)
         console.log(error);
       }
     }
@@ -90,7 +97,7 @@ const Referral = () => {
   const handleReferer = useCallback(
     () => {
       if (!router.isReady) return
-      setreferee(router.query.referrer)
+      setreferrerId(router.query.referrer)
     }
     , [router.query.referrer, router.isReady])
   useEffect(() => {
@@ -108,6 +115,7 @@ const Referral = () => {
         </Link>
       </div>
       <form action="Signin" onSubmit={handleSubmit} className="form-cover">
+        <ToastContainer />
         <Paper className="form-space" elevation={2}>
           <ThemeProvider theme={theme}>
             <Typography
@@ -117,9 +125,6 @@ const Referral = () => {
               Create account
             </Typography>
           </ThemeProvider>
-          <Typography variant="p" color="secondary">
-            {Reg}
-          </Typography>
           <div className="row-1">
             <TextField
               type="text"
@@ -190,3 +195,5 @@ const Referral = () => {
 };
 
 export default Referral;
+
+
