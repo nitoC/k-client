@@ -14,7 +14,6 @@ import {
 
 const Deposit = ({ balance, modal, removeModal }) => {
 
-  console.log(balance, 'balance')
   let depStatus;
   let text = `copy the USDT or alternatively the BTC address and make deposit before submitting your deposit request`
   const bal = balance;
