@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Logout } from '../redux/actions';
 import store from '../redux/Store';
 
-axios.defaults.baseURL = 'http://localhost:5000/api/v1';
+axios.defaults.baseURL = 'https://keytrade.onrender.com/api/v1';
 
 // Flag to track whether token refresh is in progress
 let isRefreshing = false;

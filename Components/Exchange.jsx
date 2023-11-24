@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { completedOrders, createOrders, getOrders, getToBtcRate } from "../apis/api";
+import { createOrders, getOrders, getToBtcRate } from "../apis/api";
 import { useCallback, useEffect, useState } from "react";
 import currencyConverter from "../helpers/currencyConverter";
 
