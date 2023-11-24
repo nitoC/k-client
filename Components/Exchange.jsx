@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
-import { completedOrders, createOrders, getOrders } from "../apis/api";
+import { completedOrders, createOrders, getOrders, getToBtcRate } from "../apis/api";
 import { useCallback, useEffect, useState } from "react";
+import currencyConverter from "../helpers/currencyConverter";
 
 const TechnicalAnalysis = dynamic(
     () => import("react-ts-tradingview-widgets").then((w) => w.TechnicalAnalysis),
@@ -20,29 +21,76 @@ const Exchange = () => {
 
     let userId = localStorage.getItem('userId')
     const [orders, setorders] = useState([])
+    const [sellquantity, setSellquantity] = useState('')
+    const [buyquantity, setBuyquantity] = useState('')
+    const [btc, setbtc] = useState('')
+    const [usd, setusd] = useState('')
 
     const bookOrderHandler = async (type) => {
-        // console.log('book order')
-        let data = await createOrders({ userId: JSON.parse(userId), type, price: 0.44, value: 23, currency: 'Btc' })
-        console.log(data)
-    }
-    const Handler = () => {
+        console.log({ userId: JSON.parse(userId), type, price: sellquantity, value: btc, currency: 'Btc' })
+
+        try {
+            if (type === 'buy') {
+                await createOrders({ userId: JSON.parse(userId), type, price: usd, value: buyquantity, currency: 'Btc' })
+                return
+            }
+
+            createOrders({ userId: JSON.parse(userId), type, price: sellquantity, value: btc, currency: 'Btc' })
+            return
+        } catch (err) {
+            console.log(err)
+        }
 
     }
+
+
+
+    const fetchRateHandler = async (e, type) => {
+        const inputValue = e.target.value;
+
+        if (inputValue === '' || isNaN(parseFloat(inputValue)) || parseFloat(inputValue) <= 0) {
+            console.log('Please enter a valid positive number');
+            // Set the values to an appropriate default value or null based on your use case
+            setBuyquantity('');
+            setSellquantity('');
+            setbtc('');
+            setusd('');
+            return;
+        }
+
+        try {
+            if (type === 'buy_convertUsd') {
+                let rate = await getToBtcRate(inputValue);
+                setBuyquantity(rate.data);
+                setusd(inputValue);
+            } else if (type === 'buy_convertBtc') {
+                let rate = await getToBtcRate(1);
+                let convertedRate = currencyConverter(inputValue, 'toUsd', rate.data);
+                setBuyquantity(convertedRate);
+                setbtc(inputValue);
+            } else if (type === 'sell_convertUsd') {
+                let rate = await getToBtcRate(1);
+                let convertedRate = currencyConverter(inputValue, 'toBtc', rate.data);
+                console.log(convertedRate)
+                setSellquantity(convertedRate.toFixed(3));
+                setbtc(inputValue);
+                console.log(btc)
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+
 
     const getOrdersHandler = useCallback(async () => {
 
         try {
-            console.log('hello')
-            console.log(userId)
             // fetch data from external API
             const res = await getOrders(JSON.parse(userId));
             const order = res.data.payload;
 
             setorders(order.reverse())
-
-            console.log(order, 'orders')
-
 
         } catch (err) {
             console.log('Error getting posts', err);
@@ -65,18 +113,18 @@ const Exchange = () => {
                 <div className="book">
                     <div className="book_container">
                         <h3>Buy</h3>
-                        <p>Price 29547.86 USDT</p>
+                        <p>{buyquantity} BTC</p>
                         <div className="book_input_wrapper">
                             <div className="base_currency">
                                 <span>Quantity</span>
-                                <input name="buy_input" className="book_input" type="text" />
-                                <span>USDT</span>
+                                <input onChange={(e) => fetchRateHandler(e, 'buy_convertUsd')} name="buy_input" className="book_input" type="text" value={usd} />
+                                <span>USD</span>
                             </div>
                         </div>
                         <div className="book_input_wrapper">
                             <div className="book_currency">
                                 <span>Quantity</span>
-                                <input name="buy_input" className="book_input" type="text" />
+                                <input disabled onChange={(e) => fetchRateHandler(e, 'buy_convertBtc')} name="buy_input" className="book_input" type="text" value={buyquantity} />
                                 <span>BTC</span>
                             </div>
                         </div>
@@ -84,19 +132,19 @@ const Exchange = () => {
                     </div>
                     <div className="book_container">
                         <h3>Sell</h3>
-                        <p>Price 0.86 BTC</p>
+                        <p>{sellquantity} USD</p>
                         <div className="book_input_wrapper">
                             <div className="base_currency">
                                 <span>Quantity</span>
-                                <input name="sell_input" className="book_input" type="text" />
+                                <input onChange={(e) => fetchRateHandler(e, 'sell_convertUsd')} name="sell_input" className="book_input" type="text" value={btc} />
                                 <span>BTC</span>
                             </div>
                         </div>
                         <div className="book_input_wrapper">
                             <div className="book_currency">
                                 <span>Quantity</span>
-                                <input name="sell_input" className="book_input" type="text" />
-                                <span>USDT</span>
+                                <input disabled onChange={(e) => fetchRateHandler(e, 'sell_convertBtc')} name="sell_input" className="book_input" type="text" value={sellquantity} />
+                                <span>USD</span>
                             </div>
                         </div>
                         <button onClick={() => bookOrderHandler('sell')} className="sell book_btn">SELL NOW</button>

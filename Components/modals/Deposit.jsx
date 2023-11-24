@@ -1,4 +1,4 @@
-import { useState, memo, useEffect, useCallback } from "react";
+import { useState, memo, useRef } from "react";
 import { deposit } from "../../apis/api";
 import { Alert } from "@material-ui/lab";
 import {
@@ -28,29 +28,13 @@ const Deposit = ({ balance, modal, removeModal }) => {
   const [plan, setplan] = useState("Gold");
   const [disp, setdisp] = useState({ display: "block", width: "100%" });
   const [capital, setcapital] = useState();
+  const controller = useRef()
 
 
   const handleSelect = (event) => {
-    // let min =
-    //   plan === "Gold"
-    //     ? 100
-    //     : plan === "Diamond"
-    //       ? 1000
-    //       : plan === "Platinum"
-    //         ? 5000
-    //         : 0;
-    // let diff = min - bal;
-    // let reText =
-    //   event.target.value < diff
-    //     ? `less than min deposit $${min}`
-    //     : event.target.value == null || event.target.value == "" || isNaN(parseFloat(event.target.value))
-    //       ? "100-5000"
-    //       : min + "-5000";
-    // event.target.value < diff || event.target.value == null || event.target.value == "" || isNaN(parseFloat(event.target.value)) ? setdisable(true) : setdisable(false);
-    // setcapital(event.target.value);
-    // console.log(capital);
-    // setText(reText);
+
     setplan(event.target.value);
+
   };
 
 
@@ -77,23 +61,40 @@ const Deposit = ({ balance, modal, removeModal }) => {
   };
 
 
-  const deposithandle =
-    async () => {
-      try {
-        setloading(true)
-        depStatus = await deposit({ userId, value: capital, plan });
-        setstatmessage('deposit request had been sent please wait for confirmation');
-        if (depStatus.data) {
-          setcapital('')
-          setloading(false)
-        }
-      } catch (err) {
-        setloading(false)
-        if (err) {
-          console.log(err.message);
-        }
+  const deposithandle = async () => {
+
+    try {
+
+
+      if (controller.current) {
+        controller.current.abort("cancelling and creating new request")
       }
+
+      controller.current = new AbortController();
+
+      let signal = controller.current.signal;
+
+      setloading(true)
+      depStatus = await deposit({ userId, value: capital, plan }, signal);
+      setstatmessage('deposit request had been sent please wait for confirmation');
+
+      if (depStatus.data) {
+        setcapital('')
+        setloading(false)
+        setdisable(true)
+      }
+
+    } catch (err) {
+
+      setloading(false)
+
+      if (err) {
+        console.log(err.message);
+      }
+
     }
+
+  }
 
 
   const handleUsdt = () => {

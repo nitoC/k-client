@@ -71,7 +71,11 @@ const Signup = () => {
       }
     } catch (error) {
       if (error) {
-        toast.error('oops! something went wrong')
+        if (error.response.status === 409) {
+          toast.warn("This User already exists login")
+        } else {
+          toast.error(error.response.data.message)
+        }
         setLoader(false)
         console.log(error);
       }

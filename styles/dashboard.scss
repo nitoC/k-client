@@ -49,10 +49,14 @@
     .wrap-transaction {
       width: 85vw;
       background-color: white;
-      min-height: 80vh;
+      height: 500px;
       overflow-y: auto;
       thead {
         background-color: #cccccc9a;
+        display: block;
+      }
+      tbody {
+        display: block;
       }
     }
     .trans {
@@ -360,33 +364,47 @@
 }
 
 /* Chrome, Edge and Safari */
-.referral_text::-webkit-scrollbar {
-  height: 10px;
-  width: 10px;
+.referral_text::-webkit-scrollbar,
+.wrap-transaction::-webkit-scrollbar {
+  height: 2px;
+  width: 2px;
+  transition: 2s;
 }
-.referral_text::-webkit-scrollbar-track {
+.transaction_table:hover .wrap-transaction::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+  transition: 3s;
+}
+.referral_text::-webkit-scrollbar-track,
+.wrap-transaction::-webkit-scrollbar-track {
   border-radius: 5px;
   background-color: #dfe9eb;
 }
 
-.referral_text::-webkit-scrollbar-track:hover {
+.referral_text::-webkit-scrollbar-track:hover,
+.wrap-transaction::-webkit-scrollbar-track:hover {
+  background-color: #e2e7e9;
+}
+
+.referral_text::-webkit-scrollbar-track:active,
+.wrap-transaction::-webkit-scrollbar-track:active {
   background-color: #b8c0c2;
 }
 
-.referral_text::-webkit-scrollbar-track:active {
-  background-color: #b8c0c2;
-}
-
-.referral_text::-webkit-scrollbar-thumb {
+.referral_text::-webkit-scrollbar-thumb,
+.wrap-transaction::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background-color: #c3cfe3;
 }
 
-.referral_text::-webkit-scrollbar-thumb:hover {
+.referral_text::-webkit-scrollbar-thumb:hover,
+.wrap-transaction::-webkit-scrollbar-thumb:hover {
   background-color: #c3cfe3;
+  border-radius: 20px;
 }
 
-.referral_text::-webkit-scrollbar-thumb:active {
+.referral_text::-webkit-scrollbar-thumb:active,
+.wrap-transaction {
   background-color: #a9b3c5;
 }
 
@@ -577,6 +595,12 @@
   display: flex;
   justify-content: center;
 }
+.orders_empty {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
 .orders_container {
   width: 100%;
 }
@@ -589,6 +613,7 @@
 .orders_icon_wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 3rem;
   flex-direction: column;
   min-width: 200px;
@@ -681,12 +706,30 @@
   :root {
     font-size: 12.3px;
   }
+
+  .dashboard-cover {
+    .body {
+      .deposit-cover {
+        width: 80%;
+        min-height: 250px;
+      }
+      .dep-card {
+        width: 100%;
+      }
+    }
+  }
   .body-cover {
     width: 100% !important;
     padding: 3rem 2rem 3rem 65px !important;
   }
   .dashboard_home {
     width: 100%;
+  }
+  .dash-header {
+    .logo {
+      margin-left: 45px;
+      width: 60px;
+    }
   }
   .badge_image_wrapper {
     position: relative;

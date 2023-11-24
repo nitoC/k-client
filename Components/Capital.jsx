@@ -13,7 +13,7 @@ import Profit from './PercentageProfit';
 
 const Capital = ({ user }) => {
   const [Visible, setVisible] = useState(false);
-  console.log(user.user.capital)
+  let capital = user ? user.user ? user.user.capital : '' : ''
   return (
     <div className="balance-cover">
       <div className="p-text-wrap">

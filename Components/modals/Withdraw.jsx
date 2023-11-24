@@ -1,4 +1,4 @@
-import { useState, useMemo, memo } from "react";
+import { useState, useMemo, memo, useRef } from "react";
 import { withdraw } from "../../apis/api";
 import { Alert } from "@material-ui/lab";
 import {
@@ -24,6 +24,7 @@ const Withdraw = ({ balance, modal, removeModal }) => {
   const [amount, setamount] = useState("");
   const [address, setaddress] = useState("");
   const [loading, setloading] = useState(false)
+  const controller = useRef()
 
 
 
@@ -49,14 +50,24 @@ const Withdraw = ({ balance, modal, removeModal }) => {
     setloading(true)
     try {
 
-      depStatus = await withdraw({ userId, value: amount });
+
+      if (controller.current) {
+        console.log('hello')
+        controller.current.abort("cancelling and creating new request")
+      }
+      console.log('creating new controller')
+      controller.current = new AbortController();
+
+      let signal = controller.current.signal;
+
+      depStatus = await withdraw({ userId, value: amount }, signal);
 
       if (depStatus.status === 200) {
         setstatmessage("withdrawal request has been made and is currently being processed");
         setamount('')
         setaddress('');
         setloading(false)
-
+        setdisable(true)
       }
 
     } catch (err) {

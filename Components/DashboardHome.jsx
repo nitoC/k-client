@@ -4,32 +4,63 @@ import { memo, useCallback, useEffect, useState } from "react";
 //import { getServerSideProps } from "./Exchange";
 import { getTransactions } from "../apis/api";
 import { Skeleton } from "@material-ui/lab";
+import { useRef } from "react";
 
 const DashboardHome = ({ user, handleModal }) => {
-    const [recent, setRecent] = useState([])
+    const [recent, setRecent] = useState()
+    const [mounted, setmounted] = useState(true)
+    const userData = useRef(user ? user.user ? user.user._id : '' : '')
+    const controller = useRef()
     let handleRecent = (transactions) => {
+
         return transactions.length > 3 ? transactions.slice(-3) : transactions;
+
 
     }
 
 
-    console.log(recent, recent)
 
     const fetchData = useCallback(async () => {
-        console.log(user.user._id, 'transactions')
-        const res = await getTransactions(user.user._id)
-        if (res && !res.error && res.data) {
-            let transactionsData = res.data.payload
-            setRecent(handleRecent(transactionsData))
-            console.log(transactionsData, 'dashhome')
-            return;
+
+        if (controller.current) {
+
+            controller.current.abort("cancelling and unmounting")
         }
-        setRecent()
-        return;
-    }, [user.user._id])
+
+        controller.current = new AbortController();
+
+        let signal = controller.current.signal;
+        try {
+            if (mounted) {
+
+                const res = await getTransactions(userData.current, signal)
+                if (res && !res.error && res.data) {
+                    let transactionsData = res.data.payload
+                    setRecent(handleRecent(transactionsData))
+                    return;
+                }
+
+                setRecent()
+                return;
+            }
+
+        } catch (err) {
+            console.log(err)
+        }
+    }, [mounted])
 
     useEffect(() => {
+
         fetchData()
+
+        return () => {
+            setmounted(false)
+            if (controller.current) {
+
+                controller.current.abort("cancelling and creating new request")
+            }
+        }
+
     }, [fetchData])
     return (
         <div className="dashboard_home">
@@ -47,6 +78,7 @@ const DashboardHome = ({ user, handleModal }) => {
                         {recent ?
                             recent.length > 0 ? (recent).map(
                                 (transaction, index) => {
+
                                     return (
                                         <div className="recent_transaction" key={index + transaction.value + (Math.random() * 100 + 100)}>
                                             <div className={transaction.type === 'Debit' ? 'loss' : transaction.type === 'Credit' ? 'gain' : 'profit-text'}>{transaction.type === 'Debit' ? `-${transaction.value}` : `+${transaction.value}`}</div>
@@ -56,7 +88,7 @@ const DashboardHome = ({ user, handleModal }) => {
                                     )
 
                                 }
-                            ) : (<Skeleton variant="rect" width={290} height={118} />) : ''}
+                            ) : '' : (<Skeleton variant="rect" width={290} height={118} />)}
                     </div>
 
                 </div>

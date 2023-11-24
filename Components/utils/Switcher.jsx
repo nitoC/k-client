@@ -10,7 +10,7 @@ import Documents from '../Documents'
 import Orders from '../Orders'
 
 const Switcher = ({ element, type, users, handlers }) => {
-    console.log(element, type.includes(element), type)
+
     if (element === "Home" && type.includes(element)) {
         return (
             <DashboardHome user={users} handleModal={handlers.handleModal} />
@@ -31,7 +31,7 @@ const Switcher = ({ element, type, users, handlers }) => {
     }
     if (element === "Referral") {
         return (
-            <Referal id={users.user._id} />
+            <Referal id={users && users.user && users.user._id} />
         )
 
     }

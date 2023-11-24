@@ -86,6 +86,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MiniDrawer({ handler, leftBar }) {
+
+
     const page = ["Home", "Notifications", "Orders", "Documents", "Settings", "Referral"]
     const classes = useStyles();
     const theme = useTheme();
@@ -131,7 +133,7 @@ export default function MiniDrawer({ handler, leftBar }) {
                 <Divider />
                 <List>
                     {['Dashboard', 'Notification', 'Orders'].map((text, index) => (
-                        <ListItem onClick={() => handler.handlePages(page[index])} button key={text}>
+                        <ListItem onClick={() => { handleDrawerClose(); handler.handlePages(page[index]) }} button key={text}>
                             <ListItemIcon>{index === 0 ? <Home /> : index === 1 ? <NotificationImportant /> : index === 2 ? <MailIcon /> : ''}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
@@ -140,7 +142,7 @@ export default function MiniDrawer({ handler, leftBar }) {
                 <Divider />
                 <List>
                     {['Documents', 'Settings', 'Referral'].map((text, index) => (
-                        <ListItem onClick={() => handler.handlePages(page[3 + index])} button key={text}>
+                        <ListItem onClick={() => { handleDrawerClose(); handler.handlePages(page[3 + index]) }} button key={text}>
                             <ListItemIcon>{index === 0 ? <InboxIcon /> : index === 1 ? <Settings /> : <GroupAdd />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>

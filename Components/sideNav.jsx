@@ -19,7 +19,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { OpenInNewOutlined, PersonPinCircle, PinDrop } from '@material-ui/icons';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -94,7 +94,7 @@ export default function PersistentDrawerRight({ topNav, handler, rightBar }) {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <div style={{ position: 'absolute', right: '20px', top: '7px' }}>
+            <div style={{ position: 'absolute', right: '10px', top: '7px', width: '60px' }}>
                 <IconButton
                     aria-label="open drawer"
                     edge="end"
@@ -126,7 +126,7 @@ export default function PersistentDrawerRight({ topNav, handler, rightBar }) {
                         </ListItem>) : text === 'Withdraw' ? (<ListItem button onClick={() => handler.handleModal1(text)} key={text}>
                             <ListItemText primary={text} />
                         </ListItem>) :
-                            (<ListItem button onClick={() => handler.handlePages(text)} key={text}>
+                            (<ListItem button onClick={() => { handleDrawerClose(); handler.handlePages(text) }} key={text}>
                                 <ListItemText primary={text} />
                             </ListItem>)
 
@@ -137,7 +137,7 @@ export default function PersistentDrawerRight({ topNav, handler, rightBar }) {
                     {['Transactions', 'Logout'].map((text, index) => (
                         <ListItem button key={text}>
                             {text === 'Logout' && <ListItemIcon> <OpenInNewOutlined /> </ListItemIcon>}
-                            {text === 'Logout' ? <ListItemText onClick={() => handler.handleLogout} primary={text} /> : <ListItemText onClick={() => handler.handleTransactions()} primary={text} />}
+                            {text === 'Logout' ? <ListItemText onClick={() => handler.handleLogout()} primary={text} /> : <ListItemText onClick={() => handler.handleTransactions()} primary={text} />}
                         </ListItem>
                     ))}
                 </List>

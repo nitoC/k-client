@@ -1,6 +1,6 @@
 import { Warning } from '@material-ui/icons'
 import { completedOrders } from "../apis/api";
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Skeleton } from '@material-ui/lab';
 
 const Orders = () => {
@@ -19,7 +19,6 @@ const Orders = () => {
 
             setorders(order.reverse())
 
-            console.log(order, 'orders complete')
 
 
         } catch (err) {
@@ -72,9 +71,11 @@ const Orders = () => {
                         )
                         :
                         (
-                            <div className='orders_icon_wrapper'>
-                                <Warning className='orders_icon' />
-                                <p>No orders yet</p>
+                            <div className='empty_orders'>
+                                <div className='orders_icon_wrapper'>
+                                    <Warning className='orders_icon' />
+                                    <p>No orders yet</p>
+                                </div>
                             </div>
                         )
                     :

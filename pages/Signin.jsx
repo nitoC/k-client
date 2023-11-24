@@ -1,6 +1,6 @@
 import { CircularProgress, Paper } from "@material-ui/core";
 import { Button, FormControl, TextField, Typography } from "@material-ui/core";
-import axios from "../interceptors/axios";
+import axios from "../interceptors/axiosInteceptor";
 import Link from "next/link";
 import { forgotPassword } from "../apis/api";
 import { userFetch, message, rel } from "../redux/actions";
@@ -71,7 +71,16 @@ const ForgotPassword = ({ modal, removeModal, sendEmail, Loader1, cancel }) => {
 };
 
 
+
+
+
+//
+//sign in component
+//
+
 const Signin = () => {
+
+
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const users = useSelector((state) => state.Reducer);
@@ -197,12 +206,15 @@ const Signin = () => {
   };
 
   const checkSubmit = useCallback(() => {
-    if (users.message == 1 && rel) {
+    console.log(users, 'users')
+    if (users.message == 1 && rel || users.status === 400 || users.status === 404 || users.message == 'invalid user') {
       toast.warn(" no such user please login")
       users.message = null
+      clearuser()
     }
-    if (users.message == 2 && rel) {
+    if (users.message == 2 && rel || users.status === 401) {
       toast.warn(" Password is incorrect")
+      clearuser()
       users.message = null
 
     }
@@ -215,7 +227,7 @@ const Signin = () => {
       router.push("/Dashboard");
       window.location = "/Dashboard";
     }
-  }, [router, users])
+  }, [clearuser, router, users])
 
   useEffect(() => {
     setTimeout(() => {
@@ -224,9 +236,21 @@ const Signin = () => {
 
   }, [users, checkSubmit])
 
+  const clearuser = useCallback(() => {
+    if (!users.token) {
+      dispatch(userFetch({}));
+    }
+  }, [dispatch, users.token])
   useEffect(() => {
+
     val ? setLoader1(false) : setLoader1(true)
+    return () => {
+    }
   }, [])
+
+  useEffect(() => {
+    clearuser()
+  }, [clearuser])
   return (
     <div className="form-container">
       <ToastContainer />

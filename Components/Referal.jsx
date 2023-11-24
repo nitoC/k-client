@@ -11,7 +11,7 @@ import { Skeleton } from "@material-ui/lab";
 const Refer = ({ id }) => {
 
 
-  const [referNo, setreferNo] = useState(0);
+  const [referNo, setreferNo] = useState();
   let referralLink = `${window.location.protocol}//${window.location.host}/referral/${id}`
   const [alert, setAlert] = useState(false)
 
@@ -43,7 +43,7 @@ const Refer = ({ id }) => {
     let data;
     try {
       data = await getReferrals(userId);
-      console.log(data.data);
+      console.log(data.data, 'ind');
     } catch (error) {
       if (error) console.log(error);
     }
@@ -63,7 +63,7 @@ const Refer = ({ id }) => {
         <div className="badge_image_wrapper">
           <Image layout="fill" objectFit="contain" className="badge_image" src='/Group.png' alt="group" />
         </div>
-        <sup className="refers">{Number(referNo) ? referNo : <Skeleton variant="text" animation="wave" />}</sup>
+        <sup className="refers">{!isNaN(referNo) ? referNo : <Skeleton variant="text" animation="wave" />}</sup>
       </div>
       <div className="referral_alert_wrapper">
         <p className={alert ? `referral_alert` : `referral_no_alert`}>referral link copied !</p>

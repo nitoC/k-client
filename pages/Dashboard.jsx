@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import Link from "next/link";
+//import Link from "next/link";
 import { addressfunc } from "../apis/api";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
@@ -49,7 +49,7 @@ const Dashboard = () => {
   let interval;
   const tawkPid = "619a2ab96885f60a50bcca66";
   const tawkKey = "1fl13dpgg";
-  const DashboardPages = ["Home", "Settings", "Exchange", "Market", "Withdraw", "Deposit"];
+  const DashboardPages = ["Home", "News", "Exchange", "Market", "Withdraw", "Deposit"];
 
   const [page, setpage] = useState('Home')//page
 
@@ -73,8 +73,7 @@ const Dashboard = () => {
   const router = useRouter();
   const users = useSelector((state) => state.Reducer);
   let person1 = users.user;
-  console.log(localStorage.getItem('userId'), 'dashboard')
-  console.log(localStorage.getItem('token'), 'dashboard')
+
   let person;
   if (person1) {
     person = {
@@ -328,7 +327,7 @@ const Dashboard = () => {
     localStorage.removeItem('userId')
     setTimeout(() => {
       router.push("/Signin");
-      window.location = '/Signin';
+      window.location.pathname = '/Signin';
       dispatch(Logout({}));
     }, 5000);
   }, [dispatch, router]);
