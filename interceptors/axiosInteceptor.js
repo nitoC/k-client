@@ -31,7 +31,8 @@ axios.interceptors.response.use(
 
 
             if (resolved && error.response && error.response.status === 401 && window.location.pathname === '/Dashboard') {
-
+                localStorage.removeItem('token')
+                localStorage.removeItem('userId')
                 store.Store.dispatch(Logout({}));
                 isRefreshing = false
                 window.location.href = '/Signin';
