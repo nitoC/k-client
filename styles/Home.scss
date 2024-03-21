@@ -333,7 +333,7 @@
 .contained {
   background: url("/banner.png");
   background-color: rgba(18, 18, 18, 0.144);
-
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
