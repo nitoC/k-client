@@ -1,7 +1,7 @@
 :root {
   font-size: 16px;
 }
-* {
+.contained {
 }
 .team {
   padding: 25px;
@@ -208,12 +208,12 @@
   .logo {
     padding: 0 1.3em 0 1.3em;
     h1 {
-      color: white;
+      color: rgb(10, 88, 190);
       padding: 1em;
       font-weight: 600;
     }
     span {
-      color: white;
+      color: inherit;
     }
   }
   .nav-1 {
@@ -222,11 +222,44 @@
     align-items: center;
     width: 50%;
     padding: 1em;
+    .auth-btns {
+      display: flex;
+      gap: 15px;
+    }
+    .auth-btns button {
+      padding: 10px 2rem;
+      cursor: pointer;
+      border-radius: 40px;
+      font-weight: bolder;
+      font-family: inherit;
+    }
+
+    .auth-btn-primary {
+      border: none;
+      outline: none;
+      color: white;
+      background-color: crimson;
+    }
+    .auth-btn-secondary {
+      color: crimson;
+      border: 1px solid crimson;
+    }
+    .auth-btn-primary:hover {
+      border: none;
+      outline: none;
+      color: white;
+      background-color: rgba(168, 5, 38, 0.993);
+    }
+    .auth-btn-secondary:hover {
+      color: crimson;
+      background-color: #ccc;
+      border: 1px solid crimson;
+    }
     .links {
       transition: 0.5;
       a {
         padding: 0.5em 1em 0.5em 1em;
-        color: wheat;
+        color: rgb(37, 34, 27);
         transition: 0.5;
         font-weight: 600;
       }
@@ -235,8 +268,8 @@
     .links:hover {
       color: orange;
       a:hover {
-        color: orange;
-        border-bottom: 2px solid orange;
+        color: rgb(38, 0, 255);
+        border-bottom: 2px solid rgb(38, 0, 255);
         font-weight: 600;
       }
     }
@@ -298,17 +331,34 @@
   }
 }
 .contained {
-  background: url("/woman1.gif");
-  background-color: rgba($color: #000000, $alpha: 0.1);
+  background: url("/banner.png");
+  background-color: rgba(18, 18, 18, 0.144);
+
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
+  background-size: contain;
+  background-position: right;
   background-blend-mode: overlay;
   width: 100vw;
   height: 100vh;
   .banner_heading {
-    font-family: "Manrope", sans-serif;
-    font-size: 3rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 4rem;
+    text-shadow: 2px 2px #ff0000;
+  }
+  .banner_subheading {
+    color: rgb(63 21 21);
+    line-height: 1.5rem;
+    font-size: 1rem;
+    font-weight: unset;
+  }
+  .cta-btn-main {
+    background-color: crimson;
+    border-radius: 40px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 1rem 2rem;
+    font-weight: bolder;
   }
   h1 {
     color: orange;
@@ -318,10 +368,10 @@
   }
 }
 .description {
-  padding: 1em;
+  padding: 2rem;
   height: 70%;
   display: flex;
-  justify-content: space-around;
+  // justify-content: space-around;
   align-items: center;
   .keyword {
     display: flex;
@@ -330,10 +380,7 @@
     justify-content: center;
     align-items: flex-start;
     width: 500px;
-    h3 {
-      color: white;
-      font-weight: 600;
-    }
+
     .action-btn {
       font-weight: 600;
       width: 97%;

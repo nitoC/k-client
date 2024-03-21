@@ -188,12 +188,10 @@ const Home = () => {
         </div>
         <div className="m-box">
           <div className="m-desc-profit">
-            <h3>
-              20% to 40% <span>profit each day</span>
-            </h3>
+
           </div>
-          <p>
-            We create the future. Cryptocurrency is the future of the global
+          <p className="desc-subheading">
+            Cryptocurrency is the future of the global
             financial market. And now we are engaged in the extraction of one of
             the most valuable resources, which allows us to get maximum profits
             today.
@@ -234,28 +232,21 @@ const Home = () => {
                     Support
                   </Link>
                 </div>
-                <ButtonGroup>
-                  <Link href="/Signin" passHref>
-                    <Button
-                      variant="contained"
-                      size="medium"
-                      color="secondary"
-                      style={{ borderRadius: "5px 0px 0px 5px", fontWeight: "900" }}
+                <div className="auth-btns">
+                  <Link href="/Signin">
+                    <button
+                      className="auth-btn-primary"
                     >
                       login
-                    </Button>
+                    </button>
                   </Link>
-                  <Link href="/Signup" passHref>
-                    <Button
-                      variant="outlined"
-                      size="medium"
-                      color="secondary"
-                      style={{ borderRadius: "0px 5px 5px 0px", fontWeight: "900" }}
+                  <Link href="/Signup">
+                    <button className="auth-btn-secondary"
                     >
                       signup
-                    </Button>
+                    </button>
                   </Link>
-                </ButtonGroup>
+                </div>
               </Box>
               <Box className="menu-icon">
                 <IconButton
@@ -273,14 +264,9 @@ const Home = () => {
         <div className="description">
           <div className="keyword">
             <h1 className="banner_heading">
-              Key
-              <span>
-                Trade
-              </span>
-              <br />
-              Investment
+              KeyTrade Investment
             </h1>
-            <h3>
+            <h3 className="banner_subheading">
               Cryptocurrency is the future of the global
               financial market. And now we are engaged in the extraction of one
               of the most valuable resources, which allows us to get maximum
@@ -288,19 +274,15 @@ const Home = () => {
             </h3>
             <div className="action-btn">
               <Link href="/Signup" passHref>
-                <Button
-                  variant="contained"
-                  size="large"
-                  color="secondary"
-                  endIcon={<Forward />}
+                <button className="cta-btn-main"
                 >
                   Get started
-                </Button>
+                </button>
               </Link>
             </div>
           </div>
           <div className="desc-profit">
-            <h1>20% to 40% profit each day</h1>
+
             <Link href="https://tawk.to/chat/619a2ab96885f60a50bcca66/1fl13dpgg">
               <Fab
                 variant="extended"
@@ -424,9 +406,9 @@ const Home = () => {
           </h1>
           <div className="plan-desc">
             <Grid container spacing={3}>
-              <PlanCard plan="GOLD" profit="20" minDeposit="$100" duration="48hrs" />
-              <PlanCard plan="DIAMOND" profit="30%" minDeposit="$1000" duration="72hrs" />
-              <PlanCard plan="PLATINUM" profit="45" minDeposit="$5000" duration="96hrs" />
+              <PlanCard plan="GOLD" profit="2%" minDeposit="$100" duration="48hrs" />
+              <PlanCard plan="DIAMOND" profit="3%" minDeposit="$1000" duration="72hrs" />
+              <PlanCard plan="PLATINUM" profit="4.5%" minDeposit="$5000" duration="96hrs" />
             </Grid>
           </div>
         </div>
